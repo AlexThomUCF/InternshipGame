@@ -9,6 +9,7 @@ public class AINavigation : MonoBehaviour
     public float range; //Radius of spehere around agent. 
     public Transform location; 
     public Transform centrePoint; // centre of the area the agent wants to move around in
+    public GameObject [] taskCheckpoints;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +69,25 @@ public class AINavigation : MonoBehaviour
         else if(choice == 3)
         {
             Debug.Log(choice);
-            // do action
+            // go to task 
+            switch (choice)
+            {
+                case 1:
+                myAgent.SetDestination(taskCheckpoints[0].transform.position);
+                break;
+
+                case 2:
+                myAgent.SetDestination(taskCheckpoints[1].transform.position);
+                break;
+
+                case 3:
+                myAgent.SetDestination(taskCheckpoints[2].transform.position);
+                break;
+                
+                case 4:
+                myAgent.SetDestination(taskCheckpoints[3].transform.position);
+                break;
+            }
         }
 
        yield return new WaitForSeconds(2f);
