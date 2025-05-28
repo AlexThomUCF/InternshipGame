@@ -20,7 +20,7 @@ public class AINavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(ChooseAction());
+        StartCoroutine(ChooseAction());
         if(myAgent.remainingDistance <= myAgent.stoppingDistance) // done with path
         {
             Vector3 point;
@@ -64,6 +64,7 @@ public class AINavigation : MonoBehaviour
         else if(choice == 2)
         {
             Debug.Log(choice);
+             yield return new WaitForSeconds(0f);
             //free roam 
         }
         else if(choice == 3)
@@ -74,18 +75,26 @@ public class AINavigation : MonoBehaviour
             {
                 case 1:
                 myAgent.SetDestination(taskCheckpoints[0].transform.position);
+                float dist = Vector3.Distance(taskCheckpoints[0].transform.position, transform.position);   
+                yield return new WaitForSeconds(dist);
                 break;
 
                 case 2:
                 myAgent.SetDestination(taskCheckpoints[1].transform.position);
+                dist = Vector3.Distance(taskCheckpoints[1].transform.position, transform.position);   
+                yield return new WaitForSeconds(dist);
                 break;
 
                 case 3:
                 myAgent.SetDestination(taskCheckpoints[2].transform.position);
+                dist = Vector3.Distance(taskCheckpoints[2].transform.position, transform.position);   
+                yield return new WaitForSeconds(dist);
                 break;
                 
                 case 4:
                 myAgent.SetDestination(taskCheckpoints[3].transform.position);
+                dist = Vector3.Distance(taskCheckpoints[3].transform.position, transform.position);   
+                yield return new WaitForSeconds(dist);
                 break;
             }
         }
