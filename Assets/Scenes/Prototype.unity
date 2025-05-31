@@ -700,6 +700,7 @@ MonoBehaviour:
   - {fileID: 1935233598}
   - {fileID: 1855679150}
   - {fileID: 260817503}
+  choice: 0
 --- !u!4 &1218049514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5981e0a48ffd85745ae47236b4df3868, type: 3}
@@ -819,7 +820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1533008340
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -863,6 +864,7 @@ MonoBehaviour:
   - {fileID: 1935233598}
   - {fileID: 1855679150}
   - {fileID: 260817503}
+  choice: 0
 --- !u!136 &1533008342
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1380,6 +1382,7 @@ MonoBehaviour:
   - {fileID: 1935233598}
   - {fileID: 1855679150}
   - {fileID: 260817503}
+  choice: 0
 --- !u!136 &2099228821
 CapsuleCollider:
   m_ObjectHideFlags: 0
