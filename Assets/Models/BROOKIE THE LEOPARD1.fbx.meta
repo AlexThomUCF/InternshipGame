@@ -3,7 +3,27 @@ guid: cb16ee3f421c87241a62708b77199393
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bow_lowpoly_Tiee
+    second: {fileID: 2100000, guid: ead96701fd4939342aac00e8c0e02c50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bow_lowpoly_body
+    second: {fileID: 2100000, guid: c33691d5a7255ad43b673334b6bcea54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bow_lowpoly_bow
+    second: {fileID: 2100000, guid: ead96701fd4939342aac00e8c0e02c50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bow_lowpoly_fl
+    second: {fileID: 2100000, guid: c004c43c0c3c268488dd6bd58d11c639, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

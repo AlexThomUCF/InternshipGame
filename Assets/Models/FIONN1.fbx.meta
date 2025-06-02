@@ -3,11 +3,101 @@ guid: 6009f25470b98a347ae7c67371321277
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: ebc9bc0d40396af4e9a4b9246ad0f613, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface3
+    second: {fileID: 2100000, guid: 75bc696bc7a43034d810cb9c1ab8f77c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface4
+    second: {fileID: 2100000, guid: d531236f1e6a9a9439f71273af40ff98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface7
+    second: {fileID: 2100000, guid: d1f82bcea0bc7444cb9d9be1c8fd4816, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface8
+    second: {fileID: 2100000, guid: f698ae681c8b8f34386f302dc3796f40, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Fionn_Low_UVmap_initialShadingGroup_BaseColor
+    second: {fileID: 2800000, guid: 32b886569238b774fa06ba7b52f8ac23, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Fionn_Low_UVmap_initialShadingGroup_Metallic
+    second: {fileID: 2800000, guid: 3dfb3e012d3ac7c46844b01904470ac6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Fionn_Low_UVmap_initialShadingGroup_Normal
+    second: {fileID: 2800000, guid: 03859f30198a8fa4c8ce388795b12a90, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Fionn_Low_UVmap_initialShadingGroup_Roughness
+    second: {fileID: 2800000, guid: dca771e2041f15043a8d67e295a08d4d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Hat_Bow_Hat_BaseColor
+    second: {fileID: 2800000, guid: 45c9201f5dbe775448dfb071660eeed7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Hat_Bow_Hat_Metallic
+    second: {fileID: 2800000, guid: d5d055d56066c3b4aa0f0cdd294c5a93, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Hat_Bow_Hat_Roughness
+    second: {fileID: 2800000, guid: 976e04341cb91d64e9d38858b83da01a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Hat_Bow_bow_BaseColor
+    second: {fileID: 2800000, guid: 0a3aadcfcc828d64d9a03e5c0d2ed5f0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Hat_Bow_bow_Roughness
+    second: {fileID: 2800000, guid: bc81e9675e885384eaaaf53a1164e8cc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bowww+band222_banddd_BaseColor
+    second: {fileID: 2800000, guid: db56057fac2ae2b40a96117c7b457431, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bowww+band222_banddd_Roughness
+    second: {fileID: 2800000, guid: de460dd26c232b14cb49b94a5fdef612, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bowww+band222_bowwww_BaseColor
+    second: {fileID: 2800000, guid: dbf2ab07b6ea924429145a37f3c9fa58, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bowww+band222_bowwww_Roughness
+    second: {fileID: 2800000, guid: 83a149650a05205419df69ee07ba67d4, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
-    materialSearch: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

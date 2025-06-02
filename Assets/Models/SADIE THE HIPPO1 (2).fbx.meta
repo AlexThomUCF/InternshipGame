@@ -50,10 +50,10 @@ ModelImporter:
       name: standardSurface7
     second: {fileID: 2100000, guid: 8ba3bb7048cc1484590149ae4817ff5e, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
