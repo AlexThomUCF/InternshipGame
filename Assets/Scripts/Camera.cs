@@ -29,7 +29,7 @@ public class Camera : MonoBehaviour
 
     void Start()
     {
-        _target = GameObject.Find("Player").transform;
+        _target = GameObject.Find("Charles").transform;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
