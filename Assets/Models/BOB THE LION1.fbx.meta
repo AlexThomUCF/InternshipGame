@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: standardSurface3
+    second: {fileID: 2100000, guid: f1eabbe4f6ebaf745a9e9ef563e6e133, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: wrist
     second: {fileID: 2100000, guid: 22930ca8300498d4485f8b6341f39347, type: 2}
   - first:

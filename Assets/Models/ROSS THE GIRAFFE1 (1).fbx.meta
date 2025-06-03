@@ -3,9 +3,44 @@ guid: d44f12e7d29c59648b48bf76db84aa28
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: 65301b5d173f3f144bd2a87ada0c1aac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: collar
+    second: {fileID: 2100000, guid: bb92c619d809fab4e88b8beb36625a7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: earphone
+    second: {fileID: 2100000, guid: 6c58c73d6f4b4fe40b3ac06ee1ae39d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: earphone1
+    second: {fileID: 2100000, guid: 70b1729644646874cb7eb1ee9f5b31fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair
+    second: {fileID: 2100000, guid: d6b9417aefe0d1b4a93054eb7edfdaf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pants1
+    second: {fileID: 2100000, guid: a367450f8c6b5e34db87c7c271ea6a92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: top2
+    second: {fileID: 2100000, guid: 16f84a3c30c449d45a9f121687aaf2f7, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1

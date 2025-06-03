@@ -24,6 +24,26 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert4
     second: {fileID: 2100000, guid: e9c9d982982f9414483c72a24a74cf3d, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: All_body_standardSurface2SG_BaseColor
+    second: {fileID: 2800000, guid: d0aeb641c579ad94998a64907a7a1684, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: All_body_standardSurface2SG_Metallic
+    second: {fileID: 2800000, guid: 25b2671a54199b648be5075e6ab14e1b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: All_body_standardSurface2SG_Roughness
+    second: {fileID: 2800000, guid: edc7979a6df68164186d3d8e04e169b4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: BaseColor
+    second: {fileID: 2800000, guid: b2298a7984210f74999a1f87ebb25dc3, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
