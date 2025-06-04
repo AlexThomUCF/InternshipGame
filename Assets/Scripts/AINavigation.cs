@@ -26,10 +26,11 @@ public class AINavigation : MonoBehaviour
         {
             ChooseAction(); // when path is done call Choose action command
             Vector3 point;
-            if(RandomPoint(centrePoint.position, range, out point) && (choice >= 3 && choice <= 20)) // If Random point is in range and choice is between 3 and 10, Move to random point on map
+            if(RandomPoint(centrePoint.position, range, out point) && (choice >= 41 && choice <= 100)) // If Random point is in range and choice is between 3 and 10, Move to random point on map
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 myAgent.SetDestination(point);
+                StartCoroutine(PauseMovement(4.4f)); // Maybe keep maybe delete
             }
         }
     }
@@ -50,25 +51,28 @@ public class AINavigation : MonoBehaviour
 
     public void ChooseAction()
     {
-        choice = Random.Range(1,21);
+        choice = Random.Range(0,100);
        
-        if(choice == 1) // If choice 1 player stand still
+        if(choice >= 21 && choice <= 40) // If choice 1 player stand still
         {
-            Debug.Log(choice); 
+            Debug.Log(gameObject.name + " choice: " + choice);
+
             StartCoroutine(PauseMovement(4.4f));
 
         }
-        else if (choice >= 3 && choice <= 20) // if choice 3 - 10 player free roams
+        else if (choice >= 41 && choice <= 100) // if choice 3 - 10 player free roams
         {
-            Debug.Log(choice);
+            Debug.Log(gameObject.name + " choice: " + choice);
+
             Debug.Log("Agent is roaming");
 
             
             //free roam 
         }
-        else if(choice == 2) // if choice 2 player moves to task point
+        else if(choice >= 1 && choice <= 20) // if choice 2 player moves to task point
         {
-            Debug.Log(choice);
+            Debug.Log(gameObject.name + " choice: " + choice);
+
             // go to task 
             int tempNum  = Random.Range(1,4);
 

@@ -20,6 +20,11 @@ ModelImporter:
       name: skin111
     second: {fileID: 2100000, guid: 11fdb8dd3c5add546b7a13af834a22fe, type: 2}
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface5
+    second: {fileID: 2100000, guid: 62cfab0067a55a448bd44382beec2109, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: pig_all_UV1_Extract2_BaseColor
