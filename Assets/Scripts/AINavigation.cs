@@ -12,10 +12,13 @@ public class AINavigation : MonoBehaviour
     public GameObject [] taskCheckpoints;
     public  int choice = 0;
 
+    public TaskList taskList;
+
     // Start is called before the first frame update
     void Start()
     {
         //myAgent.SetDestination(location.position);
+        taskCheckpoints = taskList.taskArray;
     }
 
     // Update is called once per frame
