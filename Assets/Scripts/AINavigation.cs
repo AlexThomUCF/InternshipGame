@@ -11,6 +11,7 @@ public class AINavigation : MonoBehaviour
     public Transform centrePoint; // centre of the area the agent wants to move around in
     public GameObject [] taskCheckpoints;
     public  int choice = 0;
+    public Animator animator;
 
     public TaskList taskList;
 
@@ -112,10 +113,12 @@ public class AINavigation : MonoBehaviour
     IEnumerator PauseMovement(float pauseTime)
     {
         myAgent.isStopped = true;
+        //animator.SetBool("isMoving", false);
 
         yield return new WaitForSeconds(pauseTime);
 
         myAgent.isStopped = false;
+        //animator.SetBool("isMoving", true);
     }
 
     // I feel like 2 is being selected to frequently, its like if one of the agent is going towards 2, the other ones go towards 2
