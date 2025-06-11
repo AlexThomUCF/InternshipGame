@@ -15,6 +15,8 @@ public class AINavigation : MonoBehaviour
 
     public TaskList taskList;
 
+    public bool isPerformingAction = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,11 +32,12 @@ public class AINavigation : MonoBehaviour
         {
             ChooseAction(); // when path is done call Choose action command
             Vector3 point;
+
             if(RandomPoint(centrePoint.position, range, out point) && (choice >= 41 && choice <= 100)) // If Random point is in range and choice is between 3 and 10, Move to random point on map
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
                 myAgent.SetDestination(point);
-                StartCoroutine(PauseMovement(4.4f)); // Maybe keep maybe delete
+                StartCoroutine(ResetAfterMovement());
             }
         }
     }
@@ -55,11 +58,14 @@ public class AINavigation : MonoBehaviour
 
     public void ChooseAction()
     {
-        choice = Random.Range(0,100);
+        if(isPerformingAction) return;
+        choice = Random.Range(1,101);
        
         if(choice >= 21 && choice <= 40) // If choice 1 player stand still
         {
             Debug.Log(gameObject.name + " choice: " + choice);
+
+            //After these choices were picked instantly new choices were picked and maybe overrided this line. THIS IS CORRECT WHENEVER NUMBER IS BETWEEN 21 - 40 IT MAKES CHOICE PICK RIGHT AWAY SKIPPING THIS STAND STILL LINE.
 
             StartCoroutine(PauseMovement(4.4f));
 
@@ -67,20 +73,23 @@ public class AINavigation : MonoBehaviour
         else if (choice >= 41 && choice <= 100) // if choice 3 - 10 player free roams
         {
             Debug.Log(gameObject.name + " choice: " + choice);
+            isPerformingAction = true;
 
-            Debug.Log("Agent is roaming");
+           // Debug.Log("Agent is roaming");
 
             
             //free roam 
         }
         else if(choice >= 1 && choice <= 20) // if choice 2 player moves to task point
         {
+            isPerformingAction = true;
             Debug.Log(gameObject.name + " choice: " + choice);
 
+            int arrayLength = taskCheckpoints.Length;
             // go to task 
-            int tempNum  = Random.Range(1,4);
+            int tempNum  = Random.Range(1,arrayLength);
 
-            switch (tempNum)
+            switch (tempNum) 
             {
                 case 1:
                 myAgent.SetDestination(taskCheckpoints[0].transform.position);
@@ -106,12 +115,14 @@ public class AINavigation : MonoBehaviour
                 //yield return new WaitForSeconds(dist);
                 break;
             }
+            StartCoroutine(ResetAfterMovement());
         }
        //yield return new WaitForSeconds(2f);
     }
 
     IEnumerator PauseMovement(float pauseTime)
     {
+        isPerformingAction = true;
         myAgent.isStopped = true;
         //animator.SetBool("isMoving", false);
 
@@ -119,8 +130,19 @@ public class AINavigation : MonoBehaviour
 
         myAgent.isStopped = false;
         //animator.SetBool("isMoving", true);
+
+        isPerformingAction = false;
     }
 
-    // I feel like 2 is being selected to frequently, its like if one of the agent is going towards 2, the other ones go towards 2
     
+
+    IEnumerator ResetAfterMovement()
+    {
+        while (myAgent.pathPending || myAgent.remainingDistance > myAgent.stoppingDistance)
+        {
+            yield return null; // Wait until the AI reaches its destination
+        }
+        isPerformingAction = false;
+    }
+ 
 }

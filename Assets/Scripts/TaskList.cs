@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TaskList : MonoBehaviour
 {
-    public List<GameObject> tasksList;
+    public List<GameObject> tasksListAmount;
     public GameObject[] taskArray;
     public GameObject test;
 
@@ -13,7 +14,7 @@ public class TaskList : MonoBehaviour
     {
         for(int i = 0; i < taskArray.Length; i++)
         {
-            tasksList.Add(taskArray[i]);
+            tasksListAmount .Add(taskArray[i]);
         }
     }
 

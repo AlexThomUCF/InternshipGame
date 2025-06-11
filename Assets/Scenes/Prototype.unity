@@ -170,7 +170,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &5128673
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -210,9 +212,10 @@ GameObject:
   - component: {fileID: 18655085}
   - component: {fileID: 18655084}
   - component: {fileID: 18655083}
+  - component: {fileID: 18655087}
   m_Layer: 0
   m_Name: Task1
-  m_TagString: Untagged
+  m_TagString: Task
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,6 +306,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &18655087
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18655082}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &94733315 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07dcd3f710e3c304bb27e544bb937b30, type: 3}
@@ -353,7 +377,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &94733318
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -447,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 73ed5bc75d86a14439fd56c1e04701ad, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -475,9 +501,10 @@ GameObject:
   - component: {fileID: 260817506}
   - component: {fileID: 260817505}
   - component: {fileID: 260817504}
+  - component: {fileID: 260817508}
   m_Layer: 0
   m_Name: Task4
-  m_TagString: Untagged
+  m_TagString: Task
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,6 +595,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &260817508
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260817503}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &276752921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -634,7 +682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cb16ee3f421c87241a62708b77199393, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -698,7 +746,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &327967604
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -877,7 +927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 712727d202900cf4ea3546d88076671a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -990,7 +1040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 07dcd3f710e3c304bb27e544bb937b30, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1154,7 +1204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9ec1cd2b6fa2ba649a215be94d232b96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1218,7 +1268,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &610119888
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1294,7 +1346,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &845223777
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1372,7 +1426,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &846769646
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1448,7 +1504,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &903234894
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1585,7 +1643,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1015272268
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1679,7 +1739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6009f25470b98a347ae7c67371321277, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1761,7 +1821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d44f12e7d29c59648b48bf76db84aa28, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1931,7 +1991,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1099344513
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2007,7 +2069,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1207743741
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2098,7 +2162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAgent: {fileID: 1218049512}
-  range: 25
+  range: 50
   location: {fileID: 1218049514}
   centrePoint: {fileID: 1218049514}
   taskCheckpoints:
@@ -2107,7 +2171,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
-  taskList: {fileID: 0}
+  animator: {fileID: 0}
+  taskList: {fileID: 1677441575}
+  isPerformingAction: 0
 --- !u!4 &1218049514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5981e0a48ffd85745ae47236b4df3868, type: 3}
@@ -2200,7 +2266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2374,6 +2440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jen_All_Geo_USETHISONEFORGAMES
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8565e154de449f44da92263451b327b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2416,7 +2486,9 @@ MonoBehaviour:
   centrePoint: {fileID: 1425578424}
   taskCheckpoints: []
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 1677441575}
+  isPerformingAction: 0
 --- !u!195 &1425578426
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2527,7 +2599,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!136 &1533008342
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2664,7 +2738,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1543674957
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2758,7 +2834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2848,7 +2924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b80a2cf1d6e163041a92aa5c5a028b04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2893,7 +2969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a7037831b44e3418a95814b41e1d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasksList: []
+  tasksListAmount: []
   taskArray:
   - {fileID: 18655082}
   - {fileID: 1935233598}
@@ -2981,7 +3057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3009,9 +3085,10 @@ GameObject:
   - component: {fileID: 1855679153}
   - component: {fileID: 1855679152}
   - component: {fileID: 1855679151}
+  - component: {fileID: 1855679155}
   m_Layer: 0
   m_Name: Task3
-  m_TagString: Untagged
+  m_TagString: Task
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3102,6 +3179,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1855679155
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855679150}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.6
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1926094222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,7 +3329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 37b8214dadc864746b1ddd945c74f1c2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3259,9 +3357,10 @@ GameObject:
   - component: {fileID: 1935233601}
   - component: {fileID: 1935233600}
   - component: {fileID: 1935233599}
+  - component: {fileID: 1935233603}
   m_Layer: 0
   m_Name: Task2
-  m_TagString: Untagged
+  m_TagString: Task
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3352,6 +3451,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1935233603
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935233598}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3.6
+  m_Center: {x: 0, y: 0.10102832, z: 0}
 --- !u!1 &2038339692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b80a2cf1d6e163041a92aa5c5a028b04, type: 3}
@@ -3402,7 +3522,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
+  animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &2038339695
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3470,7 +3592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAgent: {fileID: 2099228819}
-  range: 25
+  range: 50
   location: {fileID: 2099228822}
   centrePoint: {fileID: 2099228822}
   taskCheckpoints:
@@ -3479,7 +3601,9 @@ MonoBehaviour:
   - {fileID: 1855679150}
   - {fileID: 260817503}
   choice: 0
-  taskList: {fileID: 0}
+  animator: {fileID: 0}
+  taskList: {fileID: 1677441575}
+  isPerformingAction: 0
 --- !u!136 &2099228821
 CapsuleCollider:
   m_ObjectHideFlags: 0
