@@ -353,7 +353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 712727d202900cf4ea3546d88076671a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -435,14 +435,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 91205872}
   centrePoint: {fileID: 91205872}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!4 &91205872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5981e0a48ffd85745ae47236b4df3868, type: 3}
@@ -1470,15 +1467,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a7037831b44e3418a95814b41e1d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasksList: []
+  tasksListAmount: []
   taskArray:
   - {fileID: 1208810137}
-  - {fileID: 587906030}
-  - {fileID: 454078790}
   - {fileID: 281449124}
+  - {fileID: 587906030}
   - {fileID: 825326077}
-  - {fileID: 838003085}
-  test: {fileID: 1208810137}
+  - {fileID: 454078790}
+  - {fileID: 1658157024}
+  - {fileID: 1419220792}
+  ai: {fileID: 0}
 --- !u!4 &195273946
 Transform:
   m_ObjectHideFlags: 0
@@ -8511,14 +8509,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 698044399}
   centrePoint: {fileID: 698044399}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &698044398
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10341,14 +10336,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 746625309}
   centrePoint: {fileID: 746625309}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &746625308
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13585,14 +13577,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 865389314}
   centrePoint: {fileID: 865389314}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &865389313
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13827,14 +13816,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 915364942}
   centrePoint: {fileID: 915364942}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &915364941
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -18094,14 +18080,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1140325670}
   centrePoint: {fileID: 1140325670}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1140325667
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -20809,6 +20792,7 @@ MonoBehaviour:
   choice: 0
   animator: {fileID: 1247356922}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!136 &1247356920
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21238,14 +21222,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1314708286}
   centrePoint: {fileID: 1314708286}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1314708285
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22169,6 +22150,7 @@ MonoBehaviour:
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1382438730
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22261,14 +22243,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1390513370}
   centrePoint: {fileID: 1390513370}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1390513369
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -25272,14 +25251,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1598527729}
   centrePoint: {fileID: 1598527729}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1598527728
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -25949,14 +25925,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1644868198}
   centrePoint: {fileID: 1644868198}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1644868197
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -28285,14 +28258,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1915350123}
   centrePoint: {fileID: 1915350123}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1915350122
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -28393,14 +28363,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 1942221508}
   centrePoint: {fileID: 1942221508}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &1942221507
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -28644,6 +28611,7 @@ MonoBehaviour:
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!136 &1952223824
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30662,14 +30630,11 @@ MonoBehaviour:
   range: 100
   location: {fileID: 2138551068}
   centrePoint: {fileID: 2138551068}
-  taskCheckpoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  taskCheckpoints: []
   choice: 0
   animator: {fileID: 0}
   taskList: {fileID: 0}
+  isPerformingAction: 0
 --- !u!195 &2138551067
 NavMeshAgent:
   m_ObjectHideFlags: 0

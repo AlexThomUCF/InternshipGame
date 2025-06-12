@@ -20,8 +20,10 @@ public class AINavigation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        taskList = FindObjectOfType<TaskList>();
         //myAgent.SetDestination(location.position);
-        taskCheckpoints = taskList.taskArray;
+        
+        taskCheckpoints = taskList.taskArray;   
     }
 
     // Update is called once per frame

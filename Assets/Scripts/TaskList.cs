@@ -7,14 +7,14 @@ public class TaskList : MonoBehaviour
 {
     public List<GameObject> tasksListAmount;
     public GameObject[] taskArray;
-    public GameObject test;
+    public AINavigation ai;
 
     // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i < taskArray.Length; i++)
         {
-            tasksListAmount .Add(taskArray[i]);
+            tasksListAmount.Add(taskArray[i]);
         }
     }
 
