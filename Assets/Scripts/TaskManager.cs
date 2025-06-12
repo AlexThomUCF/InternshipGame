@@ -40,6 +40,7 @@ public class TaskManager : MonoBehaviour
                 Debug.Log("This is a NPC");
                 //play animation
                 //agent.isStopped = false;
+                Debug.Log("This is " + this.name);
             }
         }
     }
