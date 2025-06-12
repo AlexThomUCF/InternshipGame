@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Camera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
     public Vector3 CamOffset = new Vector3(0.6f, 1.5f, -3.5f); // Over-the-shoulder offset
     public float mouseSensitivity = 1f;
