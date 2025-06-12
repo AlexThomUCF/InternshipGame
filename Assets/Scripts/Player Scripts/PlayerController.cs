@@ -10,13 +10,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform camera;
 
     [Header("Movement Settings")]
-    [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float turningSpeed = 2f;
-    [SerializeField] private float gravity = 9.81f;
-    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float walkSpeed = 8f;
+    [SerializeField] private float turningSpeed = 5f;
+    [SerializeField] private float gravity = 20f;
+    [SerializeField] private float jumpHeight = 1f;
 
     private float verticalVelocity;
-
     private Vector2 moveInput;
     private bool jumpPressed;
 
@@ -51,7 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         move = camera.transform.TransformDirection(move);
-        move.y = 0; // prevent vertical tilting
+        move.y = 0f; // prevent upward tilting from camera
         move *= walkSpeed;
         move.y = VerticalForceCalculation();
 
@@ -62,12 +61,14 @@ public class PlayerController : MonoBehaviour
     {
         if (controller.velocity.sqrMagnitude > 0.1f)
         {
-            Vector3 currentLookDirection = controller.velocity;
-            currentLookDirection.y = 0;
-            currentLookDirection.Normalize();
+            Vector3 lookDirection = controller.velocity;
+            lookDirection.y = 0f;
 
-            Quaternion targetRotation = Quaternion.LookRotation(currentLookDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turningSpeed);
+            if (lookDirection.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turningSpeed);
+            }
         }
     }
 
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
             if (jumpPressed)
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
-                jumpPressed = false; // reset jump
+                jumpPressed = false;
             }
         }
         else
@@ -91,4 +92,3 @@ public class PlayerController : MonoBehaviour
         return verticalVelocity;
     }
 }
-

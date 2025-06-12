@@ -25,6 +25,12 @@ public class FollowTarget : MonoBehaviour
         controls.Player.Camera.canceled += _ => lookInput = Vector2.zero;
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void OnEnable() => controls.Player.Enable();
     private void OnDisable() => controls.Player.Disable();
 
@@ -55,4 +61,3 @@ public class FollowTarget : MonoBehaviour
         return Mathf.Clamp(currentRotation, min, max);
     }
 }
-
