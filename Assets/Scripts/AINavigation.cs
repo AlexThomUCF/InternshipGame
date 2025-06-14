@@ -42,6 +42,11 @@ public class AINavigation : MonoBehaviour
                 StartCoroutine(ResetAfterMovement());
             }
         }
+        
+        if(CompareTag("IMPOSTER"))
+        {
+            taskCheckpoints = taskList.imposterTaskArray;// removes task from imposter array. The Imposter whill no longer go to this task
+        }
     }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {

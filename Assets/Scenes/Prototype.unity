@@ -412,6 +412,7 @@ MonoBehaviour:
   npcAgents: []
   taskList: {fileID: 0}
   currentObject: {fileID: 0}
+  hasObjectTask: 1
 --- !u!1001 &90335862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -787,6 +788,7 @@ MonoBehaviour:
   npcAgents: []
   taskList: {fileID: 0}
   currentObject: {fileID: 0}
+  hasObjectTask: 1
 --- !u!1001 &276752921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2892,7 +2894,7 @@ Transform:
   m_GameObject: {fileID: 1524957014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40061134, y: 2.457, z: 6.84169}
+  m_LocalPosition: {x: 0.40061134, y: 2.3079998, z: 6.84169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3340,7 +3342,7 @@ Transform:
   m_GameObject: {fileID: 1626347802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.40061134, y: 2.457, z: 6.84169}
+  m_LocalPosition: {x: 0.40061134, y: 2.3079998, z: 6.84169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3476,7 +3478,7 @@ MonoBehaviour:
   - {fileID: 1935233598}
   - {fileID: 1855679150}
   - {fileID: 260817503}
-  ai: {fileID: 0}
+  imposterTaskArray: []
 --- !u!4 &1677441576
 Transform:
   m_ObjectHideFlags: 0
@@ -3522,6 +3524,7 @@ MonoBehaviour:
   - {fileID: 1218049510}
   taskList: {fileID: 0}
   currentObject: {fileID: 0}
+  hasObjectTask: 1
 --- !u!1001 &1763977847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3751,6 +3754,7 @@ MonoBehaviour:
   npcAgents: []
   taskList: {fileID: 0}
   currentObject: {fileID: 0}
+  hasObjectTask: 1
 --- !u!1 &1926094222
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,6 +4047,7 @@ MonoBehaviour:
   npcAgents: []
   taskList: {fileID: 0}
   currentObject: {fileID: 0}
+  hasObjectTask: 1
 --- !u!1001 &1939614864
 PrefabInstance:
   m_ObjectHideFlags: 0
