@@ -26,7 +26,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -34,7 +35,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -92,7 +93,47 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: ERIN THE PANDA1 (1)(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: polySurface12
+      parentName: ERIN THE PANDA1 (1)(Clone)
+      position: {x: -0.0006042459, y: 0.44856125, z: 0.058557227}
+      rotation: {x: 0.0943225, y: -0, z: -0, w: 0.99554175}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform6
+      parentName: polySurface12
+      position: {x: 0.0030025004, y: -0.45932007, z: -0.040508736}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Skin_PM3D_Sphere3D_2
+      parentName: ERIN THE PANDA1 (1)(Clone)
+      position: {x: -0, y: 0.23340172, z: 0.0018918874}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 10.324599, y: 10.324599, z: 10.324599}
+    - name: transform5
+      parentName: Skin_PM3D_Sphere3D_2
+      position: {x: -0, y: 0.012724392, z: -0.00018324077}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder5
+      parentName: ERIN THE PANDA1 (1)(Clone)
+      position: {x: 0.17851472, y: 0.20357704, z: -0.00884208}
+      rotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: transform4
+      parentName: pCylinder5
+      position: {x: 0.000032200813, y: -0.6056294, z: 0.0009476256}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: polySurface13
+      parentName: ERIN THE PANDA1 (1)(Clone)
+      position: {x: -0, y: 0.24041934, z: 0.0018918874}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -103,11 +144,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
