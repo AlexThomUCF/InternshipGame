@@ -81,6 +81,7 @@ public class AINavigation : MonoBehaviour
         {
             Debug.Log(gameObject.name + " choice: " + choice);
             isPerformingAction = true;
+            animator.SetBool("isMoving", true);
 
            // Debug.Log("Agent is roaming");
 
@@ -91,6 +92,7 @@ public class AINavigation : MonoBehaviour
         {
             isPerformingAction = true;
             Debug.Log(gameObject.name + " choice: " + choice);
+            animator.SetBool("isMoving", true);
 
             int arrayLength = taskCheckpoints.Length;
             // go to task 
@@ -131,12 +133,12 @@ public class AINavigation : MonoBehaviour
     {
         isPerformingAction = true;
         myAgent.isStopped = true;
-        //animator.SetBool("isMoving", false);
+        animator.SetBool("isMoving", false);
 
         yield return new WaitForSeconds(pauseTime);
 
         myAgent.isStopped = false;
-        //animator.SetBool("isMoving", true);
+        animator.SetBool("isMoving", true);
 
         isPerformingAction = false;
     }
