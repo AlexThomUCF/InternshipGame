@@ -10,6 +10,7 @@ public class TaskManager : MonoBehaviour
     public TaskList taskList;
     public GameObject currentObject;
     public bool hasObjectTask = true;
+    public AnimationClip  animationCLIP;
 
     // Start is called before the first frame update
     void Start()
@@ -53,12 +54,19 @@ public class TaskManager : MonoBehaviour
             }
             if(agent.CompareTag("NPC"))
             {
-                //agent.isStopped = true;
+                agent.isStopped = true;
                 Debug.Log("This is a NPC");
+
                 //play animation
                 //agent.isStopped = false;
                 Debug.Log("This is " + this.name);
             }
         }
     }
+
+/*
+    IEnumerator animationPause(AnimationClip clip)
+    {
+        //paause movement and play clip
+    }*/
 }
