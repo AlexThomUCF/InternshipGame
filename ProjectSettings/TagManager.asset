@@ -8,6 +8,7 @@ TagManager:
   - Task
   - NPC
   - IMPOSTER
+  - StageTask
   layers:
   - Default
   - TransparentFX

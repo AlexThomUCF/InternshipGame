@@ -5981,6 +5981,7 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
+  fishingClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!43 &164544591
 Mesh:
@@ -7664,6 +7665,7 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 0}
+  fishingClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &293245082
 GameObject:
@@ -13310,6 +13312,79 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &499237833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499237836}
+  - component: {fileID: 499237835}
+  - component: {fileID: 499237834}
+  m_Layer: 0
+  m_Name: FishingSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &499237834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499237833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c843bb14b785944c9ef28df6f2c4b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcAgents: []
+  taskList: {fileID: 0}
+  currentObject: {fileID: 0}
+  hasObjectTask: 1
+  animationCLIP: {fileID: 0}
+  fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
+  animator: {fileID: 0}
+--- !u!65 &499237835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499237833}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7.4892063, y: 5, z: 7.2177963}
+  m_Center: {x: 1.2446032, y: 1.4166684, z: -1.1088982}
+--- !u!4 &499237836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499237833}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.55, y: 2.1475472, z: 51.215984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &500273181
 GameObject:
   m_ObjectHideFlags: 0
@@ -15415,6 +15490,7 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
+  fishingClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &588467241
 GameObject:
@@ -16909,6 +16985,79 @@ Transform:
   m_Children:
   - {fileID: 1882780731}
   m_Father: {fileID: 361411545}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &629410223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 629410226}
+  - component: {fileID: 629410225}
+  - component: {fileID: 629410224}
+  m_Layer: 0
+  m_Name: StageCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &629410224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629410223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c843bb14b785944c9ef28df6f2c4b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcAgents: []
+  taskList: {fileID: 0}
+  currentObject: {fileID: 0}
+  hasObjectTask: 1
+  animationCLIP: {fileID: 7400000, guid: 4f29973af2eff234590b731f5d17d55b, type: 2}
+  fishingClip: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!65 &629410225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629410223}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.098671, y: 3.2439642, z: 6.980961}
+  m_Center: {x: -0.15026474, y: 1.1219821, z: 0.3749447}
+--- !u!4 &629410226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629410223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 96.80875, y: 1.39405, z: 62.175972}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634406885
 GameObject:
@@ -26672,6 +26821,7 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
+  fishingClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1 &826972251
 GameObject:
@@ -46405,6 +46555,7 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
+  fishingClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!1001 &1416934718
 PrefabInstance:
@@ -52055,6 +52206,7 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
+  fishingClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!43 &1660317819
 Mesh:
@@ -63666,3 +63818,5 @@ SceneRoots:
   - {fileID: 1996445702}
   - {fileID: 1957614339}
   - {fileID: 1147131768}
+  - {fileID: 629410226}
+  - {fileID: 499237836}

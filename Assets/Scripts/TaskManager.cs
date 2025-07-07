@@ -11,6 +11,7 @@ public class TaskManager : MonoBehaviour
     public GameObject currentObject;
     public bool hasObjectTask = true;
     public AnimationClip  animationCLIP;
+    public AnimationClip  fishingClip;
     public Animator animator;
 
     // Start is called before the first frame update
@@ -71,13 +72,29 @@ public class TaskManager : MonoBehaviour
 
     IEnumerator animationPause(NavMeshAgent agent)
     {
-        animator.SetBool("isDancing", true);
+        if(this.name == "StageCenter")
+        {
+            animator.SetBool("isDancing", true);
 
-         yield return new WaitForSeconds(animationCLIP.length);
+            yield return new WaitForSeconds(animationCLIP.length);
 
-        animator.SetBool("isDancing", false);
-        agent.isStopped = false;
-        
+            animator.SetBool("isDancing", false);
+            agent.isStopped = false;
+           
+        }
+        else if(this.name == "FishingSpot")
+        {
+            animator.SetBool("isFishing", true);
+
+            yield return new WaitForSeconds(fishingClip.length);
+
+            animator.SetBool("isFishing", false);
+            agent.isStopped = false;
+        }
+        else 
+        {
+            yield return null;
+        }
         //paause movement and play clip
     }
 }
