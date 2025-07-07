@@ -11,6 +11,7 @@ public class TaskManager : MonoBehaviour
     public GameObject currentObject;
     public bool hasObjectTask = true;
     public AnimationClip  animationCLIP;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class TaskManager : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
        NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
+       animator = other.GetComponent<Animator>();
         if(agent != null)
         {
             Debug.Log("Agent in area");
@@ -56,17 +58,26 @@ public class TaskManager : MonoBehaviour
             {
                 agent.isStopped = true;
                 Debug.Log("This is a NPC");
+                
 
+                StartCoroutine(animationPause(agent));
                 //play animation
-                //agent.isStopped = false;
+
                 Debug.Log("This is " + this.name);
             }
         }
     }
 
-/*
-    IEnumerator animationPause(AnimationClip clip)
+
+    IEnumerator animationPause(NavMeshAgent agent)
     {
+        animator.SetBool("isDancing", true);
+
+         yield return new WaitForSeconds(animationCLIP.length);
+
+        animator.SetBool("isDancing", false);
+        agent.isStopped = false;
+        
         //paause movement and play clip
-    }*/
+    }
 }
