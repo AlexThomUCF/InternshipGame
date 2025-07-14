@@ -57,11 +57,11 @@ public class TaskManager : MonoBehaviour
             }
             if(agent.CompareTag("NPC"))
             {
-                agent.isStopped = true;
+              //  agent.isStopped = true;
                 Debug.Log("This is a NPC");
                 
 
-                StartCoroutine(animationPause(agent));
+                //StartCoroutine(animationPause(agent));
                 //play animation
 
                 Debug.Log("This is " + this.name);
