@@ -10,6 +10,7 @@ public class TaskManager : MonoBehaviour
     public TaskList taskList;
     public GameObject currentObject;
     public bool hasObjectTask = true;
+    [Header("Animation Clips")]
     public AnimationClip  animationCLIP;
     public AnimationClip  fishingClip;
     public Animator animator;
@@ -57,7 +58,7 @@ public class TaskManager : MonoBehaviour
             }
             if(agent.CompareTag("NPC"))
             {
-              //  agent.isStopped = true;
+              //   agent.isStopped = true;
                 Debug.Log("This is a NPC");
                 
 
