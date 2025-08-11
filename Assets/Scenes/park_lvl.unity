@@ -6162,6 +6162,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &161850984
 BoxCollider:
@@ -16938,6 +16940,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 0}
   fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &499237835
 BoxCollider:
@@ -19821,7 +19825,9 @@ MonoBehaviour:
   currentObject: {fileID: 0}
   hasObjectTask: 1
   animationCLIP: {fileID: 0}
-  fishingClip: {fileID: 0}
+  fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &558611421
 BoxCollider:
@@ -20872,6 +20878,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 7400000, guid: 057ea77703ecf2542bc5ecc2d7a139b0, type: 2}
   animator: {fileID: 0}
 --- !u!65 &587906033
 BoxCollider:
@@ -22473,6 +22481,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 4f29973af2eff234590b731f5d17d55b, type: 2}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &629410225
 BoxCollider:
@@ -32284,6 +32294,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 0}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 7400000, guid: 736dc84d44885274ba5512c8b11ed3bc, type: 2}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &801068258
 BoxCollider:
@@ -57958,7 +57970,6 @@ MonoBehaviour:
   - {fileID: 629410223}
   - {fileID: 558611418}
   - {fileID: 587906030}
-  - {fileID: 0}
   - {fileID: 1658157024}
   - {fileID: 1408738026}
   imposterTaskArray: []
@@ -58066,6 +58077,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 0}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!43 &1265587302
 Mesh:
@@ -63102,6 +63115,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &1408738029
 BoxCollider:
@@ -69811,6 +69826,8 @@ MonoBehaviour:
   hasObjectTask: 1
   animationCLIP: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
   fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
   animator: {fileID: 0}
 --- !u!65 &1658157027
 BoxCollider:

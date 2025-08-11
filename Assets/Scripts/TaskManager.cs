@@ -13,6 +13,8 @@ public class TaskManager : MonoBehaviour
     [Header("Animation Clips")]
     public AnimationClip  animationCLIP;
     public AnimationClip  fishingClip;
+    public AnimationClip  sittingClip;
+    public AnimationClip  strectchClip;
     public Animator animator;
 
     // Start is called before the first frame update
@@ -53,7 +55,7 @@ public class TaskManager : MonoBehaviour
                 hasObjectTask = false;
 
                 RemoveTask(currentObject);
-
+ 
                 //For Jen/Imposter only, stop her, remove her from going to this task, play animation, resume her route, once list is empty she wins the game.
             }
             if(agent.CompareTag("NPC"))
@@ -62,7 +64,7 @@ public class TaskManager : MonoBehaviour
                 Debug.Log("This is a NPC");
                 
 
-                //StartCoroutine(animationPause(agent));
+                StartCoroutine(animationPause(agent));
                 //play animation
 
                 Debug.Log("This is " + this.name);
@@ -75,6 +77,9 @@ public class TaskManager : MonoBehaviour
     {
         if(this.name == "StageCenter")
         {
+            //if agent doesnt have path do this 
+            //if it does have a path return
+            agent.isStopped = true;
             animator.SetBool("isDancing", true);
 
             yield return new WaitForSeconds(animationCLIP.length);
@@ -83,13 +88,34 @@ public class TaskManager : MonoBehaviour
             agent.isStopped = false;
            
         }
-        else if(this.name == "FishingSpot")
+        else if(this.name == "PondSpot")
         {
+            agent.isStopped = true;
             animator.SetBool("isFishing", true);
 
             yield return new WaitForSeconds(fishingClip.length);
 
             animator.SetBool("isFishing", false);
+            agent.isStopped = false;
+        }
+        else if(this.name == "picnic table center")
+        {
+            agent.isStopped = true;
+            animator.SetBool("isSitting", true);
+
+            yield return new WaitForSeconds(sittingClip.length);
+
+            animator.SetBool("isSitting", false);
+            agent.isStopped = false;
+        }
+        else if(this.name == "yoga mats")
+        {
+            agent.isStopped = true;
+            animator.SetBool("isStretching", true);
+
+            yield return new WaitForSeconds(strectchClip.length);
+
+            animator.SetBool("isStretching", false);
             agent.isStopped = false;
         }
         else 
