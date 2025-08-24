@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 6426159954899752329}
   - component: {fileID: 5243670852229561777}
   - component: {fileID: 666544457542568347}
-  m_Layer: 0
+  - component: {fileID: 5327108939379360981}
+  - component: {fileID: -446223576588073483}
+  - component: {fileID: 6403846810045412934}
+  m_Layer: 3
   m_Name: Joe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +158,56 @@ MonoBehaviour:
   animator: {fileID: 5024072904302254339}
   taskList: {fileID: 0}
   isPerformingAction: 0
+--- !u!136 &5327108939379360981
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523400532400146725}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.88
+  m_Height: 2.37
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-446223576588073483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523400532400146725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68e92cf26d09324fbd211025723fcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isImposter: 0
+--- !u!114 &6403846810045412934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523400532400146725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671f2ca50c6578a498c6e2a632c81211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 5243670852229561777}
+  animator: {fileID: 5024072904302254339}
 --- !u!1001 &5717039368603409750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -222,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9ec1cd2b6fa2ba649a215be94d232b96, type: 3}
       propertyPath: m_Name
       value: JOE THE BULLDOG1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9ec1cd2b6fa2ba649a215be94d232b96, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

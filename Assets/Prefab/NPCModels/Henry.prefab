@@ -14,9 +14,12 @@ GameObject:
   - component: {fileID: 2982138442620145223}
   - component: {fileID: 588662880486196082}
   - component: {fileID: 7453691934149502157}
-  m_Layer: 0
+  - component: {fileID: 1758635289497777228}
+  - component: {fileID: -5667585480660354738}
+  - component: {fileID: 6938863277938937978}
+  m_Layer: 3
   m_Name: Henry
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,6 +158,56 @@ MonoBehaviour:
   animator: {fileID: 4163633177193505135}
   taskList: {fileID: 0}
   isPerformingAction: 0
+--- !u!136 &1758635289497777228
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950346081012680192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.91
+  m_Height: 2.68
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5667585480660354738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950346081012680192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68e92cf26d09324fbd211025723fcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isImposter: 0
+--- !u!114 &6938863277938937978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950346081012680192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671f2ca50c6578a498c6e2a632c81211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 588662880486196082}
+  animator: {fileID: 4163633177193505135}
 --- !u!1001 &1273181036841922791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,9 +272,65 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7379934524891988892, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -3516015064453071488, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2764160708204472807, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 678450888228896597, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
       propertyPath: m_Name
       value: HENRY THE WOLF1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701354944049166007, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909606102849155846, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4951564916563532756, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073431169865313606, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239417229031191770, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813993317540582616, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7337376619810011582, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8035350993041187102, guid: 2860cf0dd9cb2bf4da2888bb62454a2d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

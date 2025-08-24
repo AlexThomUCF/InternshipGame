@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 6432960459328204542}
   - component: {fileID: 2155126231173949293}
   - component: {fileID: 7325346865199844796}
-  m_Layer: 0
+  - component: {fileID: 2338104923703504833}
+  - component: {fileID: -6796124672970375107}
+  - component: {fileID: -6563297133619465727}
+  m_Layer: 3
   m_Name: Mel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +158,56 @@ MonoBehaviour:
   animator: {fileID: 1431851259780786643}
   taskList: {fileID: 0}
   isPerformingAction: 0
+--- !u!136 &2338104923703504833
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546386252184424650}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.71
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6796124672970375107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546386252184424650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68e92cf26d09324fbd211025723fcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isImposter: 0
+--- !u!114 &-6563297133619465727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546386252184424650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671f2ca50c6578a498c6e2a632c81211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 2155126231173949293}
+  animator: {fileID: 1431851259780786643}
 --- !u!1001 &1272494965626830793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,9 +272,49 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8470140127829996983, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8443565639802536900, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6260318312848826784, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -4887178370802179042, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2553524005655905374, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1778008642553014404, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -411474010447923113, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
       propertyPath: m_Name
       value: MEL THE FROG1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6073289006615546843, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750397243111347764, guid: 4d6788e4d479b8041a250a15f3d93130, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

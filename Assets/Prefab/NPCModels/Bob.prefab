@@ -14,7 +14,10 @@ GameObject:
   - component: {fileID: 6443362987466911170}
   - component: {fileID: 4464265761647682458}
   - component: {fileID: 4285289736010637727}
-  m_Layer: 0
+  - component: {fileID: 3669391828794025313}
+  - component: {fileID: 3520414578949896846}
+  - component: {fileID: -4888615912293028675}
+  m_Layer: 3
   m_Name: Bob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +158,56 @@ MonoBehaviour:
   animator: {fileID: 6350889772726069071}
   taskList: {fileID: 0}
   isPerformingAction: 0
+--- !u!136 &3669391828794025313
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747696251127450513}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.95
+  m_Height: 3.26
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.04, z: 0.3}
+--- !u!114 &3520414578949896846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747696251127450513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f68e92cf26d09324fbd211025723fcff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isImposter: 0
+--- !u!114 &-4888615912293028675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747696251127450513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671f2ca50c6578a498c6e2a632c81211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 4464265761647682458}
+  animator: {fileID: 6350889772726069071}
 --- !u!1001 &9080391394504610340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,9 +272,41 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7156640675081358008, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2656699849364436152, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1942311804933463493, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
       propertyPath: m_Name
       value: BOB THE LION1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 949147535224561053, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4417411930673871605, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7241319881809662383, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7763927758289476199, guid: da4ceda4cf2e6554dba0c2e0e1b19762, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
