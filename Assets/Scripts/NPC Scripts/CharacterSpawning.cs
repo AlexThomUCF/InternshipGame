@@ -11,7 +11,7 @@ public class CharacterSpawning : MonoBehaviour
     public List<Transform> spawnPoints;
 
     [Header("Layers")]
-    public LayerMask charactersLayer; // Assign your 'Characters' layer
+    public LayerMask charactersLayer; // Assign Characters layer
 
     private readonly List<GameObject> spawnedCharacters = new();
     public GameObject Imposter { get; private set; }
@@ -47,7 +47,7 @@ public class CharacterSpawning : MonoBehaviour
             if (!role) role = character.AddComponent<CharacterRole>();
             role.isImposter = false;
 
-            // Put on Characters layer (and children)
+            // Put on Characters layer
             SetLayerRecursive(character, Mathf.RoundToInt(Mathf.Log(charactersLayer.value, 2)));
         }
 
@@ -58,7 +58,7 @@ public class CharacterSpawning : MonoBehaviour
         Imposter = spawnedCharacters[imposterIndex];
     }
 
-    // Utilities
+
     void ShuffleList<T>(List<T> list)
     {
         for (int i = 0; i < list.Count; i++)

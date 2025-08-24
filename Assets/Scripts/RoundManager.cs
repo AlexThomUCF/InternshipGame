@@ -10,7 +10,7 @@ public class RoundManager : MonoBehaviour
     {
         if (Instance && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
-        // Optionally DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
     public void OnCharacterCaught(GameObject who, bool wasImposter)
@@ -18,12 +18,12 @@ public class RoundManager : MonoBehaviour
         if (wasImposter)
         {
             Debug.Log("WIN: You netted the imposter!");
-            // TODO: show win UI, stop timer, progress level, etc.
+            // Still needs show win UI, stop timer, progress level, etc.
         }
         else
         {
             Debug.Log("PENALTY: Innocent caught.");
-            // TODO: penalty (time loss, lock ability, reveal hint to Jen, etc.)
+            // Still needs some kind of penalty (time loss, lock ability, etc.)
         }
     }
 }
