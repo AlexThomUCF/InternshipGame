@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Prototype.unity
-    guid: 04f11cdf102c8f648ae94eedc268a4b5
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2745f272be70fb84d8c2552ad2c77218
   - enabled: 1
-    path: Assets/Scenes/Game Over.unity
-    guid: 1a3b4f489afe36244aac369d8cb71088
+    path: Assets/Scenes/LevelSelect.unity
+    guid: 2203465700539e74e897ec50255ff761
+  - enabled: 1
+    path: Assets/Scenes/park_lvl.unity
+    guid: 01a7f446699ddba45b7ef27b982c3b2a
+  - enabled: 1
+    path: Assets/Scenes/castle_lvl.unity
+    guid: 426398d33bc9637418c6183d99915d92
+  - enabled: 1
+    path: Assets/Scenes/arcade_lvl.unity
+    guid: b014691db2f51914ba877745338df158
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 360ee423dd9eee043b287c0295c06038
   m_configObjects: {}
