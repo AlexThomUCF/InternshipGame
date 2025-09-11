@@ -56,6 +56,8 @@ public class CharacterSpawning : MonoBehaviour
         var imposterRole = spawnedCharacters[imposterIndex].GetComponent<CharacterRole>();
         imposterRole.isImposter = true;
         Imposter = spawnedCharacters[imposterIndex];
+
+        Imposter.tag = "IMPOSTER"; //tags the imposter
     }
 
 
