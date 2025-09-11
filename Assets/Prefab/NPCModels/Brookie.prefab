@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5585799201301059692}
   - component: {fileID: 2117598705376616120}
   - component: {fileID: 7967120980470635478}
+  - component: {fileID: -5863939910558769393}
   m_Layer: 3
   m_Name: Brookie
   m_TagString: Untagged
@@ -158,6 +159,7 @@ MonoBehaviour:
   animator: {fileID: 4572344512399624528}
   taskList: {fileID: 0}
   isPerformingAction: 0
+  moving: 0
 --- !u!136 &5585799201301059692
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -208,6 +210,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5236592486964474462}
   animator: {fileID: 4572344512399624528}
+--- !u!114 &-5863939910558769393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286435460616721158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4572344512399624528}
+  ai: {fileID: 4948539166269449455}
 --- !u!1001 &825055474362778165
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2338104923703504833}
   - component: {fileID: -6796124672970375107}
   - component: {fileID: -6563297133619465727}
+  - component: {fileID: 6251956506394274248}
   m_Layer: 3
   m_Name: Mel
   m_TagString: Untagged
@@ -158,6 +159,7 @@ MonoBehaviour:
   animator: {fileID: 1431851259780786643}
   taskList: {fileID: 0}
   isPerformingAction: 0
+  moving: 0
 --- !u!136 &2338104923703504833
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -208,6 +210,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 2155126231173949293}
   animator: {fileID: 1431851259780786643}
+--- !u!114 &6251956506394274248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546386252184424650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1431851259780786643}
+  ai: {fileID: 7325346865199844796}
 --- !u!1001 &1272494965626830793
 PrefabInstance:
   m_ObjectHideFlags: 0

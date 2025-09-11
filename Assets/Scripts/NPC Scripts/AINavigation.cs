@@ -11,11 +11,13 @@ public class AINavigation : MonoBehaviour
     public Transform centrePoint; // centre of the area the agent wants to move around in
     public GameObject [] taskCheckpoints;
     public  int choice = 0;
-    public Animator animator;
+    
 
     public TaskList taskList;
 
     public bool isPerformingAction = false;
+
+    public bool moving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +83,7 @@ public class AINavigation : MonoBehaviour
         {
             Debug.Log(gameObject.name + " choice: " + choice);
             isPerformingAction = true;
-            animator.SetBool("isMoving", true);
+            moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
            // Debug.Log("Agent is roaming");
 
@@ -92,7 +94,7 @@ public class AINavigation : MonoBehaviour
         {
             isPerformingAction = true;
             Debug.Log(gameObject.name + " choice: " + choice);
-            animator.SetBool("isMoving", true);
+            moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
             int arrayLength = taskCheckpoints.Length;
             // go to task 
@@ -133,12 +135,13 @@ public class AINavigation : MonoBehaviour
     {
         isPerformingAction = true;
         myAgent.isStopped = true;
-        animator.SetBool("isMoving", false);
+        moving = false; // NEW ANIMATION IS MOVING TRIGGER
+
 
         yield return new WaitForSeconds(pauseTime);
 
         myAgent.isStopped = false;
-        animator.SetBool("isMoving", true);
+        moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
         isPerformingAction = false;
     }

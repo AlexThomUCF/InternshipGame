@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5327108939379360981}
   - component: {fileID: -446223576588073483}
   - component: {fileID: 6403846810045412934}
+  - component: {fileID: -6401674173833743739}
   m_Layer: 3
   m_Name: Joe
   m_TagString: Untagged
@@ -158,6 +159,7 @@ MonoBehaviour:
   animator: {fileID: 5024072904302254339}
   taskList: {fileID: 0}
   isPerformingAction: 0
+  moving: 0
 --- !u!136 &5327108939379360981
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -208,6 +210,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5243670852229561777}
   animator: {fileID: 5024072904302254339}
+--- !u!114 &-6401674173833743739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2523400532400146725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5024072904302254339}
+  ai: {fileID: 666544457542568347}
 --- !u!1001 &5717039368603409750
 PrefabInstance:
   m_ObjectHideFlags: 0

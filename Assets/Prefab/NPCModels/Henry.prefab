@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1758635289497777228}
   - component: {fileID: -5667585480660354738}
   - component: {fileID: 6938863277938937978}
+  - component: {fileID: 486625435993951997}
   m_Layer: 3
   m_Name: Henry
   m_TagString: Untagged
@@ -158,6 +159,7 @@ MonoBehaviour:
   animator: {fileID: 4163633177193505135}
   taskList: {fileID: 0}
   isPerformingAction: 0
+  moving: 0
 --- !u!136 &1758635289497777228
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -208,6 +210,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 588662880486196082}
   animator: {fileID: 4163633177193505135}
+--- !u!114 &486625435993951997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950346081012680192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4163633177193505135}
+  ai: {fileID: 7453691934149502157}
 --- !u!1001 &1273181036841922791
 PrefabInstance:
   m_ObjectHideFlags: 0
