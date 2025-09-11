@@ -354,7 +354,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   choice: 0
-  animator: {fileID: 6750571391806013635}
   taskList: {fileID: 0}
   isPerformingAction: 0
   moving: 0
@@ -444,6 +443,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6750571391806013635}
   ai: {fileID: 4844518388454811859}
+  danceClip: {fileID: 7400000, guid: 97a69a17e7a89864fb36e773879817ae, type: 2}
+  fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
+  sittingClip: {fileID: 7400000, guid: 736dc84d44885274ba5512c8b11ed3bc, type: 2}
+  strectchClip: {fileID: 7400000, guid: 057ea77703ecf2542bc5ecc2d7a139b0, type: 2}
 --- !u!4 &814857132594617017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 168f0146ae56fe74dab12a3c7c595804, type: 3}

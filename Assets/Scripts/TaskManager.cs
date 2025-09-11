@@ -10,12 +10,9 @@ public class TaskManager : MonoBehaviour
     public TaskList taskList;
     public GameObject currentObject;
     public bool hasObjectTask = true;
-    [Header("Animation Clips")]
-    public AnimationClip  animationCLIP;
-    public AnimationClip  fishingClip;
-    public AnimationClip  sittingClip;
-    public AnimationClip  strectchClip;
-    public Animator animator;
+   
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +40,7 @@ public class TaskManager : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
        NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
-       animator = other.GetComponent<Animator>();
+       NPCAnimations npcAnimations = other.GetComponent<NPCAnimations>();
         if(agent != null)
         {
             Debug.Log("Agent in area");
@@ -53,6 +50,8 @@ public class TaskManager : MonoBehaviour
                 taskList.tasksListAmount.Remove(currentObject);
 
                 hasObjectTask = false;
+
+                StartCoroutine(npcAnimations.TaskAnimations(agent));
 
                 RemoveTask(currentObject);
  
@@ -64,7 +63,7 @@ public class TaskManager : MonoBehaviour
                 Debug.Log("This is a NPC");
                 
 
-                StartCoroutine(animationPause(agent));
+                StartCoroutine(npcAnimations.TaskAnimations(agent));
                 //play animation
 
                 Debug.Log("This is " + this.name);
@@ -73,55 +72,4 @@ public class TaskManager : MonoBehaviour
     }
 
 
-    IEnumerator animationPause(NavMeshAgent agent)
-    {
-        if(this.name == "StageCenter")
-        {
-            //if agent doesnt have path do this 
-            //if it does have a path return
-            agent.isStopped = true;
-            animator.SetBool("isDancing", true);
-
-            yield return new WaitForSeconds(animationCLIP.length);
-
-            animator.SetBool("isDancing", false);
-            agent.isStopped = false;
-           
-        }
-        else if(this.name == "PondSpot")
-        {
-            agent.isStopped = true;
-            animator.SetBool("isFishing", true);
-
-            yield return new WaitForSeconds(fishingClip.length);
-
-            animator.SetBool("isFishing", false);
-            agent.isStopped = false;
-        }
-        else if(this.name == "picnic table center")
-        {
-            agent.isStopped = true;
-            animator.SetBool("isSitting", true);
-
-            yield return new WaitForSeconds(sittingClip.length);
-
-            animator.SetBool("isSitting", false);
-            agent.isStopped = false;
-        }
-        else if(this.name == "yoga mats")
-        {
-            agent.isStopped = true;
-            animator.SetBool("isStretching", true);
-
-            yield return new WaitForSeconds(strectchClip.length);
-
-            animator.SetBool("isStretching", false);
-            agent.isStopped = false;
-        }
-        else 
-        {
-            yield return null;
-        }
-        //paause movement and play clip
-    }
 }

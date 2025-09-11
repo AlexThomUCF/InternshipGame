@@ -100,7 +100,7 @@ public class AINavigation : MonoBehaviour
             // go to task 
             int tempNum  = Random.Range(1,arrayLength);
 
-            switch (tempNum) 
+            switch (tempNum) // Might have to look at switch case, imposter/NPC may only go to one of the 4 tasks in the list
             {
                 case 1:
                 myAgent.SetDestination(taskCheckpoints[0].transform.position);
