@@ -49,6 +49,8 @@ public class CharacterSpawning : MonoBehaviour
 
             // Put on Characters layer
             SetLayerRecursive(character, Mathf.RoundToInt(Mathf.Log(charactersLayer.value, 2)));
+
+            character.tag = "NPC"; //tags the NPCs
         }
 
         // Choose imposter
