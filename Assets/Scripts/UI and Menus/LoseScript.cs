@@ -23,7 +23,7 @@ public class LoseScript : MonoBehaviour
     {
         if(taskList.imposterTaskArray.Length <= 0)
         {
-            SceneManager.LoadScene("Game Over");
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
