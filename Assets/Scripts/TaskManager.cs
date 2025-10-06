@@ -30,11 +30,7 @@ public class TaskManager : MonoBehaviour
 
     void RemoveTask(GameObject obj)
     {
-        if(!hasObjectTask)
-        {
-            taskList.imposterTaskArray = taskList.imposterTaskArray.Where(g => g != obj).ToArray();
-
-        }
+        taskList.RemoveImposterTask(obj);
     }
 
     void OnTriggerEnter(Collider other)

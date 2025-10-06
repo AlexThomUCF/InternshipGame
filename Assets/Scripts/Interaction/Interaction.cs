@@ -10,19 +10,21 @@ public class Interaction : MonoBehaviour
     private Transform pTransform;
     private void Awake()
     {
-        controls = GetComponent<PlayerControls>();
-
+        controls = new PlayerControls();
         pTransform = transform;
     }
 
     private void OnEnable()
+
     {
+        controls.Player.Enable();
         controls.Player.Interact.performed += DoInteract;
     }
 
     private void OnDisable()
     {
         controls.Player.Interact.performed -= DoInteract;
+        controls.Player.Disable();
     }
 
     private void DoInteract(InputAction.CallbackContext context)
