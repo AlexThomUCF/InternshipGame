@@ -2,7 +2,7 @@
 - Project name: InternshipGame
 - Unity version: Unity 2022.3.55f1
 - Active game object:
-  - Name: GameManager
+  - Name: park bench
   - Tag: Untagged
-  - Layer: Default
+  - Layer: Environment
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
