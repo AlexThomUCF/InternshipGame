@@ -36805,6 +36805,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  lastRemovedTask: {fileID: 0}
 --- !u!4 &931981750
 Transform:
   m_ObjectHideFlags: 0
