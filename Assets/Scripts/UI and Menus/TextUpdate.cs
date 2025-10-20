@@ -11,12 +11,13 @@ public class TextUpdate : MonoBehaviour
     void Start()
     {
         taskList = FindObjectOfType<TaskList>();
+        UpdateText();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateText();
+        //UpdateText();
     }
     void UpdateText()
     {
