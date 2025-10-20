@@ -156,7 +156,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   choice: 0
-  animator: {fileID: 7009621302762937920}
   taskList: {fileID: 0}
   isPerformingAction: 0
   moving: 0
@@ -224,6 +223,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7009621302762937920}
   ai: {fileID: 7717748774828881946}
+  danceClip: {fileID: 0}
+  fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
 --- !u!1001 &1656878258729726778
 PrefabInstance:
   m_ObjectHideFlags: 0
