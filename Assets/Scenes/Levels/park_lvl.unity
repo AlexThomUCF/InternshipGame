@@ -89808,9 +89808,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2565919399925087609, guid: b45870803eead514badfefcd36b3fcb0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4467638117558464506}
-    - targetCorrespondingSourceObject: {fileID: 2565919399925087609, guid: b45870803eead514badfefcd36b3fcb0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4467638117558464507}
     - targetCorrespondingSourceObject: {fileID: 321856630035853052, guid: b45870803eead514badfefcd36b3fcb0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1385056354}
@@ -89856,20 +89853,6 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &4467638117558464507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4467638117558464500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a06cee29f2528c64eaaec840053795b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aimCamera: {fileID: 1822972432}
-  crosshair: {fileID: 2027049774}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
