@@ -21,13 +21,6 @@ public class TaskManager : MonoBehaviour
         currentObject = this.gameObject;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
-
     void RemoveTask(GameObject obj)
     {
         taskList.RemoveImposterTask(obj);
