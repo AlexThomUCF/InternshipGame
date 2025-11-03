@@ -11,23 +11,21 @@ public class PlayerAim : MonoBehaviour
     [Header("UI")]
     public Image crosshair;
 
-    [Header("Outline")]
-    public OutlineHighlighter outlineHighlighter;
+    [Header("Detection")]
+    public Camera mainCamera;
+    public float aimRange = 100f;
 
     private PlayerControls controls;
+    private Outline currentOutline;
     private bool isAiming;
 
     void Awake()
     {
         controls = new PlayerControls();
-
-        // Hide crosshair at start
         if (crosshair != null)
             crosshair.enabled = false;
-
-        // Disable the highlighter initially
-        if (outlineHighlighter != null)
-            outlineHighlighter.enabled = false;
+        if (mainCamera == null)
+            mainCamera = Camera.main;
     }
 
     void OnEnable()
@@ -44,27 +42,50 @@ public class PlayerAim : MonoBehaviour
         controls.Disable();
     }
 
+    void Update()
+    {
+        if (!isAiming) return;
+
+        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, aimRange))
+        {
+            var outline = hit.collider.GetComponent<Outline>();
+            if (outline != currentOutline)
+            {
+                ClearOutline();
+                if (outline != null)
+                {
+                    outline.EnableOutline(true);
+                    currentOutline = outline;
+                }
+            }
+        }
+        else
+        {
+            ClearOutline();
+        }
+    }
+
+    void ClearOutline()
+    {
+        if (currentOutline != null)
+        {
+            currentOutline.EnableOutline(false);
+            currentOutline = null;
+        }
+    }
+
     void StartAiming()
     {
         isAiming = true;
         aimCamera.Priority = 20;
-
-        if (crosshair != null)
-            crosshair.enabled = true;
-
-        if (outlineHighlighter != null)
-            outlineHighlighter.enabled = true;
+        if (crosshair != null) crosshair.enabled = true;
     }
 
     void StopAiming()
     {
         isAiming = false;
         aimCamera.Priority = 5;
-
-        if (crosshair != null)
-            crosshair.enabled = false;
-
-        if (outlineHighlighter != null)
-            outlineHighlighter.enabled = false;
+        if (crosshair != null) crosshair.enabled = false;
+        ClearOutline();
     }
 }

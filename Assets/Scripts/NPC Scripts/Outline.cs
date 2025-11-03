@@ -1,56 +1,53 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Outline : MonoBehaviour
 {
-    private Renderer[] renderers;
-    private Material[] originalMaterials;
+    [Tooltip("Material used for outlining the character.")]
     public Material outlineMaterial;
 
-    private bool outlined = false;
+    private List<Renderer> renderers = new List<Renderer>();
+    private Dictionary<Renderer, Material[]> originalMats = new Dictionary<Renderer, Material[]>();
+    private bool outlined;
 
     void Awake()
     {
-        // Collect all renderers from this object and its children
-        renderers = GetComponentsInChildren<Renderer>();
-        originalMaterials = new Material[renderers.Length];
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            originalMaterials[i] = renderers[i].sharedMaterial;
-        }
-    }
-
-    public void EnableOutline()
-    {
-        if (outlined || outlineMaterial == null) return;
-        outlined = true;
+        // Collect ALL renderers in this object and any depth of children (even nested)
+        var allRenderers = GetComponentsInChildren<Renderer>(true);
+        renderers.AddRange(allRenderers);
 
         foreach (var r in renderers)
         {
-            // Add the outline material as an extra layer
-            var mats = r.sharedMaterials;
-            var newMats = new Material[mats.Length + 1];
-            mats.CopyTo(newMats, 0);
-            newMats[mats.Length] = outlineMaterial;
-            r.sharedMaterials = newMats;
+            if (!originalMats.ContainsKey(r))
+                originalMats[r] = r.sharedMaterials;
         }
     }
 
-    public void DisableOutline()
+    public void EnableOutline(bool enable)
     {
-        if (!outlined) return;
-        outlined = false;
-
-        foreach (var r in renderers)
+        if (enable && !outlined)
         {
-            // Remove the outline material if present
-            var mats = r.sharedMaterials;
-            if (mats.Length > 1)
+            foreach (var r in renderers)
             {
-                var newMats = new Material[mats.Length - 1];
-                for (int i = 0; i < newMats.Length; i++)
-                    newMats[i] = mats[i];
-                r.sharedMaterials = newMats;
+                if (r == null) continue;
+
+                var mats = new Material[originalMats[r].Length + 1];
+                originalMats[r].CopyTo(mats, 0);
+                mats[mats.Length - 1] = outlineMaterial;
+                r.materials = mats;
             }
+            outlined = true;
+        }
+        else if (!enable && outlined)
+        {
+            foreach (var r in renderers)
+            {
+                if (r == null) continue;
+
+                if (originalMats.TryGetValue(r, out var mats))
+                    r.materials = mats;
+            }
+            outlined = false;
         }
     }
 }
