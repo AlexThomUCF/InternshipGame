@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 2084835526442676395}
   - component: {fileID: -7984741486145574909}
   - component: {fileID: 6411204732712215582}
+  - component: {fileID: 133551416849686943}
   m_Layer: 3
   m_Name: Ross
   m_TagString: Untagged
@@ -156,7 +157,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   choice: 0
-  animator: {fileID: 1595494421984839847}
   taskList: {fileID: 0}
   isPerformingAction: 0
   moving: 0
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 6922891244745156065}
   animator: {fileID: 1595494421984839847}
+  ragDollParts: []
 --- !u!114 &6411204732712215582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +225,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1595494421984839847}
   ai: {fileID: 4374797678464935095}
+  danceClip: {fileID: 0}
+  fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
+--- !u!114 &133551416849686943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4400608693690301590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0785a7756716a14428f0117276d42c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 8b02f93a202121b43bb0cb529f2e3339, type: 2}
 --- !u!1001 &5130485090184532223
 PrefabInstance:
   m_ObjectHideFlags: 0

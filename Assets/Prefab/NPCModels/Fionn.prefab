@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4921720629732324383}
   - component: {fileID: -6773969945183314541}
   - component: {fileID: 633326121994598495}
+  - component: {fileID: 8624725258871025216}
   m_Layer: 3
   m_Name: Fionn
   m_TagString: Untagged
@@ -134,7 +135,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   choice: 0
-  animator: {fileID: 7508914312089029553}
   taskList: {fileID: 0}
   isPerformingAction: 0
   moving: 0
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 8345430575461603493}
   animator: {fileID: 7508914312089029553}
+  ragDollParts: []
 --- !u!114 &633326121994598495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +225,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7508914312089029553}
   ai: {fileID: 7587501619873814754}
+  danceClip: {fileID: 0}
+  fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
+--- !u!114 &8624725258871025216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589206513307298804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0785a7756716a14428f0117276d42c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 8b02f93a202121b43bb0cb529f2e3339, type: 2}
 --- !u!1001 &1631352617062315596
 PrefabInstance:
   m_ObjectHideFlags: 0
