@@ -167,6 +167,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8565e154de449f44da92263451b327b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8766535181711356679}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8565e154de449f44da92263451b327b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7312069210969073088}
   m_SourcePrefab: {fileID: 100100000, guid: 8565e154de449f44da92263451b327b4, type: 3}
 --- !u!4 &3459426918905239323 stripped
 Transform:
@@ -321,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 159514302889437878}
   animator: {fileID: 4626597108653701474}
+  ragDollParts: []
 --- !u!95 &4626597108653701474
 Animator:
   serializedVersion: 5
@@ -360,3 +364,16 @@ MonoBehaviour:
   fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
   sittingClip: {fileID: 7400000, guid: 736dc84d44885274ba5512c8b11ed3bc, type: 2}
   strectchClip: {fileID: 7400000, guid: 057ea77703ecf2542bc5ecc2d7a139b0, type: 2}
+--- !u!114 &7312069210969073088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272098384698215841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0785a7756716a14428f0117276d42c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 8b02f93a202121b43bb0cb529f2e3339, type: 2}

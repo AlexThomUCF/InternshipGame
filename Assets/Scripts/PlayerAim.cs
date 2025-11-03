@@ -11,6 +11,9 @@ public class PlayerAim : MonoBehaviour
     [Header("UI")]
     public Image crosshair;
 
+    [Header("Outline")]
+    public OutlineHighlighter outlineHighlighter;
+
     private PlayerControls controls;
     private bool isAiming;
 
@@ -18,9 +21,13 @@ public class PlayerAim : MonoBehaviour
     {
         controls = new PlayerControls();
 
-        // Hide crosshair at game start
+        // Hide crosshair at start
         if (crosshair != null)
             crosshair.enabled = false;
+
+        // Disable the highlighter initially
+        if (outlineHighlighter != null)
+            outlineHighlighter.enabled = false;
     }
 
     void OnEnable()
@@ -44,6 +51,9 @@ public class PlayerAim : MonoBehaviour
 
         if (crosshair != null)
             crosshair.enabled = true;
+
+        if (outlineHighlighter != null)
+            outlineHighlighter.enabled = true;
     }
 
     void StopAiming()
@@ -53,5 +63,8 @@ public class PlayerAim : MonoBehaviour
 
         if (crosshair != null)
             crosshair.enabled = false;
+
+        if (outlineHighlighter != null)
+            outlineHighlighter.enabled = false;
     }
 }

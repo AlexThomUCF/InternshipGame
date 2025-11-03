@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3201773365860234775}
   - component: {fileID: -399744418234959368}
   - component: {fileID: -1469909330850510449}
+  - component: {fileID: -3607553152118338769}
   m_Layer: 3
   m_Name: Lucie
   m_TagString: Untagged
@@ -156,7 +157,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   choice: 0
-  animator: {fileID: 6874962186964953886}
   taskList: {fileID: 0}
   isPerformingAction: 0
   moving: 0
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5705021708350078568}
   animator: {fileID: 6874962186964953886}
+  ragDollParts: []
 --- !u!114 &-1469909330850510449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +225,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6874962186964953886}
   ai: {fileID: 3562494697576293511}
+  danceClip: {fileID: 0}
+  fishingClip: {fileID: 0}
+  sittingClip: {fileID: 0}
+  strectchClip: {fileID: 0}
+--- !u!114 &-3607553152118338769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147736857639961873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0785a7756716a14428f0117276d42c39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: 8b02f93a202121b43bb0cb529f2e3339, type: 2}
 --- !u!1001 &8589119336436807235
 PrefabInstance:
   m_ObjectHideFlags: 0

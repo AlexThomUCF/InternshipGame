@@ -110139,6 +110139,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 8405846362940451776, guid: b45870803eead514badfefcd36b3fcb0, type: 3}
+      propertyPath: rotationalSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8623085189253581664, guid: b45870803eead514badfefcd36b3fcb0, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -110218,6 +110222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimCamera: {fileID: 11997581}
   crosshair: {fileID: 1408279630}
+  mainCamera: {fileID: 295506395}
+  aimRange: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
