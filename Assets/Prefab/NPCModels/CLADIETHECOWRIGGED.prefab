@@ -439,9 +439,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fda2df1941d98014197f8ae751e86d3c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -7901493562012962020}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fda2df1941d98014197f8ae751e86d3c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1631016590016975006}
     - targetCorrespondingSourceObject: {fileID: 3256684802130647663, guid: fda2df1941d98014197f8ae751e86d3c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8769989321885917671}
@@ -1186,19 +1183,6 @@ MonoBehaviour:
   fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
   sittingClip: {fileID: 7400000, guid: 736dc84d44885274ba5512c8b11ed3bc, type: 2}
   strectchClip: {fileID: 7400000, guid: 057ea77703ecf2542bc5ecc2d7a139b0, type: 2}
---- !u!114 &1631016590016975006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2790936972529998679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0785a7756716a14428f0117276d42c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 2100000, guid: 8b02f93a202121b43bb0cb529f2e3339, type: 2}
 --- !u!4 &3310346727039943149 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fda2df1941d98014197f8ae751e86d3c, type: 3}

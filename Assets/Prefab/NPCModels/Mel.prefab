@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: -6796124672970375107}
   - component: {fileID: -6563297133619465727}
   - component: {fileID: 6251956506394274248}
-  - component: {fileID: 5736320695359497439}
   m_Layer: 3
   m_Name: Mel
   m_TagString: Untagged
@@ -229,19 +228,6 @@ MonoBehaviour:
   fishingClip: {fileID: 0}
   sittingClip: {fileID: 0}
   strectchClip: {fileID: 0}
---- !u!114 &5736320695359497439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3546386252184424650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0785a7756716a14428f0117276d42c39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 2100000, guid: 8b02f93a202121b43bb0cb529f2e3339, type: 2}
 --- !u!1001 &1272494965626830793
 PrefabInstance:
   m_ObjectHideFlags: 0
