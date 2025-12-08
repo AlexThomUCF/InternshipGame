@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     private CharacterController controller;
-    [SerializeField] private Transform camera;
+    private Animator anim;                    // <-- Animator added
+    [SerializeField] private Transform cam;
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 8f;
@@ -24,12 +25,15 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();      // <-- get animator
+
         controls = new PlayerControls();
 
         controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         controls.Player.Move.canceled += _ => moveInput = Vector2.zero;
 
         controls.Player.Jump.performed += _ => jumpPressed = true;
+        controls.Player.Jump.canceled += _ => jumpPressed = false;
     }
 
     private void OnEnable() => controls.Player.Enable();
@@ -38,6 +42,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Movement();
+
+        // Animation update - IMPORTANT FIX
+        Vector3 horizontalVel = controller.velocity;
+        horizontalVel.y = 0;
+
+        anim.SetFloat("Speed", horizontalVel.magnitude);
     }
 
     private void Movement()
@@ -49,8 +59,9 @@ public class PlayerController : MonoBehaviour
     private void GroundMovement()
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        move = camera.transform.TransformDirection(move);
-        move.y = 0f; // prevent upward tilting from camera
+        move = cam.TransformDirection(move);
+        move.y = 0f;
+
         move *= walkSpeed;
         move.y = VerticalForceCalculation();
 
