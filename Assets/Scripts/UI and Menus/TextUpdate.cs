@@ -8,7 +8,8 @@ public class TextUpdate : MonoBehaviour
     public TaskList taskList;
     public TextMeshProUGUI textDisplay;
     // Start is called before the first frame update
-    void Start()
+  
+    void Start()    
     {
         taskList = FindObjectOfType<TaskList>();
         UpdateText();

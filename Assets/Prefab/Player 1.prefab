@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 7577132375780205790}
   - component: {fileID: 5257564890557668224}
   - component: {fileID: 6285340117441058532}
+  - component: {fileID: 6318527617616444940}
   m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
@@ -236,6 +237,20 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   mainCamera: {fileID: 0}
   aimRange: 100
+--- !u!114 &6318527617616444940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6111972122206512391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f45fced7dd6994b9f19cbf9906099e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xRayLayer: 9
+  defaultLayer: 7
 --- !u!1001 &701349881368658366
 PrefabInstance:
   m_ObjectHideFlags: 0
