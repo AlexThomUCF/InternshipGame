@@ -72,7 +72,7 @@ public class AINavigation : MonoBehaviour
        
         if(choice >= 21 && choice <= 40) // If choice 1 player stand still
         {
-            Debug.Log(gameObject.name + " choice: " + choice);
+            //Debug.Log(gameObject.name + " choice: " + choice);
 
             //After these choices were picked instantly new choices were picked and maybe overrided this line. THIS IS CORRECT WHENEVER NUMBER IS BETWEEN 21 - 40 IT MAKES CHOICE PICK RIGHT AWAY SKIPPING THIS STAND STILL LINE.
 
@@ -81,7 +81,7 @@ public class AINavigation : MonoBehaviour
         }
         else if (choice >= 41 && choice <= 100) // if choice 3 - 10 player free roams
         {
-            Debug.Log(gameObject.name + " choice: " + choice);
+            //Debug.Log(gameObject.name + " choice: " + choice);
             isPerformingAction = true;
             moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
@@ -93,7 +93,7 @@ public class AINavigation : MonoBehaviour
         else if(choice >= 1 && choice <= 20) // if choice 2 player moves to task point
         {
             isPerformingAction = true;
-            Debug.Log(gameObject.name + " choice: " + choice);
+           // Debug.Log(gameObject.name + " choice: " + choice);
             moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
             int arrayLength = taskCheckpoints.Length;
