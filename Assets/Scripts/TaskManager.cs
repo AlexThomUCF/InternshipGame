@@ -30,12 +30,13 @@ public class TaskManager : MonoBehaviour
     {
        NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
        NPCAnimations npcAnimations = other.GetComponent<NPCAnimations>();
+        AINavigation aiCheck = other.GetComponent<AINavigation>();
         if(agent != null)
         {
-            Debug.Log("Agent in area");
-            if(agent.CompareTag("IMPOSTER") && taskList.tasksListAmount.Contains(currentObject)) // Need to add bool to check if they are just in the area or if they are in the area and emoting
+            //Debug.Log("Agent in area");
+            if(agent.CompareTag("IMPOSTER") && taskList.tasksListAmount.Contains(currentObject) && aiCheck.isPerformingAction) // Need to add bool to check if they are just in the area or if they are in the area and emoting
             {
-                Debug.Log("This is an Imposter");
+               // Debug.Log("This is an Imposter");
                 taskList.tasksListAmount.Remove(currentObject);
 
                 hasObjectTask = false;
@@ -49,13 +50,13 @@ public class TaskManager : MonoBehaviour
             if(agent.CompareTag("NPC"))
             {
               //   agent.isStopped = true;
-                Debug.Log("This is a NPC");
+              //  Debug.Log("This is a NPC");
                 
 
                 StartCoroutine(npcAnimations.TaskAnimations(agent));
                 //play animation
 
-                Debug.Log("This is " + this.name);
+               // Debug.Log("This is " + this.name);
             }
         }
     }

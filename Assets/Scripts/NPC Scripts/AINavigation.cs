@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class AINavigation : MonoBehaviour
 {
+    //isPerformingAction, stays true while npc is moving towards task point. Any task passed while true will be marked as completed. Need to change it so isPerforming task is activated once at task npc needs to 
+    //go to
     public NavMeshAgent myAgent;
     public float range; //Radius of spehere around agent. 
     public Transform location; 
@@ -16,6 +18,7 @@ public class AINavigation : MonoBehaviour
     public TaskList taskList;
 
     public bool isPerformingAction = false;
+    
 
     public bool moving = false;
 
@@ -99,8 +102,16 @@ public class AINavigation : MonoBehaviour
             int arrayLength = taskCheckpoints.Length;
             // go to task 
             int tempNum  = Random.Range(1,arrayLength);
+           
+            string name1 = taskCheckpoints[tempNum].name;
 
-            switch (tempNum) // Might have to look at switch case, imposter/NPC may only go to one of the 4 tasks in the list
+            if(gameObject.tag == "IMPOSTER")
+            {
+                Debug.Log("Agent is going towards" + name1);
+            }
+           
+
+            /*switch (tempNum) // Might have to look at switch case, imposter/NPC may only go to one of the 4 tasks in the list
             {
                 case 1:
                 myAgent.SetDestination(taskCheckpoints[0].transform.position);
@@ -125,8 +136,10 @@ public class AINavigation : MonoBehaviour
                 dist = Vector3.Distance(taskCheckpoints[3].transform.position, transform.position);   
                 //yield return new WaitForSeconds(dist);
                 break;
-            }
+            }*/
+            myAgent.SetDestination(taskCheckpoints[tempNum].transform.position);
             StartCoroutine(ResetAfterMovement());
+
         }
        //yield return new WaitForSeconds(2f);
     }
@@ -144,6 +157,7 @@ public class AINavigation : MonoBehaviour
         moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
         isPerformingAction = false;
+        
     }
 
     
@@ -155,6 +169,7 @@ public class AINavigation : MonoBehaviour
             yield return null; // Wait until the AI reaches its destination
         }
         isPerformingAction = false;
+        
     }
  
 }
