@@ -2932,15 +2932,41 @@ MonoBehaviour:
   - {fileID: 1921208341}
   blackoutImage: {fileID: 1185675382}
   fadeSpeed: 2
-  minBlackoutInterval: 10
-  maxBlackoutInterval: 20
+  minBlackoutInterval: 60
+  maxBlackoutInterval: 120
   flickerDuration: 2
   blackoutDuration: 3
   flickerMinIntensity: 0.1
   flickerSpeed: 0.1
-  canvasFlickerMinAlpha: 0.05
-  canvasFlickerMaxAlpha: 0.2
+  canvasFlickerMinAlpha: 0.15
+  canvasFlickerMaxAlpha: 0.3
   canvasFlickerSpeed: 0.05
+  npcWaypoints:
+  - {fileID: 1530457629}
+  - {fileID: 1964735067}
+  - {fileID: 750634645}
+  - {fileID: 1628281283}
+  - {fileID: 1868285935}
+  - {fileID: 565141901}
+  - {fileID: 1267725919}
+  - {fileID: 157420904}
+  - {fileID: 1168003916}
+  - {fileID: 161571816}
+  - {fileID: 552364345}
+  - {fileID: 643624723}
+  - {fileID: 552632330}
+  - {fileID: 1397178732}
+  - {fileID: 1212926269}
+  - {fileID: 139740762}
+  - {fileID: 1219777416}
+  - {fileID: 143982962}
+  - {fileID: 1224121868}
+  - {fileID: 148253522}
+  - {fileID: 616648698}
+  - {fileID: 1321051367}
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &48176988
 GameObject:
   m_ObjectHideFlags: 0
@@ -25244,7 +25270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -37249,6 +37275,7 @@ SceneRoots:
   - {fileID: 123780558}
   - {fileID: 582507120}
   - {fileID: 100738749}
+  - {fileID: 42544041}
   - {fileID: 297493717}
   - {fileID: 248998984}
   - {fileID: 39049557}
@@ -37272,5 +37299,4 @@ SceneRoots:
   - {fileID: 984726118}
   - {fileID: 48176994}
   - {fileID: 81753442}
-  - {fileID: 42544041}
   - {fileID: 312334541}

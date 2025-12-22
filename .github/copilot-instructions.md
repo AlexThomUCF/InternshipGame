@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Characters, Water, UI, Player, Environment, Interactable, Xray
 - Active game object:
-  - Name: GameManager
+  - Name: BlackoutController
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
