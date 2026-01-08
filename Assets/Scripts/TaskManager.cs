@@ -30,17 +30,21 @@ public class TaskManager : MonoBehaviour
     {
        NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
        NPCAnimations npcAnimations = other.GetComponent<NPCAnimations>();
-        AINavigation aiCheck = other.GetComponent<AINavigation>();
-        if(agent != null)
+       AINavigation aiCheck = other.GetComponent<AINavigation>(); 
+       Rigidbody rb = other.GetComponent<Rigidbody>();
+       
+
+        if (agent != null)
         {
             //Debug.Log("Agent in area");
-            if(agent.CompareTag("IMPOSTER") && taskList.tasksListAmount.Contains(currentObject) && aiCheck.isPerformingAction) // Need to add bool to check if they are just in the area or if they are in the area and emoting
+            if (agent.CompareTag("IMPOSTER") && taskList.tasksListAmount.Contains(currentObject) && aiCheck.isPerformingAction && agent.remainingDistance <= 10f) // Need to add bool to check if they are just in the area or if they are in the area and emoting
             {
-               // Debug.Log("This is an Imposter");
+                Debug.Log(agent.remainingDistance);
+                // Debug.Log("This is an Imposter");
                 taskList.tasksListAmount.Remove(currentObject);
 
                 hasObjectTask = false;
-
+                    
                 StartCoroutine(npcAnimations.TaskAnimations(agent));
 
                 RemoveTask(currentObject);
