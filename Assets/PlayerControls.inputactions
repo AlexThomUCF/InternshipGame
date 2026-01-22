@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UIToggle",
+                    "type": "Button",
+                    "id": "1dc3b36a-7c2f-4810-8c5b-ff28781b9a5a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -232,6 +241,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Xray",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1edfcd74-4da6-45ce-97af-21f73537b66a",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

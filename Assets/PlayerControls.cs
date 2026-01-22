@@ -89,6 +89,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UIToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""1dc3b36a-7c2f-4810-8c5b-ff28781b9a5a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Xray"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1edfcd74-4da6-45ce-97af-21f73537b66a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UIToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -271,6 +291,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Xray = m_Player.FindAction("Xray", throwIfNotFound: true);
+        m_Player_UIToggle = m_Player.FindAction("UIToggle", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -344,6 +365,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Xray;
+    private readonly InputAction m_Player_UIToggle;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -355,6 +377,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Xray => m_Wrapper.m_Player_Xray;
+        public InputAction @UIToggle => m_Wrapper.m_Player_UIToggle;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -385,6 +408,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Xray.started += instance.OnXray;
             @Xray.performed += instance.OnXray;
             @Xray.canceled += instance.OnXray;
+            @UIToggle.started += instance.OnUIToggle;
+            @UIToggle.performed += instance.OnUIToggle;
+            @UIToggle.canceled += instance.OnUIToggle;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -410,6 +436,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Xray.started -= instance.OnXray;
             @Xray.performed -= instance.OnXray;
             @Xray.canceled -= instance.OnXray;
+            @UIToggle.started -= instance.OnUIToggle;
+            @UIToggle.performed -= instance.OnUIToggle;
+            @UIToggle.canceled -= instance.OnUIToggle;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -436,5 +465,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnXray(InputAction.CallbackContext context);
+        void OnUIToggle(InputAction.CallbackContext context);
     }
 }

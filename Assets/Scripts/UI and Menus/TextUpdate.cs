@@ -7,10 +7,19 @@ public class TextUpdate : MonoBehaviour
 {
     public TaskList taskList;
     public TextMeshProUGUI textDisplay;
+    public GameObject taskUI;
+
+    private bool isUIOpen;
+    private PlayerControls controls;
     // Start is called before the first frame update
-  
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+    }
     void Start()    
     {
+        isUIOpen = taskUI.activeSelf;
         taskList = FindObjectOfType<TaskList>();
         UpdateText();
     }
@@ -31,5 +40,33 @@ public class TextUpdate : MonoBehaviour
 
         textDisplay.text = output;
     }
+    void OnEnable()
+    {
+        controls.Enable();
+        controls.Player.UIToggle.started += OnUIToggle;
+    }
+
+    void OnDisable()
+    {
+        controls.Player.UIToggle.started -= OnUIToggle;
+        controls.Disable();
+    }
+    void ToggleUIOn()
+    {   
+        taskUI.SetActive(true);
+    }
+    void ToggleUIOff()
+    {
+        taskUI.SetActive(false);
+    }
+
+    void OnUIToggle(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    {
+        isUIOpen = !isUIOpen;
+        taskUI.SetActive(isUIOpen);
+    }
+
+ 
+
 
 }
