@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 7671656835741496752}
   - component: {fileID: 4921720629732324383}
   - component: {fileID: -6773969945183314541}
-  - component: {fileID: 633326121994598495}
   m_Layer: 3
   m_Name: Fionn
   m_TagString: Untagged
@@ -125,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAgent: {fileID: 8345430575461603493}
+  animator: {fileID: 0}
   range: 50
   location: {fileID: 1236523913389429159}
   centrePoint: {fileID: 4619100388429899884}
@@ -210,24 +210,6 @@ MonoBehaviour:
   agent: {fileID: 8345430575461603493}
   animator: {fileID: 7508914312089029553}
   ragDollParts: []
---- !u!114 &633326121994598495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589206513307298804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 7508914312089029553}
-  ai: {fileID: 7587501619873814754}
-  danceClip: {fileID: 0}
-  fishingClip: {fileID: 0}
-  sittingClip: {fileID: 0}
-  strectchClip: {fileID: 0}
 --- !u!1001 &1631352617062315596
 PrefabInstance:
   m_ObjectHideFlags: 0

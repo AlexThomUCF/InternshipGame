@@ -8,12 +8,16 @@ public class AINavigation : MonoBehaviour
     //isPerformingAction, stays true while npc is moving towards task point. Any task passed while true will be marked as completed. Need to change it so isPerforming task is activated once at task npc needs to 
     //go to
     public NavMeshAgent myAgent;
+    public Animator animator;
     public float range; //Radius of spehere around agent. 
     public Transform location; 
     public Transform centrePoint; // centre of the area the agent wants to move around in
     public GameObject [] taskCheckpoints;
     public  int choice = 0;
-    
+
+    private NPCDestination currentDestination;
+    private GameObject currentTaskTarget;
+
 
     public TaskList taskList;
 
@@ -26,6 +30,7 @@ public class AINavigation : MonoBehaviour
     void Start()
     {
         taskList = FindObjectOfType<TaskList>();
+        animator = GetComponent<Animator>();
         //myAgent.SetDestination(location.position);
         
         taskCheckpoints = taskList.taskArray;   
@@ -35,24 +40,19 @@ public class AINavigation : MonoBehaviour
     void Update()
     {
        // StartCoroutine(ChooseAction());
-        if(myAgent.remainingDistance <= myAgent.stoppingDistance) // done with path
+        if(!isPerformingAction && !myAgent.pathPending && myAgent.remainingDistance <= myAgent.stoppingDistance) // done with path
         {
             ChooseAction(); // when path is done call Choose action command
-            Vector3 point;
-
-            if(RandomPoint(centrePoint.position, range, out point) && (choice >= 41 && choice <= 100)) // If Random point is in range and choice is between 3 and 10, Move to random point on map
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f);
-                myAgent.SetDestination(point);
-                StartCoroutine(ResetAfterMovement());
-            }
         }
         
         if(CompareTag("IMPOSTER"))
         {
             taskCheckpoints = taskList.imposterTaskArray;// removes task from imposter array. The Imposter whill no longer go to this task
         }
+
+        MovementAnimations();
     }
+
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
 
@@ -84,13 +84,20 @@ public class AINavigation : MonoBehaviour
         }
         else if (choice >= 41 && choice <= 100) // if choice 3 - 10 player free roams
         {
-            //Debug.Log(gameObject.name + " choice: " + choice);
             isPerformingAction = true;
-            moving = true; // NEW ANIMATION IS MOVING TRIGGER
+            moving = true;
 
-           // Debug.Log("Agent is roaming");
-
-            
+            Vector3 point;
+            if (RandomPoint(centrePoint.position, range, out point))
+            {
+                myAgent.SetDestination(point);
+                StartCoroutine(ResetAfterMovement());
+            }
+            else
+            {
+                isPerformingAction = false;
+                moving = false;
+            }
             //free roam 
         }
         else if(choice >= 1 && choice <= 20) // if choice 2 player moves to task point
@@ -101,43 +108,19 @@ public class AINavigation : MonoBehaviour
 
             int arrayLength = taskCheckpoints.Length;
             // go to task 
-            int tempNum  = Random.Range(1,arrayLength);
-           
+            int tempNum = Random.Range(0, arrayLength);
+
             string name1 = taskCheckpoints[tempNum].name;
 
             if(gameObject.tag == "IMPOSTER")
             {
                 Debug.Log("Agent is going towards" + name1);
             }
-           
 
-            /*switch (tempNum) // Might have to look at switch case, imposter/NPC may only go to one of the 4 tasks in the list
-            {
-                case 1:
-                myAgent.SetDestination(taskCheckpoints[0].transform.position);
-                float dist = Vector3.Distance(taskCheckpoints[0].transform.position, transform.position);   
-                //yield return new WaitForSeconds(dist);
-                break;
 
-                case 2:
-                myAgent.SetDestination(taskCheckpoints[1].transform.position);
-                dist = Vector3.Distance(taskCheckpoints[1].transform.position, transform.position);   
-                //yield return new WaitForSeconds(dist);
-                break;
+            currentTaskTarget = taskCheckpoints[tempNum];
+            myAgent.SetDestination(currentTaskTarget.transform.position);
 
-                case 3:
-                myAgent.SetDestination(taskCheckpoints[2].transform.position);
-                dist = Vector3.Distance(taskCheckpoints[2].transform.position, transform.position);   
-               // yield return new WaitForSeconds(dist);
-                break;
-                
-                case 4:
-                myAgent.SetDestination(taskCheckpoints[3].transform.position);
-                dist = Vector3.Distance(taskCheckpoints[3].transform.position, transform.position);   
-                //yield return new WaitForSeconds(dist);
-                break;
-            }*/
-            myAgent.SetDestination(taskCheckpoints[tempNum].transform.position);
             StartCoroutine(ResetAfterMovement());
 
         }
@@ -168,8 +151,37 @@ public class AINavigation : MonoBehaviour
         {
             yield return null; // Wait until the AI reaches its destination
         }
+        moving = false; // stop walking animation
+
+        if (currentTaskTarget != null)
+        {
+            NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
+
+            if (dest != null && dest.animationTrigger != "")
+            {
+                animator.SetTrigger(dest.animationTrigger);
+            }
+
+            currentTaskTarget = null;
+        }
+
+
+
         isPerformingAction = false;
         
     }
- 
+
+    public void MovementAnimations()
+    {
+        if (moving == true)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else if (moving == false)
+        {
+            animator.SetBool("isMoving", false);
+        }
+    }
+
+
 }

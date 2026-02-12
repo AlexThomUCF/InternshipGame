@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2664504006374798374}
   - component: {fileID: 4775436631775651504}
   - component: {fileID: -2708693304336369914}
-  - component: {fileID: -2013749998065126902}
   m_Layer: 3
   m_Name: Sadie
   m_TagString: Untagged
@@ -147,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAgent: {fileID: 1157473817254785598}
+  animator: {fileID: 0}
   range: 50
   location: {fileID: 1257859452994475217}
   centrePoint: {fileID: 1591065978659468556}
@@ -210,24 +210,6 @@ MonoBehaviour:
   agent: {fileID: 1157473817254785598}
   animator: {fileID: 7009621302762937920}
   ragDollParts: []
---- !u!114 &-2013749998065126902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045098284906017437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 7009621302762937920}
-  ai: {fileID: 7717748774828881946}
-  danceClip: {fileID: 0}
-  fishingClip: {fileID: 0}
-  sittingClip: {fileID: 0}
-  strectchClip: {fileID: 0}
 --- !u!1001 &1656878258729726778
 PrefabInstance:
   m_ObjectHideFlags: 0

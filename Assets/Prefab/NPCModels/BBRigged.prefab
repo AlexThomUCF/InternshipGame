@@ -516,9 +516,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8861077304009080040}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -4789120234450921492}
     - targetCorrespondingSourceObject: {fileID: 3256684802130647663, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4167739852960744038}
@@ -806,6 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAgent: {fileID: 8560641765980915359}
+  animator: {fileID: 0}
   range: 50
   location: {fileID: 949461675654912974}
   centrePoint: {fileID: 949461675654912974}
@@ -891,24 +889,6 @@ MonoBehaviour:
   agent: {fileID: 8560641765980915359}
   animator: {fileID: 6499379574228715758}
   ragDollParts: []
---- !u!114 &-4789120234450921492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461331927194026356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 6499379574228715758}
-  ai: {fileID: 3816810714606848518}
-  danceClip: {fileID: 7400000, guid: 4f29973af2eff234590b731f5d17d55b, type: 2}
-  fishingClip: {fileID: 7400000, guid: 321cae01ad1dfd44bb7d5dda8e45144b, type: 2}
-  sittingClip: {fileID: 7400000, guid: 736dc84d44885274ba5512c8b11ed3bc, type: 2}
-  strectchClip: {fileID: 7400000, guid: 057ea77703ecf2542bc5ecc2d7a139b0, type: 2}
 --- !u!4 &949461675654912974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}

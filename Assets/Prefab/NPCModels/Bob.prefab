@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 3669391828794025313}
   - component: {fileID: 3520414578949896846}
   - component: {fileID: -4888615912293028675}
-  - component: {fileID: 1042101063077530252}
   m_Layer: 3
   m_Name: Bob
   m_TagString: Untagged
@@ -147,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAgent: {fileID: 4464265761647682458}
+  animator: {fileID: 0}
   range: 50
   location: {fileID: 8759147921771558351}
   centrePoint: {fileID: 3898967608241959231}
@@ -210,24 +210,6 @@ MonoBehaviour:
   agent: {fileID: 4464265761647682458}
   animator: {fileID: 6350889772726069071}
   ragDollParts: []
---- !u!114 &1042101063077530252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747696251127450513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff63d42802cf1fb4e867c89f74cca23c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 6350889772726069071}
-  ai: {fileID: 4285289736010637727}
-  danceClip: {fileID: 0}
-  fishingClip: {fileID: 0}
-  sittingClip: {fileID: 0}
-  strectchClip: {fileID: 0}
 --- !u!1001 &9080391394504610340
 PrefabInstance:
   m_ObjectHideFlags: 0
