@@ -209,6 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1157473817254785598}
   animator: {fileID: 7009621302762937920}
+  parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
+  arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   ragDollParts: []
 --- !u!1001 &1656878258729726778
 PrefabInstance:

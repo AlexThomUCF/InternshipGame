@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class CatchableCharacter : MonoBehaviour
 {
     public NavMeshAgent agent;    // Assign NavMeshAgent
+
+    [Header("Animaton Controllers")]
     public Animator animator;     // For possible future "Caught" animation
+    public RuntimeAnimatorController parkController;
+    public RuntimeAnimatorController arcadeController;
+
     public bool isCaught { get; private set; }
     public List<Collider> ragDollParts = new List<Collider>();
 
@@ -16,7 +22,10 @@ public class CatchableCharacter : MonoBehaviour
     {
         SetRagdollParts();
         DisableRagdoll();
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        ChooseController(currentSceneName);
     }
+
     public void Catch(bool wasImposter)
     {
         if (isCaught) return;
@@ -81,6 +90,24 @@ public class CatchableCharacter : MonoBehaviour
                 if (rb != null)
                     ragdollRigidbodies.Add(rb);
             }
+        }
+    }
+
+    void ChooseController(string sceneName)
+    {
+        // Check if the scene name matches
+        if (sceneName == "park_lvl")
+        {
+            animator.runtimeAnimatorController = parkController;
+        }
+        else if (sceneName == "arcade_lvl")
+        {
+            animator.runtimeAnimatorController = arcadeController;
+        }
+        // Add more conditions if you have more scenes and controllers
+        else
+        {
+            Debug.LogWarning("No animator controller assigned for this scene.");
         }
     }
 

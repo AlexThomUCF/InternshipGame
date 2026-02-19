@@ -523,6 +523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 445784692653573736}
   animator: {fileID: 6750571391806013635}
+  parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
+  arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   ragDollParts: []
 --- !u!1 &270583074607031128 stripped
 GameObject:
