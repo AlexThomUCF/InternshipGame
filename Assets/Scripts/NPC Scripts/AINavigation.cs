@@ -5,155 +5,169 @@ using UnityEngine.AI;
 
 public class AINavigation : MonoBehaviour
 {
-    //isPerformingAction, stays true while npc is moving towards task point. Any task passed while true will be marked as completed. Need to change it so isPerforming task is activated once at task npc needs to 
-    //go to
     public NavMeshAgent myAgent;
     public Animator animator;
-    public float range; //Radius of spehere around agent. 
-    public Transform location; 
-    public Transform centrePoint; // centre of the area the agent wants to move around in
-    public GameObject [] taskCheckpoints;
-    public  int choice = 0;
+
+    public float range = 10f;
+    public Transform centrePoint;
+
+    public GameObject[] taskCheckpoints;
+    public int choice = 0;
 
     private NPCDestination currentDestination;
     private GameObject currentTaskTarget;
 
-
     public TaskList taskList;
 
     public bool isPerformingAction = false;
-    
-
     public bool moving = false;
 
-    // Start is called before the first frame update
+    private float decisionCooldown = 0f;
+
     void Start()
     {
         taskList = FindObjectOfType<TaskList>();
         animator = GetComponent<Animator>();
-        //myAgent.SetDestination(location.position);
-        
-        taskCheckpoints = taskList.taskArray;   
+        myAgent = GetComponent<NavMeshAgent>();
+
+        taskCheckpoints = taskList.taskArray;
     }
 
-    // Update is called once per frame
     void Update()
     {
-       // StartCoroutine(ChooseAction());
-        if(!isPerformingAction && !myAgent.pathPending && myAgent.remainingDistance <= myAgent.stoppingDistance) // done with path
+        if (decisionCooldown > 0)
+            decisionCooldown -= Time.deltaTime;
+
+        if (!isPerformingAction &&
+            decisionCooldown <= 0 &&
+            !myAgent.pathPending &&
+            myAgent.remainingDistance <= myAgent.stoppingDistance)
         {
-            ChooseAction(); // when path is done call Choose action command
+            ChooseAction();
         }
-        
-        if(CompareTag("IMPOSTER"))
+
+        if (CompareTag("IMPOSTER"))
         {
-            taskCheckpoints = taskList.imposterTaskArray;// removes task from imposter array. The Imposter whill no longer go to this task
+            taskCheckpoints = taskList.imposterTaskArray;
         }
 
         MovementAnimations();
     }
 
+    // ---------------------------------------------------------
+    // RANDOM POINT ON NAVMESH
+    // ---------------------------------------------------------
+
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
-
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in sphere
-        NavMeshHit hit;
-        if(NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+        for (int i = 0; i < 10; i++)
         {
-            result = hit.position;
-            return true;
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(randomPoint, out hit, 5.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
         }
 
         result = Vector3.zero;
-        return false;   
+        return false;
     }
+
+    // ---------------------------------------------------------
+    // ACTION SELECTION
+    // ---------------------------------------------------------
 
     public void ChooseAction()
     {
-        if(isPerformingAction) return;
-        choice = Random.Range(1,101);
-       
-        if(choice >= 21 && choice <= 40) // If choice 1 player stand still
+        if (isPerformingAction) return;
+
+        choice = Random.Range(1, 101);
+
+        // 20% Stand Still
+        if (choice >= 21 && choice <= 40)
         {
-            //Debug.Log(gameObject.name + " choice: " + choice);
-
-            //After these choices were picked instantly new choices were picked and maybe overrided this line. THIS IS CORRECT WHENEVER NUMBER IS BETWEEN 21 - 40 IT MAKES CHOICE PICK RIGHT AWAY SKIPPING THIS STAND STILL LINE.
-
-            StartCoroutine(PauseMovement(4.4f));
-
+            StartCoroutine(PauseMovement(Random.Range(3f, 5f)));
         }
-        else if (choice >= 41 && choice <= 100) // if choice 3 - 10 player free roams
+
+        // 60% Free Roam
+        else if (choice >= 41 && choice <= 100)
         {
             isPerformingAction = true;
             moving = true;
 
             Vector3 point;
+
             if (RandomPoint(centrePoint.position, range, out point))
             {
+                myAgent.isStopped = false;
                 myAgent.SetDestination(point);
-                StartCoroutine(ResetAfterMovement());
+                StartCoroutine(ResetAfterMovement(false));
             }
             else
             {
                 isPerformingAction = false;
                 moving = false;
             }
-            //free roam 
         }
-        else if(choice >= 1 && choice <= 20) // if choice 2 player moves to task point
+
+        // 20% Go To Task
+        else
         {
+            if (taskCheckpoints.Length == 0) return;
+
             isPerformingAction = true;
-           // Debug.Log(gameObject.name + " choice: " + choice);
-            moving = true; // NEW ANIMATION IS MOVING TRIGGER
+            moving = true;
 
-            int arrayLength = taskCheckpoints.Length;
-            // go to task 
-            int tempNum = Random.Range(0, arrayLength);
-
-            string name1 = taskCheckpoints[tempNum].name;
-
-            if(gameObject.tag == "IMPOSTER")
-            {
-                Debug.Log("Agent is going towards" + name1);
-            }
-
+            int tempNum = Random.Range(0, taskCheckpoints.Length);
 
             currentTaskTarget = taskCheckpoints[tempNum];
+
+            myAgent.isStopped = false;
             myAgent.SetDestination(currentTaskTarget.transform.position);
 
-            StartCoroutine(ResetAfterMovement());
-
+            StartCoroutine(ResetAfterMovement(true));
         }
-       //yield return new WaitForSeconds(2f);
     }
+
+    // ---------------------------------------------------------
+    // STAND STILL
+    // ---------------------------------------------------------
 
     IEnumerator PauseMovement(float pauseTime)
     {
         isPerformingAction = true;
-        myAgent.isStopped = true;
-        moving = false; // NEW ANIMATION IS MOVING TRIGGER
+        moving = false;
 
+        myAgent.isStopped = true;
 
         yield return new WaitForSeconds(pauseTime);
 
         myAgent.isStopped = false;
-        moving = true; // NEW ANIMATION IS MOVING TRIGGER
 
         isPerformingAction = false;
-        
+        decisionCooldown = 1f;
     }
 
-    
+    // ---------------------------------------------------------
+    // MOVEMENT RESET (FOR ROAM + TASK)
+    // ---------------------------------------------------------
 
-    IEnumerator ResetAfterMovement()
+    IEnumerator ResetAfterMovement(bool isTask)
     {
         while (myAgent.pathPending || myAgent.remainingDistance > myAgent.stoppingDistance)
         {
-            yield return null; // Wait until the AI reaches its destination
+            yield return null;
         }
-        moving = false; // stop walking animation
 
-        if (currentTaskTarget != null)
+        moving = false;
+
+        // Wait at location (makes roaming look natural)
+        yield return new WaitForSeconds(Random.Range(2f, 4f));
+
+        if (isTask && currentTaskTarget != null)
         {
             NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
 
@@ -165,23 +179,16 @@ public class AINavigation : MonoBehaviour
             currentTaskTarget = null;
         }
 
-
-
         isPerformingAction = false;
-        
+        decisionCooldown = 1f;
     }
+
+    // ---------------------------------------------------------
+    // ANIMATIONS
+    // ---------------------------------------------------------
 
     public void MovementAnimations()
     {
-        if (moving == true)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else if (moving == false)
-        {
-            animator.SetBool("isMoving", false);
-        }
+        animator.SetBool("isMoving", moving);
     }
-
-
 }
