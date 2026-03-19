@@ -182,7 +182,7 @@ public class AINavigation : MonoBehaviour
 
                 // Wait for animation to finish
                 yield return new WaitForSeconds(stateInfo.length);
-            }
+            } 
 
             currentTaskTarget = null;
         }
