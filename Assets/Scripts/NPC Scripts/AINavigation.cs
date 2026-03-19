@@ -174,6 +174,14 @@ public class AINavigation : MonoBehaviour
             if (dest != null && dest.animationTrigger != "")
             {
                 animator.SetTrigger(dest.animationTrigger);
+
+                // Wait until animation starts
+                yield return null;
+
+                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+                // Wait for animation to finish
+                yield return new WaitForSeconds(stateInfo.length);
             }
 
             currentTaskTarget = null;
