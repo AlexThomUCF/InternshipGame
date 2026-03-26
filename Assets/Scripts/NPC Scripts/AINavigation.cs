@@ -5,24 +5,25 @@ using UnityEngine.AI;
 
 public class AINavigation : MonoBehaviour
 {
-    public NavMeshAgent myAgent;
-    public Animator animator;
-
-    public float range = 10f;
-    public Transform centrePoint;
-
-    public GameObject[] taskCheckpoints;
-    public int choice = 0;
-
+    [Header("References")]
     private NPCDestination currentDestination;
     private GameObject currentTaskTarget;
-
+    public NavMeshAgent myAgent;
+    public Animator animator;
+    public Transform centrePoint;
+    public GameObject[] taskCheckpoints;
     public TaskList taskList;
 
+    [Header("Values")]
+    public float range = 10f;
+    public int choice = 0;
+    private float decisionCooldown = 0f;
+
+
+    [Header("Bools")]
     public bool isPerformingAction = false;
     public bool moving = false;
 
-    private float decisionCooldown = 0f;
 
     void Start()
     {
@@ -31,13 +32,23 @@ public class AINavigation : MonoBehaviour
         myAgent = GetComponent<NavMeshAgent>();
 
         taskCheckpoints = taskList.taskArray;
+
+        if (CompareTag("IMPOSTER"))
+        {
+            taskCheckpoints = taskList.imposterTaskArray;
+        }
+        else
+            taskCheckpoints = taskList.taskArray;
     }
 
     void Update()
     {
-        if (decisionCooldown > 0)
-            decisionCooldown -= Time.deltaTime;
+        //Cooldown before next decision
+        if (decisionCooldown > 0)  
+            decisionCooldown -= Time.deltaTime;  
 
+
+        //checks when to act
         if (!isPerformingAction &&
             decisionCooldown <= 0 &&
             !myAgent.pathPending &&
@@ -46,10 +57,6 @@ public class AINavigation : MonoBehaviour
             ChooseAction();
         }
 
-        if (CompareTag("IMPOSTER"))
-        {
-            taskCheckpoints = taskList.imposterTaskArray;
-        }
 
         MovementAnimations();
     }
@@ -80,20 +87,22 @@ public class AINavigation : MonoBehaviour
     // ACTION SELECTION
     // ---------------------------------------------------------
 
+
+    //Decides which action to take IDLE, Free roam, Go to task
     public void ChooseAction()
     {
         if (isPerformingAction) return;
 
         choice = Random.Range(1, 101);
 
-        // 20% Stand Still
-        if (choice >= 21 && choice <= 40)
+        // 20% Stand Still (1–20)
+        if (choice <= 20)
         {
             StartCoroutine(PauseMovement(Random.Range(3f, 5f)));
         }
 
-        // 60% Free Roam
-        else if (choice >= 41 && choice <= 100)
+        // 60% Free Roam (21–80)
+        else if (choice <= 80)
         {
             isPerformingAction = true;
             moving = true;
@@ -113,7 +122,7 @@ public class AINavigation : MonoBehaviour
             }
         }
 
-        // 20% Go To Task
+        // 20% Go To Task (81–100)
         else
         {
             if (taskCheckpoints.Length == 0) return;
@@ -148,7 +157,7 @@ public class AINavigation : MonoBehaviour
         myAgent.isStopped = false;
 
         isPerformingAction = false;
-        decisionCooldown = 1f;
+        decisionCooldown = Random.Range(0.5f, 2f);
     }
 
     // ---------------------------------------------------------
@@ -164,7 +173,7 @@ public class AINavigation : MonoBehaviour
 
         moving = false;
 
-        // Wait at location (makes roaming look natural)
+        // Wait at location 
         yield return new WaitForSeconds(Random.Range(2f, 4f));
 
         if (isTask && currentTaskTarget != null)
@@ -173,7 +182,7 @@ public class AINavigation : MonoBehaviour
 
             if (dest != null && dest.animationTrigger != "")
             {
-                animator.SetTrigger(dest.animationTrigger);
+                animator.SetTrigger(dest.animationTrigger); //Plays animation at task location
 
                 // Wait until animation starts
                 yield return null;
@@ -188,7 +197,7 @@ public class AINavigation : MonoBehaviour
         }
 
         isPerformingAction = false;
-        decisionCooldown = 1f;
+        decisionCooldown = Random.Range(0.5f, 2f);
     }
 
     // ---------------------------------------------------------
