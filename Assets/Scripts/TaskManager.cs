@@ -45,7 +45,7 @@ public class TaskManager : MonoBehaviour
 
                 hasObjectTask = false;
                     
-                StartCoroutine(npcAnimations.TaskAnimations(agent));
+                //StartCoroutine(npcAnimations.TaskAnimations(agent));
 
                 RemoveTask(currentObject);
  
@@ -57,7 +57,7 @@ public class TaskManager : MonoBehaviour
               //  Debug.Log("This is a NPC");
                 
 
-                StartCoroutine(npcAnimations.TaskAnimations(agent));
+               //StartCoroutine(npcAnimations.TaskAnimations(agent));
                 //play animation
 
                // Debug.Log("This is " + this.name);

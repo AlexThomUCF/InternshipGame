@@ -12,6 +12,7 @@ public class CatchableCharacter : MonoBehaviour
     public Animator animator;     // For possible future "Caught" animation
     public RuntimeAnimatorController parkController;
     public RuntimeAnimatorController arcadeController;
+    public RuntimeAnimatorController castleController;
 
     public bool isCaught { get; private set; }
     public List<Collider> ragDollParts = new List<Collider>();
@@ -103,6 +104,10 @@ public class CatchableCharacter : MonoBehaviour
         else if (sceneName == "arcade_lvl")
         {
             animator.runtimeAnimatorController = arcadeController;
+        }
+        else if(sceneName == "castle_lvl")
+        {
+            animator.runtimeAnimatorController = castleController;
         }
         // Add more conditions if you have more scenes and controllers
         else

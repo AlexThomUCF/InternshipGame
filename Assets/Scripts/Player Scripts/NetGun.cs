@@ -9,6 +9,8 @@ public class NetGun : MonoBehaviour
     [SerializeField] private Camera mainCamera; // Main Camera
     [SerializeField] private Transform firePoint; // Child of Charles
     [SerializeField] private GameObject netProjectilePrefab;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
 
     [Header("Aiming")]
     [SerializeField] private float maxRange = 80f;
@@ -63,5 +65,6 @@ public class NetGun : MonoBehaviour
         var net = Instantiate(netProjectilePrefab, firePoint.position, Quaternion.LookRotation(dir));
         var rb = net.GetComponent<Rigidbody>();
         rb.velocity = dir.normalized * projectileSpeed;
+        audioSource.PlayOneShot(audioClip);
     }
 }
