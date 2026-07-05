@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.VFX;
 
 public class CrownPickup : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class CrownPickup : MonoBehaviour
 
     private Renderer[] renderers;
     private Collider col;
+
+    public VisualEffect poofVFX;
+    public VisualEffect poofVFX2;
 
     void Start()
     {
@@ -65,11 +69,17 @@ public class CrownPickup : MonoBehaviour
         transform.SetParent(anchor);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
+
+        if (poofVFX != null)
+            poofVFX.Play();
     }
 
     public void UseCrown()
     {
         if (!isPickedUp) return;
+
+        if (poofVFX2 != null)
+            poofVFX2.Play();
 
         // Hide crown visually instead of deactivating
         SetVisibility(false);
@@ -92,6 +102,9 @@ public class CrownPickup : MonoBehaviour
         // Show again and re-enable collider
         SetVisibility(true);
         if (col != null) col.enabled = true;
+
+        if (poofVFX != null)
+            poofVFX.Play();
     }
 
     void SetVisibility(bool visible)
