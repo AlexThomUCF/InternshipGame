@@ -82,8 +82,15 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (currentCrown != null && currentCrown.isPickedUp)
                 {
-                    currentCrown.UseCrown();
-                    promptText.text = "";
+                    NPCInterrogation npc = hit.collider.GetComponentInParent<NPCInterrogation>();
+
+                    if (npc != null)
+                    {
+                        currentCrown.UseCrown();
+                        promptText.text = "";
+
+                        npc.Interrogate(transform);
+                    }
                 }
             }
         }

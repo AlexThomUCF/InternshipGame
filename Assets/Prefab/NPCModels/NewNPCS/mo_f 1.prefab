@@ -280,6 +280,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7489554184479626054}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6576411342255238170}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 464973674583733429}
@@ -1600,8 +1603,7 @@ MonoBehaviour:
   animator: {fileID: 2757916103046474871}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
-  audioSource: {fileID: 7489554184479626054}
-  caughtClip: {fileID: 8300000, guid: d26db5958a0e8e64fa774e9f6b46787a, type: 3}
+  castleController: {fileID: 0}
   ragDollParts: []
 --- !u!82 &7489554184479626054
 AudioSource:
@@ -1699,3 +1701,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6576411342255238170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930051391991819447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
