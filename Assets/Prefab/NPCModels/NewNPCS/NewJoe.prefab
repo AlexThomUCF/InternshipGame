@@ -3755,8 +3755,8 @@ MonoBehaviour:
   agent: {fileID: 6461064262805705534}
   animator: {fileID: 5029321951031935281}
   parkController: {fileID: 9100000, guid: 5851f217d99ff324487cd6b81c69742c, type: 2}
-  arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
-  castleController: {fileID: 0}
+  arcadeController: {fileID: 9100000, guid: 5851f217d99ff324487cd6b81c69742c, type: 2}
+  castleController: {fileID: 9100000, guid: 5851f217d99ff324487cd6b81c69742c, type: 2}
   ragDollParts: []
 --- !u!82 &6507140788537495072
 AudioSource:
