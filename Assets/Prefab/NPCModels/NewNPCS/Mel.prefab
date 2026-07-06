@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -6796124672970375107}
   - component: {fileID: -6563297133619465727}
   - component: {fileID: -4020000114442516473}
+  - component: {fileID: 1612715751519351193}
   m_Layer: 3
   m_Name: Mel
   m_TagString: Untagged
@@ -211,8 +212,7 @@ MonoBehaviour:
   animator: {fileID: 1431851259780786643}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
-  audioSource: {fileID: 7489554184479626054, guid: f19e2e9dbb5feba448d8c678650df89e, type: 3}
-  caughtClip: {fileID: 8300000, guid: d26db5958a0e8e64fa774e9f6b46787a, type: 3}
+  castleController: {fileID: 0}
   ragDollParts: []
 --- !u!82 &-4020000114442516473
 AudioSource:
@@ -310,6 +310,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1612715751519351193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546386252184424650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Mel
+  fillerDialogue: Hello there! I was just walking around minding my own business.
 --- !u!1001 &1272494965626830793
 PrefabInstance:
   m_ObjectHideFlags: 0

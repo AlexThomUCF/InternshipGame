@@ -519,6 +519,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -9181237501767976878}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6702633872543887737}
     - targetCorrespondingSourceObject: {fileID: 3256684802130647663, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4167739852960744038}
@@ -892,8 +895,7 @@ MonoBehaviour:
   animator: {fileID: 6499379574228715758}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
-  audioSource: {fileID: 7489554184479626054, guid: f19e2e9dbb5feba448d8c678650df89e, type: 3}
-  caughtClip: {fileID: 8300000, guid: d26db5958a0e8e64fa774e9f6b46787a, type: 3}
+  castleController: {fileID: 0}
   ragDollParts: []
 --- !u!82 &-9181237501767976878
 AudioSource:
@@ -991,6 +993,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6702633872543887737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461331927194026356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: BB
+  fillerDialogue: Hello there! I was just walking around minding my own business.
 --- !u!4 &949461675654912974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}

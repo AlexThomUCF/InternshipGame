@@ -2243,6 +2243,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e972ea139c47d649b092827bc50e60b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2771352686279440353}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4e972ea139c47d649b092827bc50e60b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5794561096991433340}
   m_SourcePrefab: {fileID: 100100000, guid: 4e972ea139c47d649b092827bc50e60b, type: 3}
 --- !u!4 &6295713411876604352 stripped
 Transform:
@@ -2518,3 +2521,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5794561096991433340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635224269290804090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcName: Bob
+  fillerDialogue: Hello there! I was just walking around minding my own business.

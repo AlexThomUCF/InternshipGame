@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -58,12 +57,11 @@ public class PlayerInteract : MonoBehaviour
         currentCrown = crown;
     }
 
-    // This gets called by the Input System
     public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
-        // Pickup crown
+        // Pick up crown
         if (nearbyCrown != null && !nearbyCrown.isPickedUp)
         {
             nearbyCrown.PickUp(crownAnchor);
@@ -72,7 +70,7 @@ public class PlayerInteract : MonoBehaviour
             return;
         }
 
-        // Use crown on character
+        // Question NPC
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
@@ -82,8 +80,15 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (currentCrown != null && currentCrown.isPickedUp)
                 {
-                    currentCrown.UseCrown();
-                    promptText.text = "";
+                    NPCInterrogation npc = hit.collider.GetComponentInParent<NPCInterrogation>();
+
+                    if (npc != null)
+                    {
+                        currentCrown.UseCrown();
+                        promptText.text = "";
+
+                        npc.Interrogate(transform);
+                    }
                 }
             }
         }
