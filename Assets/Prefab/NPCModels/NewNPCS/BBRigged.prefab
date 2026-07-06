@@ -1005,6 +1005,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: BB
+  fillerDialogue: Hello there! I was just walking around minding my own business.
 --- !u!4 &949461675654912974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}

@@ -8272,6 +8272,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: Ross
+  fillerDialogue: Hello there! I was just walking around minding my own business.
 --- !u!4 &9201939477523194369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1fceff5a3ff02794a8702850379c0200, type: 3}

@@ -6,31 +6,40 @@ public class NPCDialogue : MonoBehaviour
 {
     public static NPCDialogue Instance;
 
+    [Header("UI")]
     public GameObject dialoguePanel;
+    public TMP_Text nameText;
     public TMP_Text dialogueText;
 
+    [Header("Dialogue Settings")]
     public float typingSpeed = 0.03f;
     public float displayTime = 3f;
 
-    Coroutine currentDialogue;
+    private Coroutine currentDialogue;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+
         dialoguePanel.SetActive(false);
     }
 
-    public void ShowDialogue(string message)
+    public void ShowDialogue(string speakerName, string message)
     {
         if (currentDialogue != null)
             StopCoroutine(currentDialogue);
 
-        currentDialogue = StartCoroutine(TypeDialogue(message));
+        currentDialogue = StartCoroutine(TypeDialogue(speakerName, message));
     }
 
-    IEnumerator TypeDialogue(string message)
+    IEnumerator TypeDialogue(string speakerName, string message)
     {
         dialoguePanel.SetActive(true);
+
+        nameText.text = speakerName;
         dialogueText.text = "";
 
         foreach (char c in message)

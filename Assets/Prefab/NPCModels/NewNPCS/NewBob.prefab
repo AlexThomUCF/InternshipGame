@@ -2533,3 +2533,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: Bob
+  fillerDialogue: Hello there! I was just walking around minding my own business.

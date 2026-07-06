@@ -4,10 +4,17 @@ using UnityEngine.AI;
 
 public class NPCInterrogation : MonoBehaviour
 {
-    NavMeshAgent agent;
-    Animator animator;
+    [Header("NPC Info")]
+    public string npcName = "Villager";
 
-    bool beingQuestioned;
+    [Header("Dialogue")]
+    [TextArea]
+    public string fillerDialogue = "Hello there! I was just walking around minding my own business.";
+
+    private NavMeshAgent agent;
+    private Animator animator;
+
+    private bool beingQuestioned = false;
 
     void Awake()
     {
@@ -27,24 +34,28 @@ public class NPCInterrogation : MonoBehaviour
     {
         beingQuestioned = true;
 
+        // Stop movement
         agent.isStopped = true;
 
         // Stop walking animation
         animator.SetBool("isMoving", false);
 
-        // Face player
-        Vector3 lookPos = player.position - transform.position;
-        lookPos.y = 0;
+        // Face the player
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
 
-        if (lookPos != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(lookPos);
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+        }
 
-        NPCDialogue.Instance.ShowDialogue(
-            "Hello there! I was just walking around minding my own business."
-        );
+        // Show dialogue
+        NPCDialogue.Instance.ShowDialogue(npcName, fillerDialogue);
 
+        // Wait while dialogue is visible
         yield return new WaitForSeconds(5f);
 
+        // Resume movement
         agent.isStopped = false;
 
         beingQuestioned = false;

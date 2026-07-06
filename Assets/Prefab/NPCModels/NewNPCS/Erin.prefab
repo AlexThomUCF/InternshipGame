@@ -640,6 +640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8281745eaf46f2d4dbd453228a3aad6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: Erin
+  fillerDialogue: Hello there! I was just walking around minding my own business.
 --- !u!1 &270583074607031128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 168f0146ae56fe74dab12a3c7c595804, type: 3}
