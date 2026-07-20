@@ -11255,6 +11255,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: Punch
+  taskObjectPrefab: {fileID: 0}
+  handBoneName: RightHand
 --- !u!114 &655380863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20176,6 +20178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: Shooting
+  taskObjectPrefab: {fileID: 0}
+  handBoneName: RightHand
 --- !u!65 &984726121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22916,6 +22920,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: Arcade
+  taskObjectPrefab: {fileID: 0}
+  handBoneName: RightHand
 --- !u!114 &1131935723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26446,6 +26452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: Guitar
+  taskObjectPrefab: {fileID: 0}
+  handBoneName: RightHand
 --- !u!65 &1356381576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28425,6 +28433,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: Skeeball
+  taskObjectPrefab: {fileID: 0}
+  handBoneName: RightHand
 --- !u!114 &1565188767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33667,6 +33677,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: BasketBall
+  taskObjectPrefab: {fileID: 4710247275405301316, guid: f3ec7721eade2004bac4587ced5f7efe, type: 3}
+  handBoneName: RightHand
 --- !u!114 &1995031230
 MonoBehaviour:
   m_ObjectHideFlags: 0

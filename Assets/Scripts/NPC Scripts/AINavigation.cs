@@ -14,6 +14,11 @@ public class AINavigation : MonoBehaviour
     public GameObject[] taskCheckpoints;
     public TaskList taskList;
 
+    private Transform rightHand;
+    private GameObject currentTaskObject;
+
+    private List<GameObject> availableTasks = new List<GameObject>();
+
     [Header("Values")]
     public float range = 10f;
     public int choice = 0;
@@ -33,12 +38,17 @@ public class AINavigation : MonoBehaviour
 
         taskCheckpoints = taskList.taskArray;
 
+
         if (CompareTag("IMPOSTER"))
         {
             taskCheckpoints = taskList.imposterTaskArray;
         }
         else
             taskCheckpoints = taskList.taskArray;
+
+        availableTasks.AddRange(taskCheckpoints);
+
+        rightHand = FindDeepChild(transform, "mixamorig:RightHand");
     }
 
     void Update()
@@ -96,13 +106,13 @@ public class AINavigation : MonoBehaviour
         choice = Random.Range(1, 101);
 
         // 20% Stand Still (1–20)
-        if (choice <= 20)
+        if (choice <= 5)
         {
             StartCoroutine(PauseMovement(Random.Range(3f, 5f)));
         }
 
         // 60% Free Roam (21–80)
-        else if (choice <= 80)
+        else if (choice <= 10)
         {
             isPerformingAction = true;
             moving = true;
@@ -130,9 +140,17 @@ public class AINavigation : MonoBehaviour
             isPerformingAction = true;
             moving = true;
 
-            int tempNum = Random.Range(0, taskCheckpoints.Length);
+            // If every task has been completed, refill the list
+            if (availableTasks.Count == 0)
+            {
+                availableTasks.AddRange(taskCheckpoints);
+            }
 
-            currentTaskTarget = taskCheckpoints[tempNum];
+            int tempNum = Random.Range(0, availableTasks.Count);
+            currentTaskTarget = availableTasks[tempNum];
+
+            // Remove it so it can't be picked again
+            availableTasks.RemoveAt(tempNum);
 
             myAgent.isStopped = false;
             myAgent.SetDestination(currentTaskTarget.transform.position);
@@ -184,6 +202,19 @@ public class AINavigation : MonoBehaviour
             {
                 animator.SetTrigger(dest.animationTrigger); //Plays animation at task location
 
+                if (dest.taskObjectPrefab != null && rightHand != null)
+                {
+                        currentTaskObject = Instantiate(
+                            dest.taskObjectPrefab,
+                            rightHand.position,
+                            rightHand.rotation,
+                            rightHand
+                        );
+
+                    currentTaskObject.transform.localPosition = Vector3.zero;
+                    currentTaskObject.transform.localRotation = Quaternion.identity;    
+                }
+
                 // Wait until animation starts
                 yield return null;
 
@@ -191,6 +222,12 @@ public class AINavigation : MonoBehaviour
 
                 // Wait for animation to finish
                 yield return new WaitForSeconds(stateInfo.length);
+
+                if (currentTaskObject != null)
+                {
+                    Destroy(currentTaskObject);
+                    currentTaskObject = null;
+                }
             } 
 
             currentTaskTarget = null;
@@ -208,4 +245,20 @@ public class AINavigation : MonoBehaviour
     {
         animator.SetBool("isMoving", moving);
     }
+    Transform FindDeepChild(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name)
+                return child;
+
+            Transform result = FindDeepChild(child, name);
+
+            if (result != null)
+                return result;
+        }
+
+        return null;
+    }
+
 }
