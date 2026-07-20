@@ -14,7 +14,7 @@ public class AINavigation : MonoBehaviour
     public GameObject[] taskCheckpoints;
     public TaskList taskList;
 
-    private Transform rightHand;
+    //private Transform rightHand;
     private GameObject currentTaskObject;
 
     private List<GameObject> availableTasks = new List<GameObject>();
@@ -48,7 +48,7 @@ public class AINavigation : MonoBehaviour
 
         availableTasks.AddRange(taskCheckpoints);
 
-        rightHand = FindDeepChild(transform, "mixamorig:RightHand");
+       // rightHand = animator.GetBoneTransform(HumanBodyBones.RightHand);
     }
 
     void Update()
@@ -202,17 +202,22 @@ public class AINavigation : MonoBehaviour
             {
                 animator.SetTrigger(dest.animationTrigger); //Plays animation at task location
 
-                if (dest.taskObjectPrefab != null && rightHand != null)
+                if (animator.isHuman)
                 {
+                    Transform attachPoint = animator.GetBoneTransform(dest.attachBone);
+
+                    if (dest.taskObjectPrefab != null && attachPoint != null)
+                    {
                         currentTaskObject = Instantiate(
                             dest.taskObjectPrefab,
-                            rightHand.position,
-                            rightHand.rotation,
-                            rightHand
+                            attachPoint.position,
+                            attachPoint.rotation,
+                            attachPoint
                         );
 
-                    currentTaskObject.transform.localPosition = Vector3.zero;
-                    currentTaskObject.transform.localRotation = Quaternion.identity;    
+                        currentTaskObject.transform.localPosition = Vector3.zero;
+                        currentTaskObject.transform.localRotation = Quaternion.identity;
+                    }
                 }
 
                 // Wait until animation starts
@@ -245,7 +250,8 @@ public class AINavigation : MonoBehaviour
     {
         animator.SetBool("isMoving", moving);
     }
-    Transform FindDeepChild(Transform parent, string name)
+
+    /*Transform FindDeepChild(Transform parent, string name)
     {
         foreach (Transform child in parent)
         {
@@ -259,6 +265,6 @@ public class AINavigation : MonoBehaviour
         }
 
         return null;
-    }
+    }*/
 
 }

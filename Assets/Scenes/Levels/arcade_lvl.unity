@@ -3138,7 +3138,7 @@ Transform:
   m_GameObject: {fileID: 39049555}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 54.872997, y: 48.748, z: 25.525}
+  m_LocalPosition: {x: 54.655224, y: 49.806, z: 25.525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5955,7 +5955,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -5997,7 +5997,7 @@ Transform:
   m_GameObject: {fileID: 248998981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 54.872997, y: 48.748, z: 25.525}
+  m_LocalPosition: {x: 54.655224, y: 49.806, z: 25.525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6306,6 +6306,7 @@ GameObject:
   - component: {fileID: 297493720}
   - component: {fileID: 297493719}
   - component: {fileID: 297493718}
+  - component: {fileID: 297493724}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6463,6 +6464,27 @@ MonoBehaviour:
   - {fileID: 771433422}
   imposterTaskArray: []
   lastRemovedTask: {fileID: 0}
+--- !u!135 &297493724
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297493716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &297848481
 GameObject:
   m_ObjectHideFlags: 0
@@ -11256,7 +11278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTrigger: Punch
   taskObjectPrefab: {fileID: 0}
-  handBoneName: RightHand
+  attachBone: 18
 --- !u!114 &655380863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20178,8 +20200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationTrigger: Shooting
-  taskObjectPrefab: {fileID: 0}
-  handBoneName: RightHand
+  taskObjectPrefab: {fileID: 6448843505867199210, guid: c266ac52dc9d53444956bf6f549fcd21, type: 3}
+  attachBone: 18
 --- !u!65 &984726121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22921,7 +22943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTrigger: Arcade
   taskObjectPrefab: {fileID: 0}
-  handBoneName: RightHand
+  attachBone: 18
 --- !u!114 &1131935723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26453,7 +26475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTrigger: Guitar
   taskObjectPrefab: {fileID: 0}
-  handBoneName: RightHand
+  attachBone: 18
 --- !u!65 &1356381576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27771,7 +27793,7 @@ Transform:
   m_GameObject: {fileID: 1435765642}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 54.872997, y: 48.748, z: 26.225}
+  m_LocalPosition: {x: 54.872997, y: 49.236, z: 26.225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28434,7 +28456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTrigger: Skeeball
   taskObjectPrefab: {fileID: 0}
-  handBoneName: RightHand
+  attachBone: 18
 --- !u!114 &1565188767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28696,14 +28718,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damping: {x: 0, y: 0, z: 1}
   ShoulderOffset: {x: 0.5, y: 0.5, z: 0}
-  VerticalArmLength: 0.43
+  VerticalArmLength: 1
   CameraSide: 1
   CameraDistance: 4.05
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   IgnoreTag: Player
-  CameraRadius: 0.2
+  CameraRadius: 0.5
   DampingIntoCollision: 0.5
   DampingFromCollision: 2
 --- !u!4 &1612388918 stripped
@@ -33678,7 +33700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationTrigger: BasketBall
   taskObjectPrefab: {fileID: 4710247275405301316, guid: f3ec7721eade2004bac4587ced5f7efe, type: 3}
-  handBoneName: RightHand
+  attachBone: 18
 --- !u!114 &1995031230
 MonoBehaviour:
   m_ObjectHideFlags: 0

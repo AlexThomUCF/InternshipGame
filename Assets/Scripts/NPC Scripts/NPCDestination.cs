@@ -10,7 +10,7 @@ public class NPCDestination : MonoBehaviour
     [Header("Task Object")]
     public GameObject taskObjectPrefab;
 
-    public string handBoneName = "RightHand";
+    public HumanBodyBones attachBone = HumanBodyBones.RightHand;
 
 
 }
