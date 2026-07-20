@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,17 @@ public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     private CharacterController controller;
-    private Animator anim;                    // <-- Animator added
+    private Animator anim;
     [SerializeField] private Transform cam;
+
+    [SerializeField] private AudioSource footstepsSound;
+
+    [Header("Footstep Sounds")]
+    [SerializeField] private AudioClip dirtFootsteps;
+    [SerializeField] private AudioClip grassFootsteps;
+    [SerializeField] private AudioClip woodFootsteps;
+
+    private AudioClip currentFootstepClip;
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 8f;
@@ -25,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();      // <-- get animator
+        anim = GetComponent<Animator>();
 
         controls = new PlayerControls();
 
@@ -42,8 +52,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Movement();
+        HandleFootsteps();
 
-        // Animation update - IMPORTANT FIX
         Vector3 horizontalVel = controller.velocity;
         horizontalVel.y = 0;
 
@@ -66,6 +76,50 @@ public class PlayerController : MonoBehaviour
         move.y = VerticalForceCalculation();
 
         controller.Move(move * Time.deltaTime);
+    }
+
+    private void HandleFootsteps()
+    {
+        UpdateFootstepSound();
+
+        bool isMoving = moveInput != Vector2.zero && controller.isGrounded;
+
+        if (isMoving)
+        {
+            if (!footstepsSound.isPlaying)
+            {
+                footstepsSound.clip = currentFootstepClip;
+                footstepsSound.Play();
+            }
+        }
+        else
+        {
+            if (footstepsSound.isPlaying)
+            {
+                footstepsSound.Stop();
+            }
+        }
+    }
+
+    private void UpdateFootstepSound()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 2f))
+        {
+            if (hit.collider.CompareTag("Dirt"))
+            {
+                currentFootstepClip = dirtFootsteps;
+            }
+            else if (hit.collider.CompareTag("Grass"))
+            {
+                currentFootstepClip = grassFootsteps;
+            }
+            else if (hit.collider.CompareTag("Wood"))
+            {
+                currentFootstepClip = woodFootsteps;
+            }
+        }
     }
 
     private void Turn()
