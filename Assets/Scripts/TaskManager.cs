@@ -10,8 +10,13 @@ public class TaskManager : MonoBehaviour
     public TaskList taskList;
     public GameObject currentObject;
     public bool hasObjectTask = true;
-   
-    
+
+    public GameObject basketballPrefab;
+    public Transform basketballSpawnPoint;
+
+    private GameObject currentBasketball;
+
+
 
 
     // Start is called before the first frame update

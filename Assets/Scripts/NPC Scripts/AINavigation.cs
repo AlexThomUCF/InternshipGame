@@ -95,14 +95,14 @@ public class AINavigation : MonoBehaviour
 
         choice = Random.Range(1, 101);
 
-        // 20% Stand Still (1–20)
-        if (choice <= 20)
+        // 10% Stand Still (1–10)
+        if (choice <= 10)
         {
             StartCoroutine(PauseMovement(Random.Range(3f, 5f)));
         }
 
-        // 60% Free Roam (21–80)
-        else if (choice <= 80)
+        // 10% Free Roam (11–20)
+        else if (choice <= 20)
         {
             isPerformingAction = true;
             moving = true;
