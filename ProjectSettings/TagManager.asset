@@ -9,6 +9,9 @@ TagManager:
   - NPC
   - IMPOSTER
   - StageTask
+  - Dirt
+  - Grass
+  - Wood
   layers:
   - Default
   - TransparentFX
