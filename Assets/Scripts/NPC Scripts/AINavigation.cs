@@ -216,7 +216,7 @@ public class AINavigation : MonoBehaviour
                         );
 
                         currentTaskObject.transform.localPosition = Vector3.zero;
-                        currentTaskObject.transform.localRotation = Quaternion.identity;
+                        //currentTaskObject.transform.localRotation = Quaternion.identity;
                     }
                 }
 
