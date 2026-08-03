@@ -13,9 +13,11 @@ public class NPCDialogue : MonoBehaviour
     public TMP_Text dialogueText;
 
 
-    [Header("Settings")]
-    public float typingSpeed = .03f;
+    [Header("Dialogue Settings")]
+    public float typingSpeed = 0.3f;
     public float displayTime = 3f;
+
+    public int wordsPerPage = 12;
 
 
     public bool IsDialoguePlaying { get; private set; }
@@ -27,6 +29,7 @@ public class NPCDialogue : MonoBehaviour
     void Awake()
     {
         Instance = this;
+
         dialoguePanel.SetActive(false);
     }
 
@@ -34,10 +37,15 @@ public class NPCDialogue : MonoBehaviour
     public void ShowDialogue(string speakerName, string message)
     {
         if (currentDialogue != null)
+        {
             StopCoroutine(currentDialogue);
+        }
 
-        currentDialogue = StartCoroutine(TypeDialogue(speakerName, message));
+
+        currentDialogue = StartCoroutine(
+            TypeDialogue(speakerName, message));
     }
+
 
 
     IEnumerator TypeDialogue(string speakerName, string message)
@@ -47,13 +55,38 @@ public class NPCDialogue : MonoBehaviour
         dialoguePanel.SetActive(true);
 
         nameText.text = speakerName;
+
+
+        string[] words = message.Split(' ');
+
+        string currentPage = "";
+        int wordCount = 0;
+
+
         dialogueText.text = "";
 
 
-        foreach (char c in message)
+        foreach (string word in words)
         {
-            dialogueText.text += c;
+            currentPage += word + " ";
+            wordCount++;
+
+
+            dialogueText.text = currentPage;
+
+
             yield return new WaitForSeconds(typingSpeed);
+
+
+            if (wordCount >= wordsPerPage)
+            {
+                yield return new WaitForSeconds(1f);
+
+                dialogueText.text = "";
+
+                currentPage = "";
+                wordCount = 0;
+            }
         }
 
 

@@ -200,7 +200,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.8581024
+  m_Radius: 2.66
   m_Height: 7.3901
   m_Direction: 1
   m_Center: {x: 0, y: 3.60525, z: 0.050000038}
@@ -213,7 +213,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4272098384698215841}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2.68
+  m_Radius: 1.96
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -458,3 +458,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedTasks: []

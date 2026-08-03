@@ -12637,8 +12637,9 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1767449955}
   nameText: {fileID: 1525623309}
   dialogueText: {fileID: 348863507}
-  typingSpeed: 0.03
+  typingSpeed: 0.3
   displayTime: 3
+  wordsPerPage: 12
 --- !u!43 &163719157
 Mesh:
   m_ObjectHideFlags: 0
@@ -32993,7 +32994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -197}
+  m_AnchoredPosition: {x: 0, y: -214.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348863507
@@ -89953,7 +89954,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrefabs:
   - {fileID: 8930051391991819447, guid: f19e2e9dbb5feba448d8c678650df89e, type: 3}
-  - {fileID: 4272098384698215841, guid: a748aeaf3b27ed945870577279da67be, type: 3}
   - {fileID: 1447585177829379, guid: f4fcb80498b27304280c778b5e59a35e, type: 3}
   - {fileID: 2790936972529998679, guid: 2f3014d2393d60741a3f41df3d28978d, type: 3}
   - {fileID: 461331927194026356, guid: e5131036aa4fa1e47bedc83022932eb1, type: 3}
@@ -147330,7 +147330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -82, y: -152}
+  m_AnchoredPosition: {x: -82, y: -169.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525623309
