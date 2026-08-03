@@ -4218,6 +4218,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d0c1173935b03541834ac396e35530b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3555396719673065813}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d0c1173935b03541834ac396e35530b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4499691749397678202}
   m_SourcePrefab: {fileID: 100100000, guid: 0d0c1173935b03541834ac396e35530b, type: 3}
 --- !u!1 &2930189710726023788 stripped
 GameObject:
@@ -4342,6 +4345,7 @@ MonoBehaviour:
   choice: 0
   isPerformingAction: 0
   moving: 0
+  isPaused: 0
 --- !u!136 &2292438521451513204
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4505,4 +4509,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Lucie
-  fillerDialogue: Hello there! I was just walking around minding my own business.
+  turnSpeed: 180
+--- !u!114 &-4499691749397678202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2930189710726023788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

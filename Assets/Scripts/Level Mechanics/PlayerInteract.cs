@@ -61,6 +61,12 @@ public class PlayerInteract : MonoBehaviour
     {
         if (!context.performed) return;
 
+        if (NPCDialogue.Instance != null &&
+            NPCDialogue.Instance.IsDialoguePlaying)
+        {
+            return;
+        }
+
         // Pick up crown
         if (nearbyCrown != null && !nearbyCrown.isPickedUp)
         {

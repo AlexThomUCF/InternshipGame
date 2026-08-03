@@ -7990,6 +7990,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1fceff5a3ff02794a8702850379c0200, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6649163668003426744}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1fceff5a3ff02794a8702850379c0200, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3850215562597260129}
   m_SourcePrefab: {fileID: 100100000, guid: 1fceff5a3ff02794a8702850379c0200, type: 3}
 --- !u!1 &8428499484192389307 stripped
 GameObject:
@@ -8110,6 +8113,7 @@ MonoBehaviour:
   choice: 0
   isPerformingAction: 0
   moving: 0
+  isPaused: 0
 --- !u!114 &8923959904877823304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8273,7 +8277,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Ross
-  fillerDialogue: Hello there! I was just walking around minding my own business.
+  turnSpeed: 180
+--- !u!114 &-3850215562597260129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428499484192389307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &9201939477523194369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1fceff5a3ff02794a8702850379c0200, type: 3}
