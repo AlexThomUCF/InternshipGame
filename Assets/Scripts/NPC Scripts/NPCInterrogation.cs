@@ -4,23 +4,36 @@ using UnityEngine.AI;
 
 public class NPCInterrogation : MonoBehaviour
 {
+
     [Header("NPC Info")]
     public string npcName = "Villager";
 
+
     [Header("Dialogue")]
     [TextArea]
-    public string fillerDialogue = "Hello there! I was just walking around minding my own business.";
+    public string fillerDialogue =
+        "Hello there! I was just walking around minding my own business.";
+
+
+    [Header("Rotation")]
+    public float turnSpeed = 180f;
+
 
     private NavMeshAgent agent;
     private Animator animator;
+    private AINavigation navigation;
 
-    private bool beingQuestioned = false;
+
+    private bool beingQuestioned;
+
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        navigation = GetComponent<AINavigation>();
     }
+
 
     public void Interrogate(Transform player)
     {
@@ -30,34 +43,69 @@ public class NPCInterrogation : MonoBehaviour
         StartCoroutine(QuestionRoutine(player));
     }
 
+
     IEnumerator QuestionRoutine(Transform player)
     {
         beingQuestioned = true;
 
-        // Stop movement
+
+        navigation.isPaused = true;
+
         agent.isStopped = true;
 
-        // Stop walking animation
-        animator.SetBool("isMoving", false);
 
-        // Face the player
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
+        yield return StartCoroutine(LookAtPlayer(player));
 
-        if (direction != Vector3.zero)
+
+        NPCDialogue.Instance.ShowDialogue(
+            npcName,
+            fillerDialogue
+        );
+
+
+        while (NPCDialogue.Instance.IsDialoguePlaying)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
+            yield return null;
         }
 
-        // Show dialogue
-        NPCDialogue.Instance.ShowDialogue(npcName, fillerDialogue);
 
-        // Wait while dialogue is visible
-        yield return new WaitForSeconds(5f);
+        navigation.isPaused = false;
 
-        // Resume movement
         agent.isStopped = false;
 
+
         beingQuestioned = false;
+    }
+
+
+
+    IEnumerator LookAtPlayer(Transform player)
+    {
+
+        Vector3 direction =
+            player.position - transform.position;
+
+        direction.y = 0;
+
+
+        Quaternion targetRotation =
+            Quaternion.LookRotation(direction);
+
+
+        while (Quaternion.Angle(
+            transform.rotation,
+            targetRotation) > .5f)
+        {
+
+            transform.rotation =
+                Quaternion.RotateTowards(
+                    transform.rotation,
+                    targetRotation,
+                    turnSpeed * Time.deltaTime
+                );
+
+
+            yield return null;
+        }
     }
 }
