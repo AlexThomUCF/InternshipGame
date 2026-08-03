@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NPCMemory : MonoBehaviour
 {
-    [SerializeField] private List<string> completedTasks = new List<string>();
+    [SerializeField]
+    private List<string> completedTasks = new List<string>();
 
 
     public void AddCompletedTask(string taskName)
@@ -26,7 +27,7 @@ public class NPCMemory : MonoBehaviour
 
         List<string> randomTasks = new List<string>(completedTasks);
 
-        // Randomize order
+
         for (int i = 0; i < randomTasks.Count; i++)
         {
             int randomIndex = Random.Range(i, randomTasks.Count);
@@ -39,12 +40,25 @@ public class NPCMemory : MonoBehaviour
 
         StringBuilder dialogue = new StringBuilder();
 
-        dialogue.Append("I've completed these tasks:\n");
+        dialogue.Append("I've completed ");
 
-
-        foreach (string task in randomTasks)
+        for (int i = 0; i < randomTasks.Count; i++)
         {
-            dialogue.Append("• " + task + "\n");
+            dialogue.Append(randomTasks[i].ToLower());
+
+
+            if (i < randomTasks.Count - 2)
+            {
+                dialogue.Append(", ");
+            }
+            else if (i == randomTasks.Count - 2)
+            {
+                dialogue.Append(", and ");
+            }
+            else
+            {
+                dialogue.Append(".");
+            }
         }
 
 
