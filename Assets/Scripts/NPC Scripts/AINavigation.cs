@@ -15,6 +15,8 @@ public class AINavigation : MonoBehaviour
     public GameObject[] taskCheckpoints;
     public TaskList taskList;
 
+    private NPCMemory npcMemory;
+
     private GameObject currentTaskObject;
 
     private List<GameObject> availableTasks = new List<GameObject>();
@@ -37,6 +39,7 @@ public class AINavigation : MonoBehaviour
 
     void Start()
     {
+        npcMemory = GetComponent<NPCMemory>();
         taskList = FindObjectOfType<TaskList>();
         animator = GetComponent<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
@@ -249,96 +252,71 @@ public class AINavigation : MonoBehaviour
 
     IEnumerator ResetAfterMovement(bool isTask)
     {
-        while (myAgent.pathPending ||
-               myAgent.remainingDistance >
-               myAgent.stoppingDistance)
+        while (myAgent.pathPending || myAgent.remainingDistance > myAgent.stoppingDistance)
         {
             yield return null;
         }
 
-
         moving = false;
 
-
-        yield return new WaitForSeconds(
-            Random.Range(2f, 4f));
-
-
+        yield return new WaitForSeconds(Random.Range(2f, 4f));
 
         if (isTask && currentTaskTarget != null)
         {
-            NPCDestination dest =
-                currentTaskTarget.GetComponent<NPCDestination>();
+            NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
 
-
-            if (dest != null &&
-                dest.animationTrigger != "")
+            if (dest != null)
             {
-                animator.SetTrigger(
-                    dest.animationTrigger);
+                NPCMemory memory = GetComponent<NPCMemory>();
 
-
-                if (animator.isHuman)
+                if (memory != null)
                 {
-                    Transform attachPoint =
-                        animator.GetBoneTransform(
-                            dest.attachBone);
+                    memory.AddCompletedTask(dest.taskName);
+                    Debug.Log(gameObject.name + " completed task: " + dest.taskName);
+                }
 
+                if (dest.animationTrigger != "")
+                {
+                    animator.SetTrigger(dest.animationTrigger);
 
-                    if (dest.taskObjectPrefab != null &&
-                        attachPoint != null)
+                    if (animator.isHuman)
                     {
-                        currentTaskObject =
-                            Instantiate(
+                        Transform attachPoint = animator.GetBoneTransform(dest.attachBone);
+
+                        if (dest.taskObjectPrefab != null && attachPoint != null)
+                        {
+                            currentTaskObject = Instantiate(
                                 dest.taskObjectPrefab,
                                 attachPoint.position,
                                 dest.taskObjectPrefab.transform.rotation,
-                                attachPoint);
+                                attachPoint
+                            );
 
+                            currentTaskObject.transform.localPosition = Vector3.zero;
+                            currentTaskObject.transform.localRotation = Quaternion.identity;
+                        }
+                    }
 
-                        currentTaskObject.transform.localPosition =
-                            Vector3.zero;
+                    yield return null;
 
+                    AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 
-                        currentTaskObject.transform.localRotation =
-                            Quaternion.identity;
+                    yield return new WaitForSeconds(stateInfo.length);
+
+                    if (currentTaskObject != null)
+                    {
+                        Destroy(currentTaskObject);
+                        currentTaskObject = null;
                     }
                 }
-
-
-
-                yield return null;
-
-
-                AnimatorStateInfo stateInfo =
-                    animator.GetCurrentAnimatorStateInfo(0);
-
-
-                yield return new WaitForSeconds(
-                    stateInfo.length);
-
-
-
-                if (currentTaskObject != null)
-                {
-                    Destroy(currentTaskObject);
-                    currentTaskObject = null;
-                }
             }
-
 
             currentTaskTarget = null;
         }
 
-
-
         isPerformingAction = false;
-
-        decisionCooldown =
-            Random.Range(.5f, 2f);
+        decisionCooldown = Random.Range(0.5f, 2f);
     }
-
-
 
     // ---------------------------------------------------------
     // ANIMATIONS

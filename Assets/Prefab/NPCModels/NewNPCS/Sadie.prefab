@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -2708693304336369914}
   - component: {fileID: -4616015509370282882}
   - component: {fileID: -1889001175290827229}
+  - component: {fileID: -5487545977435967807}
   m_Layer: 3
   m_Name: Sadie
   m_TagString: Untagged
@@ -160,6 +161,7 @@ MonoBehaviour:
   choice: 0
   isPerformingAction: 0
   moving: 0
+  isPaused: 0
 --- !u!136 &2664504006374798374
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -323,7 +325,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Sadie
-  fillerDialogue: Hello there! I was just walking around minding my own business.
+  turnSpeed: 180
+--- !u!114 &-5487545977435967807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045098284906017437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1656878258729726778
 PrefabInstance:
   m_ObjectHideFlags: 0

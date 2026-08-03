@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7967120980470635478}
   - component: {fileID: -8861341137423671244}
   - component: {fileID: 5372030886476824353}
+  - component: {fileID: -4323453992419503751}
   m_Layer: 3
   m_Name: Brookie
   m_TagString: Untagged
@@ -160,6 +161,7 @@ MonoBehaviour:
   choice: 0
   isPerformingAction: 0
   moving: 0
+  isPaused: 0
 --- !u!136 &5585799201301059692
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -323,7 +325,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Brookie
-  fillerDialogue: Hello there! I was just walking around minding my own business.
+  turnSpeed: 180
+--- !u!114 &-4323453992419503751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3286435460616721158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &825055474362778165
 PrefabInstance:
   m_ObjectHideFlags: 0

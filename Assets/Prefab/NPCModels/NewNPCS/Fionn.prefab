@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -6773969945183314541}
   - component: {fileID: -8858973009356228988}
   - component: {fileID: -347958820397857323}
+  - component: {fileID: -1657665692630163735}
   m_Layer: 3
   m_Name: Fionn
   m_TagString: Untagged
@@ -138,6 +139,7 @@ MonoBehaviour:
   choice: 0
   isPerformingAction: 0
   moving: 0
+  isPaused: 0
 --- !u!195 &8345430575461603493
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -323,7 +325,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Fionn
-  fillerDialogue: Hello there! I was just walking around minding my own business.
+  turnSpeed: 180
+--- !u!114 &-1657665692630163735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589206513307298804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1631352617062315596
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7266,6 +7266,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ab038de326b8f74e96475e2f6d2f07e, type: 3}
       insertIndex: -1
       addedObject: {fileID: -6346041649145928752}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ab038de326b8f74e96475e2f6d2f07e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6204974215245519922}
   m_SourcePrefab: {fileID: 100100000, guid: 9ab038de326b8f74e96475e2f6d2f07e, type: 3}
 --- !u!1 &6086100700235046670 stripped
 GameObject:
@@ -7386,6 +7389,7 @@ MonoBehaviour:
   choice: 0
   isPerformingAction: 0
   moving: 0
+  isPaused: 0
 --- !u!136 &5763442308600502584
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7549,7 +7553,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: Henry
-  fillerDialogue: Hello there! I was just walking around minding my own business.
+  turnSpeed: 180
+--- !u!114 &-6204974215245519922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6086100700235046670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6862919566351418804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ab038de326b8f74e96475e2f6d2f07e, type: 3}

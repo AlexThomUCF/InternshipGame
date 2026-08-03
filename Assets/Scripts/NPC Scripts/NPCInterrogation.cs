@@ -4,15 +4,8 @@ using UnityEngine.AI;
 
 public class NPCInterrogation : MonoBehaviour
 {
-
     [Header("NPC Info")]
     public string npcName = "Villager";
-
-
-    [Header("Dialogue")]
-    [TextArea]
-    public string fillerDialogue =
-        "Hello there! I was just walking around minding my own business.";
 
 
     [Header("Rotation")]
@@ -22,6 +15,7 @@ public class NPCInterrogation : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
     private AINavigation navigation;
+    private NPCMemory memory;
 
 
     private bool beingQuestioned;
@@ -31,7 +25,9 @@ public class NPCInterrogation : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
         navigation = GetComponent<AINavigation>();
+        memory = GetComponent<NPCMemory>();
     }
 
 
@@ -40,8 +36,10 @@ public class NPCInterrogation : MonoBehaviour
         if (beingQuestioned)
             return;
 
+
         StartCoroutine(QuestionRoutine(player));
     }
+
 
 
     IEnumerator QuestionRoutine(Transform player)
@@ -49,27 +47,52 @@ public class NPCInterrogation : MonoBehaviour
         beingQuestioned = true;
 
 
-        navigation.isPaused = true;
+        // Pause AI
+        if (navigation != null)
+            navigation.isPaused = true;
+
 
         agent.isStopped = true;
 
 
+        // Smoothly face player
         yield return StartCoroutine(LookAtPlayer(player));
+
+
+
+        string dialogue;
+
+
+        if (memory != null)
+        {
+            dialogue = memory.GetTaskDialogue();
+        }
+        else
+        {
+            dialogue = "I've just been walking around.";
+        }
+
 
 
         NPCDialogue.Instance.ShowDialogue(
             npcName,
-            fillerDialogue
+            dialogue
         );
 
 
+
+        // Wait for dialogue to finish
         while (NPCDialogue.Instance.IsDialoguePlaying)
         {
             yield return null;
         }
 
 
-        navigation.isPaused = false;
+
+        // Resume AI
+        if (navigation != null)
+            navigation.isPaused = false;
+
 
         agent.isStopped = false;
 
@@ -81,9 +104,9 @@ public class NPCInterrogation : MonoBehaviour
 
     IEnumerator LookAtPlayer(Transform player)
     {
-
         Vector3 direction =
             player.position - transform.position;
+
 
         direction.y = 0;
 
@@ -92,11 +115,11 @@ public class NPCInterrogation : MonoBehaviour
             Quaternion.LookRotation(direction);
 
 
+
         while (Quaternion.Angle(
             transform.rotation,
             targetRotation) > .5f)
         {
-
             transform.rotation =
                 Quaternion.RotateTowards(
                     transform.rotation,
