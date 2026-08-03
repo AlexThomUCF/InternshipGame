@@ -6813,7 +6813,6 @@ MonoBehaviour:
   - {fileID: 8930051391991819447, guid: f19e2e9dbb5feba448d8c678650df89e, type: 3}
   - {fileID: 1447585177829379, guid: f4fcb80498b27304280c778b5e59a35e, type: 3}
   - {fileID: 2790936972529998679, guid: 2f3014d2393d60741a3f41df3d28978d, type: 3}
-  - {fileID: 461331927194026356, guid: e5131036aa4fa1e47bedc83022932eb1, type: 3}
   - {fileID: 6635224269290804090, guid: 156bfc698bb73af4eb73772963a20827, type: 3}
   - {fileID: 3286435460616721158, guid: acf96e0dd4f533d4fa10c09fdb5da5d9, type: 3}
   - {fileID: 589206513307298804, guid: 9c7588fe0c8c855448b755ef857ed6e2, type: 3}
@@ -11790,6 +11789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ddf871da09f2c4c824a7d944f1ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: Unnamed Task
   animationTrigger: Punch
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
@@ -21523,6 +21523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ddf871da09f2c4c824a7d944f1ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: Unnamed Task
   animationTrigger: Shooting
   taskObjectPrefab: {fileID: 6448843505867199210, guid: c266ac52dc9d53444956bf6f549fcd21, type: 3}
   attachBone: 18
@@ -24672,6 +24673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ddf871da09f2c4c824a7d944f1ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: Unnamed Task
   animationTrigger: Arcade
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
@@ -28204,6 +28206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ddf871da09f2c4c824a7d944f1ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: Unnamed Task
   animationTrigger: Guitar
   taskObjectPrefab: {fileID: 636855755682256591, guid: 31fdfb5dc3bd20f48b50373f9682946b, type: 3}
   attachBone: 18
@@ -30419,6 +30422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ddf871da09f2c4c824a7d944f1ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: Unnamed Task
   animationTrigger: Skeeball
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
@@ -35981,6 +35985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ddf871da09f2c4c824a7d944f1ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskName: Unnamed Task
   animationTrigger: BasketBall
   taskObjectPrefab: {fileID: 4710247275405301316, guid: f3ec7721eade2004bac4587ced5f7efe, type: 3}
   attachBone: 18
