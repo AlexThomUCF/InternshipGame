@@ -211,7 +211,7 @@ public class AINavigation : MonoBehaviour
                         currentTaskObject = Instantiate(
                             dest.taskObjectPrefab,
                             attachPoint.position,
-                            attachPoint.rotation,
+                            dest.taskObjectPrefab.transform.rotation,
                             attachPoint
                         );
 
