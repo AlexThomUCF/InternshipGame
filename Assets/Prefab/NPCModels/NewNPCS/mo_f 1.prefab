@@ -317,7 +317,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
+      objectReference: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
     - target: {fileID: 5866666021909216657, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
       propertyPath: m_CullingMode
       value: 0
@@ -1817,3 +1817,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedTasks: []
