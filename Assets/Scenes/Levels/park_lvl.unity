@@ -3266,7 +3266,7 @@ GameObject:
   - component: {fileID: 65632655}
   m_Layer: 7
   m_Name: gazebo (1)
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33132,7 +33132,7 @@ GameObject:
   - component: {fileID: 454078797}
   m_Layer: 7
   m_Name: gazebo
-  m_TagString: Untagged
+  m_TagString: Wood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106800,7 +106800,7 @@ RectTransform:
   m_GameObject: {fileID: 1251373997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.22471818, y: 0.31927, z: 0.159635}
+  m_LocalScale: {x: 0.26763934, y: 0.1690436, z: 0.159635}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1563481092}
@@ -106809,7 +106809,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 243, y: 44}
+  m_AnchoredPosition: {x: 413, y: -160}
   m_SizeDelta: {x: 2048, y: 2732.4456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251373999
@@ -106832,7 +106832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 86c0d2f3f7ac47b4f91be2ba950de79c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 485b197ce2efdd3419d8a009e21c7d05, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -118184,7 +118184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1345895281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -121942,14 +121942,14 @@ RectTransform:
   m_GameObject: {fileID: 1430552334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.78072, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1251373998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -438, y: 352}
+  m_AnchoredPosition: {x: -551, y: 168}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1430552336
@@ -121972,10 +121972,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wally
+  m_text: 'Wally:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c8b9ba190be96a149b46d1f12c470f71, type: 2}
+  m_sharedMaterial: {fileID: -5016857724383482157, guid: c8b9ba190be96a149b46d1f12c470f71, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -121999,8 +121999,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75
-  m_fontSizeBase: 75
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -131948,14 +131948,14 @@ RectTransform:
   m_GameObject: {fileID: 1563481091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.82499, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1251373998}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -530, y: 182}
+  m_AnchoredPosition: {x: -319, y: 152}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1563481093
@@ -131978,10 +131978,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: YOU SHOULD CHECK BY THE POND
+  m_text: You should check the pond!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c8b9ba190be96a149b46d1f12c470f71, type: 2}
+  m_sharedMaterial: {fileID: -5016857724383482157, guid: c8b9ba190be96a149b46d1f12c470f71, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -132005,8 +132005,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -132150,7 +132150,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1566902989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -146873,7 +146873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1650513980
 RectTransform:
   m_ObjectHideFlags: 0
@@ -178583,6 +178583,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 295506396}
+    - target: {fileID: 3897019270122285036, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 61bf9d60e5cb12e4880df84518c7132e, type: 3}
+    - target: {fileID: 3897019270122285036, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 806908252}
     - target: {fileID: 3897019270122285036, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
       propertyPath: dirtFootsteps
       value: 

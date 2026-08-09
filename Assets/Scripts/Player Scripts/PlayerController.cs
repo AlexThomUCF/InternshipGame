@@ -1,8 +1,12 @@
 
+
+
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,7 +15,11 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     [SerializeField] private Transform cam;
 
+    [Header("Audio")]
     [SerializeField] private AudioSource footstepsSound;
+
+    [Header("Jump Sound")]
+    [SerializeField] private AudioClip jumpClip;
 
     [Header("Footstep Sounds")]
     [SerializeField] private AudioClip dirtFootsteps;
@@ -19,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip woodFootsteps;
 
     private AudioClip currentFootstepClip;
+    private AudioClip previousFootstepClip;
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 8f;
@@ -46,8 +55,15 @@ public class PlayerController : MonoBehaviour
         controls.Player.Jump.canceled += _ => jumpPressed = false;
     }
 
-    private void OnEnable() => controls.Player.Enable();
-    private void OnDisable() => controls.Player.Disable();
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Player.Disable();
+    }
 
     private void Update()
     {
@@ -69,6 +85,7 @@ public class PlayerController : MonoBehaviour
     private void GroundMovement()
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
+
         move = cam.TransformDirection(move);
         move.y = 0f;
 
@@ -84,9 +101,19 @@ public class PlayerController : MonoBehaviour
 
         bool isMoving = moveInput != Vector2.zero && controller.isGrounded;
 
-        if (isMoving)
+        if (isMoving && currentFootstepClip != null)
         {
-            if (!footstepsSound.isPlaying)
+            // If the surface changed, immediately switch the sound
+            if (currentFootstepClip != previousFootstepClip)
+            {
+                footstepsSound.Stop();
+
+                footstepsSound.clip = currentFootstepClip;
+                footstepsSound.Play();
+
+                previousFootstepClip = currentFootstepClip;
+            }
+            else if (!footstepsSound.isPlaying)
             {
                 footstepsSound.clip = currentFootstepClip;
                 footstepsSound.Play();
@@ -98,6 +125,8 @@ public class PlayerController : MonoBehaviour
             {
                 footstepsSound.Stop();
             }
+
+            previousFootstepClip = null;
         }
     }
 
@@ -110,15 +139,32 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.CompareTag("Dirt"))
             {
                 currentFootstepClip = dirtFootsteps;
+
+                footstepsSound.volume = 1f;
+                footstepsSound.pitch = 1f;
             }
             else if (hit.collider.CompareTag("Grass"))
             {
                 currentFootstepClip = grassFootsteps;
+
+                footstepsSound.volume = 1f;
+                footstepsSound.pitch = 1f;
             }
             else if (hit.collider.CompareTag("Wood"))
             {
                 currentFootstepClip = woodFootsteps;
+
+                footstepsSound.volume = 1.5f;
+                footstepsSound.pitch = 1.5f;
             }
+            else
+            {
+                currentFootstepClip = null;
+            }
+        }
+        else
+        {
+            currentFootstepClip = null;
         }
     }
 
@@ -132,7 +178,12 @@ public class PlayerController : MonoBehaviour
             if (lookDirection.sqrMagnitude > 0.001f)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * turningSpeed);
+
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    targetRotation,
+                    Time.deltaTime * turningSpeed
+                );
             }
         }
     }
@@ -146,6 +197,21 @@ public class PlayerController : MonoBehaviour
             if (jumpPressed)
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * gravity * 2);
+
+                // Play jump sound independently from the footstep Audio Source
+                if (jumpClip != null)
+                {
+                    AudioSource.PlayClipAtPoint(
+                    jumpClip,
+                    transform.position,
+                     0.25f
+                      );
+                }
+                else
+                {
+                    Debug.LogWarning("Jump Clip is missing!");
+                }
+
                 jumpPressed = false;
             }
         }
@@ -157,3 +223,4 @@ public class PlayerController : MonoBehaviour
         return verticalVelocity;
     }
 }
+
