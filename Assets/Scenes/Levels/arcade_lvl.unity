@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 578302}
   m_Layer: 7
   m_Name: Stairs (1)
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2013,7 +2013,7 @@ GameObject:
   - component: {fileID: 1252375}
   m_Layer: 7
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8505,7 +8505,7 @@ GameObject:
   - component: {fileID: 359257599}
   m_Layer: 7
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8894,7 +8894,7 @@ GameObject:
   - component: {fileID: 381003892}
   m_Layer: 7
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10013,7 +10013,7 @@ GameObject:
   - component: {fileID: 482092223}
   m_Layer: 7
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17113,7 +17113,7 @@ GameObject:
   - component: {fileID: 909854730}
   m_Layer: 7
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17540,7 +17540,7 @@ GameObject:
   - component: {fileID: 923602886}
   m_Layer: 7
   m_Name: Stairs
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38217,6 +38217,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 248998984}
+    - target: {fileID: 3897019270122285036, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 61bf9d60e5cb12e4880df84518c7132e, type: 3}
+    - target: {fileID: 3897019270122285036, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
+      propertyPath: dirtFootsteps
+      value: 
+      objectReference: {fileID: 8300000, guid: fa0f54e0e26cc5747a4e627057554496, type: 3}
     - target: {fileID: 3897019270122285036, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
       propertyPath: footstepsSound
       value: 

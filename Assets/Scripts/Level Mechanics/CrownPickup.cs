@@ -21,6 +21,12 @@ public class CrownPickup : MonoBehaviour
     public VisualEffect poofVFX;
     public VisualEffect poofVFX2;
 
+    // Pickup sound
+    public AudioClip pickupSound;
+
+    // Automatically created AudioSource
+    private AudioSource audioSource;
+
     void Start()
     {
         startPosition = transform.position;
@@ -29,6 +35,19 @@ public class CrownPickup : MonoBehaviour
         // Cache renderer(s) and collider
         renderers = GetComponentsInChildren<Renderer>();
         col = GetComponent<Collider>();
+
+        // Create/get AudioSource
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Audio settings
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.spatialBlend = 1f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,14 +83,22 @@ public class CrownPickup : MonoBehaviour
         anchor = crownAnchor;
 
         // Disable trigger so it doesn’t retrigger
-        if (col != null) col.enabled = false;
+        if (col != null)
+            col.enabled = false;
 
         transform.SetParent(anchor);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
+        // Play pickup VFX
         if (poofVFX != null)
             poofVFX.Play();
+
+        // Play pickup sound
+        if (pickupSound != null)
+        {
+            audioSource.PlayOneShot(pickupSound);
+        }
     }
 
     public void UseCrown()
@@ -101,7 +128,9 @@ public class CrownPickup : MonoBehaviour
 
         // Show again and re-enable collider
         SetVisibility(true);
-        if (col != null) col.enabled = true;
+
+        if (col != null)
+            col.enabled = true;
 
         if (poofVFX != null)
             poofVFX.Play();
