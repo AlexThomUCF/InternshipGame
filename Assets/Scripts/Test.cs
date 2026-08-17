@@ -22,6 +22,8 @@ public class Test : MonoBehaviour, IInteraction
 
     [Header("Camera")]
     public CinemachineVirtualCamera wallyCamera;
+    public CinemachineBrain cinemachineBrain;
+    public float wallyBlendTime = 1.5f;
 
     TaskList task;
 
@@ -88,13 +90,22 @@ public class Test : MonoBehaviour, IInteraction
             interactionPrompt.SetActive(false);
         }
 
+        // Save the current Cinemachine blend
+        CinemachineBlendDefinition originalBlend = cinemachineBrain.m_DefaultBlend;
+
+        // Set a slower blend specifically for Wally
+        cinemachineBrain.m_DefaultBlend = new CinemachineBlendDefinition(
+            CinemachineBlendDefinition.Style.EaseInOut,
+            wallyBlendTime
+        );
+
         // Switch to Wally's camera
         if (wallyCamera != null)
         {
             wallyCamera.Priority = 20;
         }
 
-        // Small delay so the camera has time to begin moving
+        // Give the camera time to move
         yield return new WaitForSeconds(0.5f);
 
         if (task.lastRemovedTask == null)
@@ -124,13 +135,15 @@ public class Test : MonoBehaviour, IInteraction
             wallyCamera.Priority = 0;
         }
 
-        // Give Cinemachine a moment to transition back
+        // Restore your original Cinemachine blend
+        cinemachineBrain.m_DefaultBlend = originalBlend;
+
+        // Give Cinemachine time to transition back
         yield return new WaitForSeconds(0.5f);
 
         isTalking = false;
 
-        // If the player is still standing near Wally,
-        // show the prompt again
+        // Show the prompt again if the player is still nearby
         if (playerInRange && interactionPrompt != null)
         {
             interactionPrompt.SetActive(true);
