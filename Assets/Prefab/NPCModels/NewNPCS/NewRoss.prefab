@@ -8290,6 +8290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedTasks: []
 --- !u!4 &9201939477523194369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1fceff5a3ff02794a8702850379c0200, type: 3}
