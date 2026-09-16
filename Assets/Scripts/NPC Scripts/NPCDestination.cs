@@ -10,6 +10,8 @@ public class NPCDestination : MonoBehaviour
 
 
     [Header("Task Object")]
+    public Transform[] taskPositions;
+
     public GameObject taskObjectPrefab;
     public HumanBodyBones attachBone;
 }

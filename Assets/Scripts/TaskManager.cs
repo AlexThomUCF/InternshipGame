@@ -26,44 +26,24 @@ public class TaskManager : MonoBehaviour
         taskList.RemoveImposterTask(obj);
     }
 
-    void OnTriggerEnter(Collider other)
+    public void NPCReachedTask(AINavigation npc)
     {
-       NavMeshAgent agent = other.GetComponent<NavMeshAgent>();
-       NPCAnimations npcAnimations = other.GetComponent<NPCAnimations>();
-       AINavigation aiCheck = other.GetComponent<AINavigation>(); 
-       Rigidbody rb = other.GetComponent<Rigidbody>();
-       
+        NavMeshAgent agent = npc.myAgent;
 
-        if (agent != null)
+        if (agent.CompareTag("IMPOSTER") &&
+            taskList.tasksListAmount.Contains(currentObject))
         {
-            //Debug.Log("Agent in area");
-            if (agent.CompareTag("IMPOSTER") && taskList.tasksListAmount.Contains(currentObject) && aiCheck.isPerformingAction && agent.remainingDistance <= 10f) // Need to add bool to check if they are just in the area or if they are in the area and emoting
-            {
-                Debug.Log(agent.remainingDistance);
-                // Debug.Log("This is an Imposter");
-                taskList.tasksListAmount.Remove(currentObject);
+            Debug.Log(agent.gameObject.name + " reached task: " + currentObject.name);
 
-                hasObjectTask = false;
-                    
-                //StartCoroutine(npcAnimations.TaskAnimations(agent));
+            taskList.tasksListAmount.Remove(currentObject);
 
-                RemoveTask(currentObject);
- 
-                //For Jen/Imposter only, stop her, remove her from going to this task, play animation, resume her route, once list is empty she wins the game.
-            }
-            if(agent.CompareTag("NPC"))
-            {
-              //   agent.isStopped = true;
-              //  Debug.Log("This is a NPC");
-                
+            hasObjectTask = false;
 
-               //StartCoroutine(npcAnimations.TaskAnimations(agent));
-                //play animation
-
-               // Debug.Log("This is " + this.name);
-            }
+            RemoveTask(currentObject);
         }
     }
+
+   
 
 
 }
