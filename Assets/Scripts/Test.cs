@@ -13,6 +13,8 @@ public class Test : MonoBehaviour, IInteraction
 
     MeshRenderer mesh;
 
+    private Animator animator;
+
     [Header("Dialogue")]
     public GameObject dialoguePanel;
     public TMP_Text dialogueText;
@@ -36,6 +38,7 @@ public class Test : MonoBehaviour, IInteraction
     {
         mesh = GetComponent<MeshRenderer>();
         task = FindAnyObjectByType<TaskList>();
+        animator = GetComponent<Animator>();
 
         // Make sure the prompt and dialogue are hidden when the game starts
         if (interactionPrompt != null)
@@ -83,6 +86,8 @@ public class Test : MonoBehaviour, IInteraction
     IEnumerator wallySpeak()
     {
         isTalking = true;
+
+        animator.SetTrigger("Interact");
 
         // Hide the "Press E to talk" prompt
         if (interactionPrompt != null)

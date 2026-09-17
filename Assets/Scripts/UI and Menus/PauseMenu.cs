@@ -69,4 +69,12 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Application.Quit();
     }
+
+    //reloads scene and unfreezes game
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        Time.timeScale = 1;
+    }    
 }

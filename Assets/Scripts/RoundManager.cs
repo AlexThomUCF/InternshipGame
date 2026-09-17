@@ -11,6 +11,7 @@ public class RoundManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Image[] lifeIcons; // Assign 3 life images in inspector
+    [SerializeField] private GameObject LoseMneu;
 
     private void Awake()
     {
@@ -47,7 +48,10 @@ public class RoundManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+                // Opens lose menu and pauses time
+                Time.timeScale = 0;
+                LoseMneu.SetActive(true);
+                
             }
         }
     }
