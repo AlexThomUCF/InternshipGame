@@ -62,12 +62,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
       propertyPath: m_Name
-      value: Brookie_Walking2
+      value: Brookie
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
@@ -180,7 +188,7 @@ NavMeshAgent:
   m_Height: 14.14
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &2256848987560536148
 MonoBehaviour:
   m_ObjectHideFlags: 0

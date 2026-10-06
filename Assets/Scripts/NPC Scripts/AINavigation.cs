@@ -326,39 +326,73 @@ public class AINavigation : MonoBehaviour
 
                                 currentTaskObject.transform.localPosition = Vector3.zero;
                                 currentTaskObject.transform.localRotation = Quaternion.identity;
+
+
+                                float targetSize = 2.5f;
+
+                                Renderer[] renderers =
+                                    currentTaskObject.GetComponentsInChildren<Renderer>();
+
+                                if (renderers.Length > 0)
+                                {
+                                    Bounds bounds = renderers[0].bounds;
+
+                                    foreach (Renderer renderer in renderers)
+                                    {
+                                        bounds.Encapsulate(renderer.bounds);
+                                    }
+
+                                    float currentSize = Mathf.Max(
+                                        bounds.size.x,
+                                        bounds.size.y,
+                                        bounds.size.z
+                                    );
+
+                                    if (currentSize > 0.001f)
+                                    {
+                                        float scale = targetSize / currentSize;
+
+                                        currentTaskObject.transform.localScale =
+                                            Vector3.one * scale;
+                                    }
+
+
+
+                                }
+
+                            }
+
+                            // Wait for the task animation to start
+                            yield return new WaitUntil(() =>
+                                animator.GetCurrentAnimatorStateInfo(0).IsTag("Task")
+                            );
+
+                            // Wait for the task animation to finish
+                            yield return new WaitUntil(() =>
+                                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f &&
+                                !animator.IsInTransition(0)
+                            );
+
+                            if (currentTaskObject != null)
+                            {
+                                Destroy(currentTaskObject);
+                                currentTaskObject = null;
                             }
                         }
-
-                        // Wait for the task animation to start
-                        yield return new WaitUntil(() =>
-                            animator.GetCurrentAnimatorStateInfo(0).IsTag("Task")
-                        );
-
-                        // Wait for the task animation to finish
-                        yield return new WaitUntil(() =>
-                            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f &&
-                            !animator.IsInTransition(0)
-                        );
-
-                        if (currentTaskObject != null)
+                        else
                         {
-                            Destroy(currentTaskObject);
-                            currentTaskObject = null;
+                            myAgent.isStopped = false;
+                            moving = false;
                         }
                     }
-                    else
-                    {
-                        myAgent.isStopped = false;
-                        moving = false;
-                    }
+
+                    currentTaskTarget = null;
+                    currentTaskPosition = null;
                 }
 
-                currentTaskTarget = null;
-                currentTaskPosition = null;
+                isPerformingAction = false;
+                decisionCooldown = Random.Range(0.5f, 2f);
             }
-
-            isPerformingAction = false;
-            decisionCooldown = Random.Range(0.5f, 2f);
         }
     }
 
