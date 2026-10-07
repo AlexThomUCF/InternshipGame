@@ -6,95 +6,56 @@ public class NPCDialogue : MonoBehaviour
 {
     public static NPCDialogue Instance;
 
-
     [Header("UI")]
     public GameObject dialoguePanel;
-    public TMP_Text nameText;
     public TMP_Text dialogueText;
 
-
     [Header("Dialogue Settings")]
-    public float typingSpeed = 0.3f;
+    public float typingSpeed = 0.03f;
     public float displayTime = 3f;
-
-    public int wordsPerPage = 12;
-
 
     public bool IsDialoguePlaying { get; private set; }
 
-
     private Coroutine currentDialogue;
 
-
-    void Awake()
+    private void Awake()
     {
         Instance = this;
 
         dialoguePanel.SetActive(false);
     }
 
-
-    public void ShowDialogue(string speakerName, string message)
+    public void ShowDialogue(string message)
     {
         if (currentDialogue != null)
         {
             StopCoroutine(currentDialogue);
         }
 
-
-        currentDialogue = StartCoroutine(
-            TypeDialogue(speakerName, message));
+        currentDialogue = StartCoroutine(TypeDialogue(message));
     }
 
-
-
-    IEnumerator TypeDialogue(string speakerName, string message)
+    private IEnumerator TypeDialogue(string message)
     {
         IsDialoguePlaying = true;
 
         dialoguePanel.SetActive(true);
 
-        nameText.text = speakerName;
-
-
-        string[] words = message.Split(' ');
-
-        string currentPage = "";
-        int wordCount = 0;
-
-
         dialogueText.text = "";
 
-
-        foreach (string word in words)
+        foreach (char letter in message)
         {
-            currentPage += word + " ";
-            wordCount++;
-
-
-            dialogueText.text = currentPage;
-
+            dialogueText.text += letter;
 
             yield return new WaitForSeconds(typingSpeed);
-
-
-            if (wordCount >= wordsPerPage)
-            {
-                yield return new WaitForSeconds(1f);
-
-                dialogueText.text = "";
-
-                currentPage = "";
-                wordCount = 0;
-            }
         }
 
-
         yield return new WaitForSeconds(displayTime);
-
 
         dialoguePanel.SetActive(false);
 
         IsDialoguePlaying = false;
+
+        currentDialogue = null;
     }
 }

@@ -7,7 +7,6 @@ public class NPCMemory : MonoBehaviour
     [SerializeField]
     private List<string> completedTasks = new List<string>();
 
-
     public void AddCompletedTask(string taskName)
     {
         if (!completedTasks.Contains(taskName))
@@ -16,7 +15,6 @@ public class NPCMemory : MonoBehaviour
         }
     }
 
-
     public string GetTaskDialogue()
     {
         if (completedTasks.Count == 0)
@@ -24,9 +22,7 @@ public class NPCMemory : MonoBehaviour
             return "I've just been walking around.";
         }
 
-
         List<string> randomTasks = new List<string>(completedTasks);
-
 
         for (int i = 0; i < randomTasks.Count; i++)
         {
@@ -37,7 +33,6 @@ public class NPCMemory : MonoBehaviour
             randomTasks[randomIndex] = temp;
         }
 
-
         StringBuilder dialogue = new StringBuilder();
 
         dialogue.Append("I've completed ");
@@ -45,7 +40,6 @@ public class NPCMemory : MonoBehaviour
         for (int i = 0; i < randomTasks.Count; i++)
         {
             dialogue.Append(randomTasks[i].ToLower());
-
 
             if (i < randomTasks.Count - 2)
             {
@@ -60,7 +54,6 @@ public class NPCMemory : MonoBehaviour
                 dialogue.Append(".");
             }
         }
-
 
         return dialogue.ToString();
     }
