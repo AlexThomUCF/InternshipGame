@@ -23,31 +23,32 @@ public class AINavigation : MonoBehaviour
 
     private Transform currentTaskPosition;
 
-
     [Header("Values")]
     public float range = 10f;
     public int choice = 0;
     private float decisionCooldown = 0f;
 
-
     [Header("Bools")]
     public bool isPerformingAction = false;
     public bool moving = false;
 
-
     [Header("Interrogation")]
     public bool isPaused = false;
 
+    [Header("Blackout Recovery")]
+    public float minBlackoutPause = 1f;
+    public float maxBlackoutPause = 2f;
 
     void Start()
     {
         npcMemory = GetComponent<NPCMemory>();
+
         taskList = FindObjectOfType<TaskList>();
+
         animator = GetComponent<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
 
         taskCheckpoints = taskList.taskArray;
-
 
         if (CompareTag("IMPOSTER"))
         {
@@ -58,14 +59,11 @@ public class AINavigation : MonoBehaviour
             taskCheckpoints = taskList.taskArray;
         }
 
-
         availableTasks.AddRange(taskCheckpoints);
     }
 
-
     void Update()
     {
-        // Freeze AI while being interrogated
         if (isPaused)
         {
             if (myAgent != null)
@@ -79,13 +77,11 @@ public class AINavigation : MonoBehaviour
             return;
         }
 
-
-        // Cooldown before next decision
         if (decisionCooldown > 0)
+        {
             decisionCooldown -= Time.deltaTime;
+        }
 
-
-        // Checks when to act
         if (!isPerformingAction &&
             decisionCooldown <= 0 &&
             !myAgent.pathPending &&
@@ -94,21 +90,15 @@ public class AINavigation : MonoBehaviour
             ChooseAction();
         }
 
-
         MovementAnimations();
     }
-
-
-
-    // ---------------------------------------------------------
-    // RANDOM POINT ON NAVMESH
-    // ---------------------------------------------------------
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 10; i++)
         {
-            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            Vector3 randomPoint =
+                center + Random.insideUnitSphere * range;
 
             NavMeshHit hit;
 
@@ -123,43 +113,35 @@ public class AINavigation : MonoBehaviour
             }
         }
 
-
         result = Vector3.zero;
         return false;
     }
-
-
-
-    // ---------------------------------------------------------
-    // ACTION SELECTION
-    // ---------------------------------------------------------
 
     public void ChooseAction()
     {
         if (isPerformingAction)
             return;
 
+        if (myAgent == null || !myAgent.isOnNavMesh)
+            return;
 
         choice = Random.Range(1, 101);
 
-
-        // Stand still
+        // Random idle/pause
         if (choice <= 5)
         {
             StartCoroutine(
-                PauseMovement(Random.Range(3f, 5f)));
+                PauseMovement(Random.Range(3f, 5f))
+            );
         }
 
-
-        // Free roam
+        // Random walking
         else if (choice <= 10)
         {
             isPerformingAction = true;
             moving = true;
 
-
             Vector3 point;
-
 
             if (RandomPoint(
                 centrePoint.position,
@@ -167,35 +149,51 @@ public class AINavigation : MonoBehaviour
                 out point))
             {
                 myAgent.isStopped = false;
-                myAgent.SetDestination(point);
 
-                StartCoroutine(
-                    ResetAfterMovement(false));
+                bool success =
+                    myAgent.SetDestination(point);
+
+                if (success)
+                {
+                    StartCoroutine(
+                        ResetAfterMovement(false)
+                    );
+                }
+                else
+                {
+                    isPerformingAction = false;
+                    moving = false;
+
+                    myAgent.ResetPath();
+
+                    decisionCooldown = 1f;
+                }
             }
             else
             {
                 isPerformingAction = false;
                 moving = false;
+
+                decisionCooldown = 1f;
             }
         }
-
 
         // Task
         else
         {
-            if (taskCheckpoints.Length == 0)
+            if (taskCheckpoints == null ||
+                taskCheckpoints.Length == 0)
+            {
                 return;
-
+            }
 
             isPerformingAction = true;
             moving = true;
-
 
             if (availableTasks.Count == 0)
             {
                 availableTasks.AddRange(taskCheckpoints);
             }
-
 
             int tempNum =
                 Random.Range(0, availableTasks.Count);
@@ -203,223 +201,473 @@ public class AINavigation : MonoBehaviour
             currentTaskTarget =
                 availableTasks[tempNum];
 
-
             myAgent.isStopped = false;
 
-            NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
+            NPCDestination dest =
+                currentTaskTarget.GetComponent<NPCDestination>();
 
-            if (dest != null && dest.taskPositions.Length > 0)
+            if (dest != null &&
+                dest.taskPositions != null &&
+                dest.taskPositions.Length > 0)
             {
-                currentTaskPosition = GetAvailableTaskPosition(dest);
+                currentTaskPosition =
+                    GetAvailableTaskPosition(dest);
 
                 if (currentTaskPosition != null)
                 {
-                    availableTasks.Remove(currentTaskTarget);
+                    availableTasks.Remove(
+                        currentTaskTarget
+                    );
 
                     myAgent.isStopped = false;
-                    myAgent.SetDestination(currentTaskPosition.position);
 
-                    StartCoroutine(ResetAfterMovement(true));
+                    bool success =
+                        myAgent.SetDestination(
+                            currentTaskPosition.position
+                        );
+
+                    if (success)
+                    {
+                        StartCoroutine(
+                            ResetAfterMovement(true)
+                        );
+                    }
+                    else
+                    {
+                        availableTasks.Add(
+                            currentTaskTarget
+                        );
+
+                        currentTaskTarget = null;
+                        currentTaskPosition = null;
+
+                        isPerformingAction = false;
+                        moving = false;
+
+                        myAgent.ResetPath();
+
+                        decisionCooldown = 1f;
+                    }
                 }
                 else
                 {
-                    // All positions are currently occupied
                     isPerformingAction = false;
                     moving = false;
 
                     decisionCooldown = 1f;
                 }
             }
+            else
+            {
+                isPerformingAction = false;
+                moving = false;
+
+                decisionCooldown = 1f;
+            }
+        }
+    }
+
+    IEnumerator PauseMovement(float pauseTime)
+    {
+        isPerformingAction = true;
+        moving = false;
+
+        myAgent.isStopped = true;
+
+        if (animator != null)
+            animator.SetBool("isMoving", false);
+
+        yield return new WaitForSeconds(pauseTime);
+
+        myAgent.isStopped = false;
+
+        isPerformingAction = false;
+
+        decisionCooldown =
+            Random.Range(0.5f, 2f);
+    }
+
+    IEnumerator ResetAfterMovement(bool isTask)
+    {
+        // Wait until the NavMeshAgent finishes calculating its path.
+        while (myAgent.pathPending)
+        {
+            yield return null;
         }
 
-
-
-        // ---------------------------------------------------------
-        // STAND STILL
-        // ---------------------------------------------------------
-
-        IEnumerator PauseMovement(float pauseTime)
+        // Make sure the path actually exists.
+        if (!myAgent.hasPath ||
+            myAgent.pathStatus == NavMeshPathStatus.PathInvalid)
         {
-            isPerformingAction = true;
             moving = false;
-
-
-            myAgent.isStopped = true;
-
-
-            yield return new WaitForSeconds(pauseTime);
-
-
-            myAgent.isStopped = false;
-
-
             isPerformingAction = false;
 
-            decisionCooldown =
-                Random.Range(.5f, 2f);
+            myAgent.isStopped = true;
+            myAgent.ResetPath();
+
+            decisionCooldown = 1f;
+
+            yield break;
         }
 
-
-
-        // ---------------------------------------------------------
-        // MOVEMENT RESET
-        // ---------------------------------------------------------
-
-        IEnumerator ResetAfterMovement(bool isTask)
+        // If the destination cannot be completely reached,
+        // don't allow the NPC to walk forever.
+        if (myAgent.pathStatus == NavMeshPathStatus.PathPartial)
         {
-            while (myAgent.pathPending || myAgent.remainingDistance > myAgent.stoppingDistance)
-            {
-                yield return null;
-            }
-
             moving = false;
+            isPerformingAction = false;
+
             myAgent.isStopped = true;
+            myAgent.ResetPath();
 
-            // Tell the task that this NPC reached its assigned position
-            if (isTask && currentTaskTarget != null)
+            decisionCooldown = 1f;
+
+            yield break;
+        }
+
+        // Wait until the NPC reaches the destination.
+        while (myAgent.remainingDistance >
+               myAgent.stoppingDistance)
+        {
+            if (myAgent.pathStatus ==
+                NavMeshPathStatus.PathInvalid)
             {
-                TaskManager taskManager =
-                    currentTaskTarget.GetComponent<TaskManager>();
+                moving = false;
+                isPerformingAction = false;
 
-                if (taskManager != null)
-                {
-                    taskManager.NPCReachedTask(this);
-                }
+                myAgent.isStopped = true;
+                myAgent.ResetPath();
+
+                decisionCooldown = 1f;
+
+                yield break;
             }
 
-            yield return new WaitForSeconds(Random.Range(2f, 4f));
+            yield return null;
+        }
 
-            if (isTask && currentTaskTarget != null)
+        moving = false;
+
+        myAgent.isStopped = true;
+
+        if (isTask &&
+            currentTaskTarget != null)
+        {
+            TaskManager taskManager =
+                currentTaskTarget.GetComponent<TaskManager>();
+
+            if (taskManager != null)
             {
-                NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
+                taskManager.NPCReachedTask(this);
+            }
+        }
 
-                if (dest != null)
+        yield return new WaitForSeconds(
+            Random.Range(2f, 4f)
+        );
+
+        if (isTask &&
+            currentTaskTarget != null)
+        {
+            NPCDestination dest =
+                currentTaskTarget.GetComponent<NPCDestination>();
+
+            if (dest != null)
+            {
+                NPCMemory memory =
+                    GetComponent<NPCMemory>();
+
+                if (memory != null)
                 {
-                    NPCMemory memory = GetComponent<NPCMemory>();
+                    memory.AddCompletedTask(
+                        dest.taskName
+                    );
 
-                    if (memory != null)
+                    Debug.Log(
+                        gameObject.name +
+                        " completed task: " +
+                        dest.taskName
+                    );
+                }
+
+                if (dest.animationTrigger != "")
+                {
+                    myAgent.isStopped = true;
+                    moving = false;
+
+                    animator.SetTrigger(
+                        dest.animationTrigger
+                    );
+
+                    if (animator.isHuman)
                     {
-                        memory.AddCompletedTask(dest.taskName);
-                        Debug.Log(gameObject.name + " completed task: " + dest.taskName);
-                    }
+                        Transform attachPoint =
+                            animator.GetBoneTransform(
+                                dest.attachBone
+                            );
 
-                    if (dest.animationTrigger != "")
-                    {
-                        myAgent.isStopped = true;
-                        moving = false;
-
-                        animator.SetTrigger(dest.animationTrigger);
-
-                        if (animator.isHuman)
+                        if (dest.taskObjectPrefab != null &&
+                            attachPoint != null)
                         {
-                            Transform attachPoint =
-                                animator.GetBoneTransform(dest.attachBone);
-
-                            if (dest.taskObjectPrefab != null && attachPoint != null)
-                            {
-                                currentTaskObject = Instantiate(
+                            currentTaskObject =
+                                Instantiate(
                                     dest.taskObjectPrefab,
                                     attachPoint.position,
                                     dest.taskObjectPrefab.transform.rotation,
                                     attachPoint
                                 );
 
-                                currentTaskObject.transform.localPosition = Vector3.zero;
-                                currentTaskObject.transform.localRotation = Quaternion.identity;
+                            currentTaskObject.transform.localPosition =
+                                Vector3.zero;
 
+                            currentTaskObject.transform.localRotation =
+                                Quaternion.identity;
 
-                                float targetSize = 2.5f;
+                            float targetSize = 2.5f;
 
-                                Renderer[] renderers =
-                                    currentTaskObject.GetComponentsInChildren<Renderer>();
+                            Renderer[] renderers =
+                                currentTaskObject
+                                .GetComponentsInChildren<Renderer>();
 
-                                if (renderers.Length > 0)
+                            if (renderers.Length > 0)
+                            {
+                                Bounds bounds =
+                                    renderers[0].bounds;
+
+                                foreach (
+                                    Renderer renderer
+                                    in renderers)
                                 {
-                                    Bounds bounds = renderers[0].bounds;
+                                    bounds.Encapsulate(
+                                        renderer.bounds
+                                    );
+                                }
 
-                                    foreach (Renderer renderer in renderers)
-                                    {
-                                        bounds.Encapsulate(renderer.bounds);
-                                    }
-
-                                    float currentSize = Mathf.Max(
+                                float currentSize =
+                                    Mathf.Max(
                                         bounds.size.x,
                                         bounds.size.y,
                                         bounds.size.z
                                     );
 
-                                    if (currentSize > 0.001f)
-                                    {
-                                        float scale = targetSize / currentSize;
+                                if (currentSize > 0.001f)
+                                {
+                                    float scale =
+                                        targetSize /
+                                        currentSize;
 
-                                        currentTaskObject.transform.localScale =
-                                            Vector3.one * scale;
-                                    }
-
-
-
+                                    currentTaskObject
+                                        .transform
+                                        .localScale =
+                                        Vector3.one * scale;
                                 }
-
-                            }
-
-                            // Wait for the task animation to start
-                            yield return new WaitUntil(() =>
-                                animator.GetCurrentAnimatorStateInfo(0).IsTag("Task")
-                            );
-
-                            // Wait for the task animation to finish
-                            yield return new WaitUntil(() =>
-                                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f &&
-                                !animator.IsInTransition(0)
-                            );
-
-                            if (currentTaskObject != null)
-                            {
-                                Destroy(currentTaskObject);
-                                currentTaskObject = null;
                             }
                         }
-                        else
+
+                        yield return new WaitUntil(
+                            () =>
+                                animator
+                                    .GetCurrentAnimatorStateInfo(0)
+                                    .IsTag("Task")
+                        );
+
+                        yield return new WaitUntil(
+                            () =>
+                                animator
+                                    .GetCurrentAnimatorStateInfo(0)
+                                    .normalizedTime >= 1f &&
+                                !animator.IsInTransition(0)
+                        );
+
+                        if (currentTaskObject != null)
                         {
-                            myAgent.isStopped = false;
-                            moving = false;
+                            Destroy(currentTaskObject);
+                            currentTaskObject = null;
                         }
                     }
-
-                    currentTaskTarget = null;
-                    currentTaskPosition = null;
+                    else
+                    {
+                        myAgent.isStopped = false;
+                        moving = false;
+                    }
                 }
 
-                isPerformingAction = false;
-                decisionCooldown = Random.Range(0.5f, 2f);
+                currentTaskTarget = null;
+                currentTaskPosition = null;
             }
+
+            isPerformingAction = false;
+
+            decisionCooldown =
+                Random.Range(0.5f, 2f);
         }
     }
 
-    // ---------------------------------------------------------
-    // ANIMATIONS
-    // ---------------------------------------------------------
+    public void CancelCurrentAction()
+    {
+        StopAllCoroutines();
+
+        if (currentTaskTarget != null &&
+            !availableTasks.Contains(currentTaskTarget))
+        {
+            availableTasks.Add(
+                currentTaskTarget
+            );
+        }
+
+        if (currentTaskObject != null)
+        {
+            Destroy(currentTaskObject);
+            currentTaskObject = null;
+        }
+
+        currentTaskTarget = null;
+        currentTaskPosition = null;
+
+        isPerformingAction = false;
+        moving = false;
+
+        if (animator != null)
+        {
+            animator.SetBool(
+                "isMoving",
+                false
+            );
+        }
+
+        if (myAgent != null)
+        {
+            myAgent.isStopped = true;
+            myAgent.ResetPath();
+        }
+
+        decisionCooldown = 2f;
+    }
+
+    public void ResetAfterBlackout()
+    {
+        if (myAgent == null)
+            return;
+
+        if (!myAgent.isOnNavMesh)
+        {
+            NavMeshHit hit;
+
+            if (NavMesh.SamplePosition(
+                transform.position,
+                out hit,
+                3f,
+                NavMesh.AllAreas))
+            {
+                myAgent.Warp(hit.position);
+            }
+        }
+
+        if (!myAgent.isOnNavMesh)
+        {
+            Debug.LogWarning(
+                gameObject.name +
+                " could not find the NavMesh after blackout."
+            );
+
+            return;
+        }
+
+        myAgent.ResetPath();
+        myAgent.isStopped = true;
+
+        moving = false;
+
+        // Keep the NPC from immediately choosing
+        // another action.
+        isPerformingAction = true;
+
+        if (animator != null)
+        {
+            animator.SetBool(
+                "isMoving",
+                false
+            );
+        }
+
+        // Every NPC gets its own random delay.
+        decisionCooldown =
+            Random.Range(
+                minBlackoutPause,
+                maxBlackoutPause
+            );
+
+        StartCoroutine(
+            BlackoutRecovery()
+        );
+    }
+
+    private IEnumerator BlackoutRecovery()
+    {
+        float waitTime =
+            decisionCooldown;
+
+        yield return new WaitForSeconds(
+            waitTime
+        );
+
+        if (myAgent == null ||
+            !myAgent.isOnNavMesh)
+        {
+            yield break;
+        }
+
+        myAgent.ResetPath();
+        myAgent.isStopped = false;
+
+        moving = false;
+        isPerformingAction = false;
+
+        decisionCooldown =
+            Random.Range(0.5f, 2f);
+    }
 
     public void MovementAnimations()
     {
-        if (animator != null)
-            animator.SetBool("isMoving", moving);
+        if (animator == null ||
+            myAgent == null)
+            return;
+
+        // Use the actual NavMeshAgent velocity.
+        // This prevents the walking animation from
+        // playing when the NPC isn't actually moving.
+        bool actuallyMoving =
+            !myAgent.isStopped &&
+            myAgent.velocity.sqrMagnitude > 0.01f;
+
+        animator.SetBool(
+            "isMoving",
+            actuallyMoving
+        );
     }
 
-    private Transform GetAvailableTaskPosition(NPCDestination dest)
+    private Transform GetAvailableTaskPosition(
+        NPCDestination dest
+    )
     {
-        List<Transform> availablePositions = new List<Transform>();
+        List<Transform> availablePositions =
+            new List<Transform>();
 
-        foreach (Transform position in dest.taskPositions)
+        foreach (
+            Transform position
+            in dest.taskPositions)
         {
             bool occupied = false;
 
-            Collider[] nearbyNPCs = Physics.OverlapSphere(
-                position.position,
-                0.75f
-            );
+            Collider[] nearbyNPCs =
+                Physics.OverlapSphere(
+                    position.position,
+                    0.75f
+                );
 
-            foreach (Collider col in nearbyNPCs)
+            foreach (
+                Collider col
+                in nearbyNPCs)
             {
                 if (col.gameObject != gameObject &&
                     col.GetComponent<AINavigation>() != null)
@@ -431,7 +679,9 @@ public class AINavigation : MonoBehaviour
 
             if (!occupied)
             {
-                availablePositions.Add(position);
+                availablePositions.Add(
+                    position
+                );
             }
         }
 
@@ -439,7 +689,10 @@ public class AINavigation : MonoBehaviour
             return null;
 
         return availablePositions[
-            Random.Range(0, availablePositions.Count)
+            Random.Range(
+                0,
+                availablePositions.Count
+            )
         ];
     }
 }

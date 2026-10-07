@@ -32,12 +32,16 @@ public class BlackoutController : MonoBehaviour
     [SerializeField] private List<Transform> npcWaypoints = new();
     [SerializeField] private LayerMask characterLayer;
 
-    private Dictionary<Light, float> originalIntensities = new();
+    private Dictionary<Light, float> originalIntensities =
+        new Dictionary<Light, float>();
 
     private void Start()
     {
         CacheLightData();
-        StartCoroutine(BlackoutLoop());
+
+        StartCoroutine(
+            BlackoutLoop()
+        );
     }
 
     private void CacheLightData()
@@ -46,22 +50,41 @@ public class BlackoutController : MonoBehaviour
 
         foreach (Light light in lights)
         {
-            if (light != null && !originalIntensities.ContainsKey(light))
-                originalIntensities.Add(light, light.intensity);
+            if (light != null &&
+                !originalIntensities.ContainsKey(light))
+            {
+                originalIntensities.Add(
+                    light,
+                    light.intensity
+                );
+            }
         }
 
         if (blackoutImage != null)
-            blackoutImage.color = new Color(0, 0, 0, 0);
+        {
+            blackoutImage.color =
+                new Color(0, 0, 0, 0);
+        }
     }
 
     private IEnumerator BlackoutLoop()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minBlackoutInterval, maxBlackoutInterval));
+            yield return new WaitForSeconds(
+                Random.Range(
+                    minBlackoutInterval,
+                    maxBlackoutInterval
+                )
+            );
 
-            yield return StartCoroutine(FlickerLights());
-            yield return StartCoroutine(DoBlackout());
+            yield return StartCoroutine(
+                FlickerLights()
+            );
+
+            yield return StartCoroutine(
+                DoBlackout()
+            );
         }
     }
 
@@ -73,115 +96,291 @@ public class BlackoutController : MonoBehaviour
         {
             foreach (Light light in lights)
             {
-                if (light == null) continue;
+                if (light == null)
+                    continue;
 
-                light.intensity = Random.Range(
-                    flickerMinIntensity,
-                    originalIntensities[light]
-                );
+                light.intensity =
+                    Random.Range(
+                        flickerMinIntensity,
+                        originalIntensities[light]
+                    );
             }
 
-            // Canvas micro-flicker
             if (blackoutImage != null)
             {
-                float alpha = Random.Range(canvasFlickerMinAlpha, canvasFlickerMaxAlpha);
-                blackoutImage.color = new Color(0, 0, 0, alpha);
+                float alpha =
+                    Random.Range(
+                        canvasFlickerMinAlpha,
+                        canvasFlickerMaxAlpha
+                    );
+
+                blackoutImage.color =
+                    new Color(0, 0, 0, alpha);
             }
 
             timer += flickerSpeed;
-            yield return new WaitForSeconds(flickerSpeed);
+
+            yield return new WaitForSeconds(
+                flickerSpeed
+            );
         }
 
         if (blackoutImage != null)
-            blackoutImage.color = new Color(0, 0, 0, 0);
+        {
+            blackoutImage.color =
+                new Color(0, 0, 0, 0);
+        }
     }
 
     private IEnumerator DoBlackout()
     {
-        // Turn off all lights
+        // Turn off lights.
         foreach (Light light in lights)
+        {
             if (light != null)
                 light.enabled = false;
+        }
 
-        // Fade canvas to full black first
-        yield return StartCoroutine(FadeCanvas(0f, 1f));
+        // Fade completely black.
+        yield return StartCoroutine(
+            FadeCanvas(0f, 1f)
+        );
 
-        // Now reposition all NPCs while the screen is fully black
+        // Stop NPCs before moving them.
+        CancelNPCActions();
+
+        // Move NPCs while the screen is completely black.
         RepositionNPCs();
 
-        // Hold blackout
-        yield return new WaitForSeconds(blackoutDuration);
+        // Stay black.
+        yield return new WaitForSeconds(
+            blackoutDuration
+        );
 
-        // Fade canvas back
-        yield return StartCoroutine(FadeCanvas(1f, 0f));
+        // Fade back in.
+        yield return StartCoroutine(
+            FadeCanvas(1f, 0f)
+        );
 
-        // Restore lights
+        // Turn lights back on.
         foreach (Light light in lights)
         {
             if (light != null)
             {
                 light.enabled = true;
-                light.intensity = originalIntensities[light];
+
+                light.intensity =
+                    originalIntensities[light];
             }
         }
     }
 
-    private IEnumerator FadeCanvas(float from, float to)
+    private IEnumerator FadeCanvas(
+        float from,
+        float to
+    )
     {
         float t = 0f;
 
         while (t < 1f)
         {
-            t += Time.deltaTime * fadeSpeed;
-            float alpha = Mathf.Lerp(from, to, t);
+            t +=
+                Time.deltaTime *
+                fadeSpeed;
+
+            float alpha =
+                Mathf.Lerp(
+                    from,
+                    to,
+                    t
+                );
 
             if (blackoutImage != null)
-                blackoutImage.color = new Color(0, 0, 0, alpha);
+            {
+                blackoutImage.color =
+                    new Color(
+                        0,
+                        0,
+                        0,
+                        alpha
+                    );
+            }
 
             yield return null;
         }
     }
 
-    private void RepositionNPCs()
+    private void CancelNPCActions()
     {
-        // Get all colliders on the Characters layer
-        Collider[] hits = Physics.OverlapSphere(
-            transform.position,
-            999f,
-            characterLayer
-        );
+        Collider[] hits =
+            Physics.OverlapSphere(
+                transform.position,
+                999f,
+                characterLayer
+            );
 
-        List<Transform> npcs = new List<Transform>();
+        List<Transform> npcs =
+            new List<Transform>();
 
         foreach (Collider hit in hits)
         {
-            Transform root = hit.transform.root;
+            Transform root =
+                hit.transform.root;
+
             if (!npcs.Contains(root))
+            {
                 npcs.Add(root);
+            }
         }
-
-        if (npcs.Count == 0 || npcWaypoints.Count < npcs.Count)
-        {
-            Debug.LogWarning("BlackoutController: Not enough NPCs or waypoints.");
-            return;
-        }
-
-        // Assign unique waypoints
-        List<Transform> availableWaypoints = new List<Transform>(npcWaypoints);
 
         foreach (Transform npc in npcs)
         {
-            int index = Random.Range(0, availableWaypoints.Count);
-            Transform waypoint = availableWaypoints[index];
+            AINavigation navigation =
+                npc.GetComponent<AINavigation>();
 
-            NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
-            if (agent != null && agent.isOnNavMesh)
-                agent.Warp(waypoint.position);
+            if (navigation != null)
+            {
+                navigation.CancelCurrentAction();
+            }
+        }
+    }
+
+    private void RepositionNPCs()
+    {
+        Collider[] hits =
+            Physics.OverlapSphere(
+                transform.position,
+                999f,
+                characterLayer
+            );
+
+        List<Transform> npcs =
+            new List<Transform>();
+
+        foreach (Collider hit in hits)
+        {
+            Transform root =
+                hit.transform.root;
+
+            if (!npcs.Contains(root))
+            {
+                npcs.Add(root);
+            }
+        }
+
+        if (npcs.Count == 0)
+        {
+            Debug.LogWarning(
+                "BlackoutController: No NPCs found."
+            );
+
+            return;
+        }
+
+        if (npcWaypoints.Count < npcs.Count)
+        {
+            Debug.LogWarning(
+                "BlackoutController: Not enough NPC waypoints."
+            );
+
+            return;
+        }
+
+        List<Transform> availableWaypoints =
+            new List<Transform>(
+                npcWaypoints
+            );
+
+        foreach (Transform npc in npcs)
+        {
+            int index =
+                Random.Range(
+                    0,
+                    availableWaypoints.Count
+                );
+
+            Transform waypoint =
+                availableWaypoints[index];
+
+            NavMeshAgent agent =
+                npc.GetComponent<NavMeshAgent>();
+
+            if (agent != null &&
+                agent.isOnNavMesh)
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+
+                // Make sure the waypoint is actually
+                // on the NavMesh.
+                NavMeshHit navHit;
+
+                if (NavMesh.SamplePosition(
+                    waypoint.position,
+                    out navHit,
+                    3f,
+                    NavMesh.AllAreas))
+                {
+                    bool warped =
+                        agent.Warp(
+                            navHit.position
+                        );
+
+                    if (!warped)
+                    {
+                        Debug.LogWarning(
+                            npc.name +
+                            " failed to warp during blackout."
+                        );
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning(
+                        "Could not find NavMesh near waypoint " +
+                        waypoint.name
+                    );
+                }
+
+                agent.ResetPath();
+                agent.isStopped = true;
+            }
             else
-                npc.position = waypoint.position;
+            {
+                // Fallback if the agent isn't currently
+                // connected to the NavMesh.
+                NavMeshHit navHit;
 
-            npc.rotation = waypoint.rotation;
-            availableWaypoints.RemoveAt(index);
+                if (NavMesh.SamplePosition(
+                    waypoint.position,
+                    out navHit,
+                    3f,
+                    NavMesh.AllAreas))
+                {
+                    npc.position =
+                        navHit.position;
+                }
+                else
+                {
+                    npc.position =
+                        waypoint.position;
+                }
+            }
+
+            npc.rotation =
+                waypoint.rotation;
+
+            AINavigation navigation =
+                npc.GetComponent<AINavigation>();
+
+            if (navigation != null)
+            {
+                navigation.ResetAfterBlackout();
+            }
+
+            availableWaypoints.RemoveAt(
+                index
+            );
         }
     }
 }

@@ -6297,14 +6297,14 @@ MonoBehaviour:
   - {fileID: 1921208341}
   blackoutImage: {fileID: 1185675382}
   fadeSpeed: 2
-  minBlackoutInterval: 60
-  maxBlackoutInterval: 120
+  minBlackoutInterval: 20
+  maxBlackoutInterval: 30
   flickerDuration: 2
   blackoutDuration: 3
   flickerMinIntensity: 0.1
   flickerSpeed: 0.1
-  canvasFlickerMinAlpha: 0.15
-  canvasFlickerMaxAlpha: 0.3
+  canvasFlickerMinAlpha: 0.3
+  canvasFlickerMaxAlpha: 0.5
   canvasFlickerSpeed: 0.05
   npcWaypoints:
   - {fileID: 1530457629}
