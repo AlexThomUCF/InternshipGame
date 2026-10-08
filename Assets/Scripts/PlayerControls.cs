@@ -107,6 +107,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InventoryScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""7b478144-9cdb-4452-9677-261e5d6f9742"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -296,6 +305,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f801c36-7f3d-489a-b09b-49d998f4d824"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -313,6 +333,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Xray = m_Player.FindAction("Xray", throwIfNotFound: true);
         m_Player_UIToggle = m_Player.FindAction("UIToggle", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_InventoryScroll = m_Player.FindAction("InventoryScroll", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -388,6 +409,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Xray;
     private readonly InputAction m_Player_UIToggle;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_InventoryScroll;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -401,6 +423,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Xray => m_Wrapper.m_Player_Xray;
         public InputAction @UIToggle => m_Wrapper.m_Player_UIToggle;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @InventoryScroll => m_Wrapper.m_Player_InventoryScroll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -437,6 +460,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @InventoryScroll.started += instance.OnInventoryScroll;
+            @InventoryScroll.performed += instance.OnInventoryScroll;
+            @InventoryScroll.canceled += instance.OnInventoryScroll;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -468,6 +494,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @InventoryScroll.started -= instance.OnInventoryScroll;
+            @InventoryScroll.performed -= instance.OnInventoryScroll;
+            @InventoryScroll.canceled -= instance.OnInventoryScroll;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -496,5 +525,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnXray(InputAction.CallbackContext context);
         void OnUIToggle(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnInventoryScroll(InputAction.CallbackContext context);
     }
 }
