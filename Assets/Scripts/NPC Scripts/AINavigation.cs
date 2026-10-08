@@ -138,10 +138,10 @@ public class AINavigation : MonoBehaviour
             );
         }
 
-        // 20% chance Random walking 
-        else if (choice <= 25)
+        // 35% chance Random walking 
+        else if (choice <= 40)
         {
-            Debug.Log(gameObject + "Is going to random point");
+            //Debug.Log(gameObject + "Is going to random point");
             isPerformingAction = true;
             moving = true;
 
@@ -152,6 +152,8 @@ public class AINavigation : MonoBehaviour
                 range,
                 out point))
             {
+                Debug.Log(gameObject.name + " is going to RANDOM point: " + point);
+
                 myAgent.isStopped = false;
 
                 bool success =
@@ -219,16 +221,14 @@ public class AINavigation : MonoBehaviour
 
                 if (currentTaskPosition != null)
                 {
-                    availableTasks.Remove(
-                        currentTaskTarget
-                    );
+                    availableTasks.Remove(currentTaskTarget);
+
+                    Debug.Log(gameObject.name + " is going to TASK: " + currentTaskTarget.name);
 
                     myAgent.isStopped = false;
 
                     bool success =
-                        myAgent.SetDestination(
-                            currentTaskPosition.position
-                        );
+                        myAgent.SetDestination(currentTaskPosition.position);
 
                     if (success)
                     {
@@ -496,10 +496,7 @@ public class AINavigation : MonoBehaviour
                     }
                 }
 
-                if (!isTask) // Starts movement after random wandering
-                {
-                    myAgent.isStopped = false;
-                }
+               
 
                 currentTaskTarget = null;
                 currentTaskPosition = null;
