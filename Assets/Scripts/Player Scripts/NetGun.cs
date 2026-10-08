@@ -10,6 +10,9 @@ public class NetGun : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
+    [Header("First Person")]
+    [SerializeField] private FirstPersonItemSet firstPersonItemSet;
+
     [Header("Aiming")]
     [SerializeField] private float maxRange = 80f;
     [SerializeField] private LayerMask aimMask = ~0;
@@ -17,22 +20,17 @@ public class NetGun : MonoBehaviour
     [Header("Projectile")]
     [SerializeField] private float projectileSpeed = 35f;
 
-    [Header("Startup")]
-    [SerializeField] private float startupCooldown = 2f;
-
     [Header("Input")]
     [Tooltip("Action bound to <Mouse>/leftButton, <Gamepad>/rightTrigger, etc.")]
     [SerializeField] private InputActionReference fireAction;
 
     private float startupTimer;
 
-    private Camera Cam => mainCamera != null ? mainCamera : Camera.main;
+    private Camera Cam =>
+        mainCamera != null ? mainCamera : Camera.main;
 
     private void OnEnable()
     {
-        // Start the cooldown whenever the NetGun becomes enabled
-        startupTimer = startupCooldown;
-
         if (fireAction != null)
         {
             fireAction.action.Enable();
@@ -59,7 +57,11 @@ public class NetGun : MonoBehaviour
 
     private void OnFire(InputAction.CallbackContext ctx)
     {
-        // Ignore firing during startup cooldown
+        // Only allow shooting if the NetGun is currently selected.
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        // Ignore firing during startup cooldown.
         if (startupTimer > 0f)
             return;
 
@@ -68,15 +70,31 @@ public class NetGun : MonoBehaviour
 
     public void ShootNet()
     {
+        // Extra safety check.
+        if (!gameObject.activeInHierarchy)
+            return;
+
         if (!firePoint || !netProjectilePrefab)
         {
-            Debug.LogWarning("NetGun missing FirePoint or Projectile prefab.");
+            Debug.LogWarning(
+                "NetGun missing FirePoint or Projectile prefab."
+            );
+
             return;
         }
 
-        // Ray from the camera center
+        if (Cam == null)
+        {
+            Debug.LogWarning(
+                "NetGun cannot find the main camera."
+            );
+
+            return;
+        }
+
+        // Ray from the center of the first-person camera.
         Ray ray = Cam.ViewportPointToRay(
-            new Vector3(0.5f, 0.5f, 0)
+            new Vector3(0.5f, 0.5f, 0f)
         );
 
         Vector3 targetPoint;
@@ -95,26 +113,30 @@ public class NetGun : MonoBehaviour
             targetPoint = ray.GetPoint(maxRange);
         }
 
-        // Direction from gun to target
-        Vector3 dir = targetPoint - firePoint.position;
+        // Direction from gun to target.
+        Vector3 dir =
+            targetPoint - firePoint.position;
 
         if (dir.sqrMagnitude < 0.0001f)
         {
             dir = firePoint.forward;
         }
 
-        // Spawn projectile
+        // Spawn projectile.
         GameObject net = Instantiate(
             netProjectilePrefab,
             firePoint.position,
             Quaternion.LookRotation(dir)
         );
 
-        Rigidbody rb = net.GetComponent<Rigidbody>();
+        // Give projectile velocity.
+        Rigidbody rb =
+            net.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
-            rb.velocity = dir.normalized * projectileSpeed;
+            rb.velocity =
+                dir.normalized * projectileSpeed;
         }
         else
         {
@@ -123,8 +145,15 @@ public class NetGun : MonoBehaviour
             );
         }
 
-        // Play sound
-        if (audioSource != null && audioClip != null)
+        // Play recoil.
+        if (firstPersonItemSet != null)
+        {
+            firstPersonItemSet.PlayShootRecoil();
+        }
+
+        // Play sound.
+        if (audioSource != null &&
+            audioClip != null)
         {
             audioSource.PlayOneShot(audioClip);
         }

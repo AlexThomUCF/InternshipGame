@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9138236104896721510}
+  - component: {fileID: 7665332779344182950}
   m_Layer: 6
   m_Name: Follow Target
   m_TagString: Untagged
@@ -25,12 +26,28 @@ Transform:
   m_GameObject: {fileID: 62411478520849077}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.005, y: 0.436, z: -0.01}
+  m_LocalPosition: {x: 0.118, y: 0.6, z: 0.576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1919510277537431216}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7665332779344182950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62411478520849077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f10a1a00d0985ce46ac23d1e3c4e0d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1919510277537431216}
+  lookSensitivity: 10
+  topClamp: 70
+  bottomClamp: -40
 --- !u!1 &5144033491604124839
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,11 +90,8 @@ GameObject:
   - component: {fileID: 1919510277537431216}
   - component: {fileID: 3454293449500887283}
   - component: {fileID: 3897019270122285036}
-  - component: {fileID: 5858621339038333403}
   - component: {fileID: 6598100119793481536}
-  - component: {fileID: 7577132375780205790}
   - component: {fileID: 5257564890557668224}
-  - component: {fileID: 6285340117441058532}
   - component: {fileID: 6318527617616444940}
   m_Layer: 6
   m_Name: Player 1
@@ -145,29 +159,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   footstepsSound: {fileID: 0}
+  jumpClip: {fileID: 0}
   dirtFootsteps: {fileID: 0}
   grassFootsteps: {fileID: 0}
   woodFootsteps: {fileID: 0}
   walkSpeed: 8
-  turningSpeed: 5
   gravity: 20
-  jumpHeight: 1
---- !u!114 &5858621339038333403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6111972122206512391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f10a1a00d0985ce46ac23d1e3c4e0d36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followTarget: {fileID: 9138236104896721510}
-  rotationalSpeed: 10
-  TopClamp: 70
-  BottomClamp: -40
+  jumpHeight: 2
+  jumpCooldown: 0.75
 --- !u!95 &6598100119793481536
 Animator:
   serializedVersion: 5
@@ -189,29 +188,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7577132375780205790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6111972122206512391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cb17790b04dcbd43a7387dc78d95c40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  firePoint: {fileID: 2427207739118140741}
-  netProjectilePrefab: {fileID: 4659686530487174202, guid: 90ab6cf3c99846c4d86f732750538bc2, type: 3}
-  audioSource: {fileID: 0}
-  audioClip: {fileID: 0}
-  maxRange: 80
-  aimMask:
-    serializedVersion: 2
-    m_Bits: 136
-  projectileSpeed: 35
-  fireAction: {fileID: -7336863385139088170, guid: 85a192746fb81f942a31928e6838c1a9, type: 3}
 --- !u!114 &5257564890557668224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,22 +203,6 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 256
---- !u!114 &6285340117441058532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6111972122206512391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a06cee29f2528c64eaaec840053795b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aimCamera: {fileID: 0}
-  crosshair: {fileID: 0}
-  mainCamera: {fileID: 0}
-  aimRange: 100
 --- !u!114 &6318527617616444940
 MonoBehaviour:
   m_ObjectHideFlags: 0
