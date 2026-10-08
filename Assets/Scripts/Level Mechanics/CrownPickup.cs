@@ -12,27 +12,22 @@ public class CrownPickup : MonoBehaviour
     public float respawnTime = 60f;
 
     [Header("Crown Hand Size")]
-    [SerializeField] private float handScale = 0.5f;
+    [SerializeField] private float handScale = 0.25f;
 
-    [Header("Crown VFX Size")]
-    [SerializeField] private float handVFXScale = 0.5f;
+    // Original world position
+    private Vector3 startPosition;
 
-    private Transform anchor;
+    // Original world rotation
+    private Quaternion startRotation;
 
-    // Original throne settings
-    private Transform startParent;
-    private Vector3 startLocalPosition;
-    private Quaternion startLocalRotation;
+    // Original world scale
     private Vector3 startScale;
 
-    // Original VFX scale
-    private Vector3 poofVFXStartScale;
+    private Transform anchor;
 
     private PlayerInteract playerInRange;
 
     private Renderer[] renderers;
-
-    // Both crown colliders
     private Collider[] colliders;
 
     public VisualEffect poofVFX;
@@ -46,24 +41,21 @@ public class CrownPickup : MonoBehaviour
 
     private void Start()
     {
-        // Remember exactly where the crown starts on the throne.
-        startParent = transform.parent;
-        startLocalPosition = transform.localPosition;
-        startLocalRotation = transform.localRotation;
-        startScale = transform.localScale;
+        // Remember exactly where the crown starts.
+        startPosition =
+            transform.position;
 
-        // Remember original VFX size.
-        if (poofVFX != null)
-        {
-            poofVFXStartScale =
-                poofVFX.transform.localScale;
-        }
+        startRotation =
+            transform.rotation;
+
+        startScale =
+            transform.lossyScale;
 
         // Cache all renderers.
         renderers =
             GetComponentsInChildren<Renderer>();
 
-        // Cache ALL colliders on the crown.
+        // Cache BOTH colliders.
         colliders =
             GetComponentsInChildren<Collider>();
 
@@ -114,8 +106,6 @@ public class CrownPickup : MonoBehaviour
 
     public void PickUp(Transform crownAnchor)
     {
-        // Prevent pickup while already holding it
-        // or while it is respawning.
         if (isPickedUp || isRespawning)
             return;
 
@@ -123,10 +113,10 @@ public class CrownPickup : MonoBehaviour
 
         anchor = crownAnchor;
 
-        // Disable BOTH colliders while held.
+        // Disable BOTH colliders.
         SetCollidersEnabled(false);
 
-        // Move crown into player's hand.
+        // Parent crown to player's hand.
         transform.SetParent(anchor);
 
         transform.localPosition =
@@ -137,15 +127,7 @@ public class CrownPickup : MonoBehaviour
 
         // Make crown smaller in player's hand.
         transform.localScale =
-            startScale * handScale;
-
-        // Make pickup smoke smaller.
-        if (poofVFX != null)
-        {
-            poofVFX.transform.localScale =
-                poofVFXStartScale *
-                handVFXScale;
-        }
+            Vector3.one * handScale;
 
         // Play pickup VFX.
         if (poofVFX != null)
@@ -173,24 +155,24 @@ public class CrownPickup : MonoBehaviour
             poofVFX2.Play();
         }
 
-        // Move crown back to the throne.
-        transform.SetParent(
-            startParent
-        );
+        // Remove crown from player's hand.
+        transform.SetParent(null);
 
-        transform.localPosition =
-            startLocalPosition;
+        // Put crown back at its original position.
+        transform.position =
+            startPosition;
 
-        transform.localRotation =
-            startLocalRotation;
+        transform.rotation =
+            startRotation;
 
+        // Restore original size.
         transform.localScale =
             startScale;
 
         // No longer held.
         isPickedUp = false;
 
-        // Start cooldown.
+        // Begin respawn cooldown.
         isRespawning = true;
 
         // Hide crown.
@@ -199,21 +181,14 @@ public class CrownPickup : MonoBehaviour
         // Disable BOTH colliders.
         SetCollidersEnabled(false);
 
-        // Clear PlayerInteract's reference.
+        // Clear PlayerInteract reference.
         if (playerInRange != null)
         {
             playerInRange.ClearNearbyCrown(this);
             playerInRange = null;
         }
 
-        // Restore VFX size.
-        if (poofVFX != null)
-        {
-            poofVFX.transform.localScale =
-                poofVFXStartScale;
-        }
-
-        // Start respawn timer.
+        // Start cooldown.
         StartCoroutine(
             RespawnCrown()
         );
@@ -221,7 +196,6 @@ public class CrownPickup : MonoBehaviour
 
     private IEnumerator RespawnCrown()
     {
-        // Wait for the respawn timer.
         yield return new WaitForSeconds(
             respawnTime
         );
@@ -229,7 +203,7 @@ public class CrownPickup : MonoBehaviour
         // Crown is available again.
         isRespawning = false;
 
-        // Show crown.
+        // Make crown visible.
         SetVisibility(true);
 
         // Enable BOTH colliders.
