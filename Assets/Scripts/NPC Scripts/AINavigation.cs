@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class AINavigation : MonoBehaviour
 {
     [Header("References")]
-    private NPCDestination currentDestination;
     private GameObject currentTaskTarget;
 
     public NavMeshAgent myAgent;
@@ -48,16 +47,7 @@ public class AINavigation : MonoBehaviour
         animator = GetComponent<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
 
-        taskCheckpoints = taskList.taskArray;
-
-        if (CompareTag("IMPOSTER"))
-        {
-            taskCheckpoints = taskList.imposterTaskArray;
-        }
-        else
-        {
-            taskCheckpoints = taskList.taskArray;
-        }
+        taskCheckpoints = CompareTag("IMPOSTER") ? taskList.imposterTaskArray : taskList.taskArray;
 
         availableTasks.AddRange(taskCheckpoints);
     }
@@ -71,8 +61,7 @@ public class AINavigation : MonoBehaviour
 
             moving = false;
 
-            if (animator != null)
-                animator.SetBool("isMoving", false);
+            StopAnimation();
 
             return;
         }
@@ -167,20 +156,12 @@ public class AINavigation : MonoBehaviour
                 }
                 else
                 {
-                    isPerformingAction = false;
-                    moving = false;
-
-                    myAgent.ResetPath();
-
-                    decisionCooldown = 1f;
+                    StopMovement();
                 }
             }
             else
             {
-                isPerformingAction = false;
-                moving = false;
-
-                decisionCooldown = 1f;
+                StopMovement();
             }
         }
 
@@ -245,30 +226,54 @@ public class AINavigation : MonoBehaviour
                         currentTaskTarget = null;
                         currentTaskPosition = null;
 
-                        isPerformingAction = false;
-                        moving = false;
-
-                        myAgent.ResetPath();
-
-                        decisionCooldown = 1f;
+                        StopMovement();
                     }
                 }
                 else
                 {
-                    isPerformingAction = false;
-                    moving = false;
-
-                    decisionCooldown = 1f;
+                    StopMovement();
                 }
             }
             else
             {
-                isPerformingAction = false;
-                moving = false;
-
-                decisionCooldown = 1f;
+                StopMovement();
             }
         }
+    }
+
+    private void StopMovement(float cooldown = 1f)
+    {
+        moving = false;
+        isPerformingAction = false;
+
+        myAgent.isStopped = true;
+        myAgent.ResetPath();
+
+        decisionCooldown = cooldown;
+    }
+
+    void StopAnimation()
+    {
+        if (animator != null)
+            animator.SetBool("isMoving", false);
+    }
+
+    //NPC looks at target (target is defined in NPCDestination script)
+    void LookAtTask()
+    {
+        if (currentTaskTarget == null)
+            return;
+
+        NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
+
+        if (dest == null || dest.taskLookDirection == null)
+            return;
+
+        Vector3 direction = dest.taskLookDirection.position - transform.position;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(direction);
     }
 
     IEnumerator PauseMovement(float pauseTime)
@@ -278,8 +283,7 @@ public class AINavigation : MonoBehaviour
 
         myAgent.isStopped = true;
 
-        if (animator != null)
-            animator.SetBool("isMoving", false);
+        StopAnimation();
 
         yield return new WaitForSeconds(pauseTime);
 
@@ -303,13 +307,7 @@ public class AINavigation : MonoBehaviour
         if (!myAgent.hasPath ||
             myAgent.pathStatus == NavMeshPathStatus.PathInvalid)
         {
-            moving = false;
-            isPerformingAction = false;
-
-            myAgent.isStopped = true;
-            myAgent.ResetPath();
-
-            decisionCooldown = 1f;
+            StopMovement();
 
             yield break;
         }
@@ -318,13 +316,7 @@ public class AINavigation : MonoBehaviour
         // don't allow the NPC to walk forever.
         if (myAgent.pathStatus == NavMeshPathStatus.PathPartial)
         {
-            moving = false;
-            isPerformingAction = false;
-
-            myAgent.isStopped = true;
-            myAgent.ResetPath();
-
-            decisionCooldown = 1f;
+            StopMovement();
 
             yield break;
         }
@@ -336,13 +328,7 @@ public class AINavigation : MonoBehaviour
             if (myAgent.pathStatus ==
                 NavMeshPathStatus.PathInvalid)
             {
-                moving = false;
-                isPerformingAction = false;
-
-                myAgent.isStopped = true;
-                myAgent.ResetPath();
-
-                decisionCooldown = 1f;
+                StopMovement();
 
                 yield break;
             }
@@ -355,21 +341,8 @@ public class AINavigation : MonoBehaviour
         myAgent.isStopped = true;
 
         // Look toward the task's look direction
-        if (isTask && currentTaskTarget != null)
-        {
-            NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
-
-            if (dest != null && dest.taskLookDirection != null)
-            {
-                Vector3 direction = dest.taskLookDirection.position - transform.position;
-                direction.y = 0;
-
-                if (direction != Vector3.zero)
-                {
-                    transform.rotation = Quaternion.LookRotation(direction);
-                }
-            }
-        }
+        if (isTask)
+            LookAtTask();
 
         if (isTask &&
             currentTaskTarget != null)
@@ -404,11 +377,7 @@ public class AINavigation : MonoBehaviour
                         dest.taskName
                     );
 
-                    Debug.Log(
-                        gameObject.name +
-                        " completed task: " +
-                        dest.taskName
-                    );
+                    Debug.Log(gameObject.name +" completed task: " +dest.taskName);
                 }
 
                 if (dest.animationTrigger != "")
@@ -416,19 +385,14 @@ public class AINavigation : MonoBehaviour
                     myAgent.isStopped = true;
                     moving = false;
 
-                    animator.SetTrigger(
-                        dest.animationTrigger
-                    );
+                    animator.SetTrigger(dest.animationTrigger);
 
                     if (animator.isHuman)
                     {
                         Transform attachPoint =
-                            animator.GetBoneTransform(
-                                dest.attachBone
-                            );
+                            animator.GetBoneTransform(dest.attachBone);
 
-                        if (dest.taskObjectPrefab != null &&
-                            attachPoint != null)
+                        if (dest.taskObjectPrefab != null && attachPoint != null)
                         {
                             currentTaskObject =
                                 Instantiate(
@@ -548,13 +512,7 @@ public class AINavigation : MonoBehaviour
         isPerformingAction = false;
         moving = false;
 
-        if (animator != null)
-        {
-            animator.SetBool(
-                "isMoving",
-                false
-            );
-        }
+        StopAnimation();
 
         if (myAgent != null)
         {
@@ -603,13 +561,7 @@ public class AINavigation : MonoBehaviour
         // another action.
         isPerformingAction = true;
 
-        if (animator != null)
-        {
-            animator.SetBool(
-                "isMoving",
-                false
-            );
-        }
+        StopAnimation();
 
         // Every NPC gets its own random delay.
         decisionCooldown =
