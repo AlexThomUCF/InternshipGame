@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,7 +22,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 8f;
-    [SerializeField] private float turningSpeed = 5f;
     [SerializeField] private float gravity = 20f;
 
     [Header("Jump Settings")]
@@ -53,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
         controls.Player.Jump.performed += _ =>
         {
-            // Only accept the jump if the cooldown is finished
             if (jumpCooldownTimer <= 0f)
             {
                 jumpPressed = true;
@@ -74,7 +71,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        Turn();
         HandleFootsteps();
         UpdateAnimation();
     }
@@ -87,41 +83,60 @@ public class PlayerController : MonoBehaviour
             moveInput.y
         );
 
-        move = cam.TransformDirection(move);
-        move.y = 0f;
+        // Make movement follow the camera/player's
+        // horizontal facing direction.
+        Vector3 forward = cam.forward;
+        Vector3 right = cam.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        move =
+            forward * moveInput.y +
+            right * moveInput.x;
 
         move *= walkSpeed;
+
         move.y = CalculateVerticalMovement();
 
-        controller.Move(move * Time.deltaTime);
+        controller.Move(
+            move * Time.deltaTime
+        );
     }
 
     private float CalculateVerticalMovement()
     {
-        // Reduce jump cooldown
         if (jumpCooldownTimer > 0f)
         {
             jumpCooldownTimer -= Time.deltaTime;
         }
 
-        // Jump
-        if (jumpPressed && jumpCooldownTimer <= 0f)
+        if (jumpPressed &&
+            jumpCooldownTimer <= 0f &&
+            controller.isGrounded)
         {
             verticalVelocity = Mathf.Sqrt(
                 jumpHeight * gravity * 2f
             );
 
-            // Start cooldown
             jumpCooldownTimer = jumpCooldown;
 
             PlayJumpSound();
 
-            // Consume the jump press
             jumpPressed = false;
         }
 
-        // Apply gravity
-        verticalVelocity -= gravity * Time.deltaTime;
+        if (controller.isGrounded &&
+            verticalVelocity < 0f)
+        {
+            verticalVelocity = -2f;
+        }
+
+        verticalVelocity -=
+            gravity * Time.deltaTime;
 
         return verticalVelocity;
     }
@@ -138,37 +153,26 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Jump Clip is missing!");
-        }
-    }
-
-    private void Turn()
-    {
-        Vector3 velocity = controller.velocity;
-        velocity.y = 0f;
-
-        if (velocity.sqrMagnitude > 0.1f)
-        {
-            Quaternion targetRotation =
-                Quaternion.LookRotation(velocity);
-
-            transform.rotation = Quaternion.Slerp(
-                transform.rotation,
-                targetRotation,
-                Time.deltaTime * turningSpeed
+            Debug.LogWarning(
+                "Jump Clip is missing!"
             );
         }
     }
 
     private void UpdateAnimation()
     {
-        Vector3 horizontalVelocity = controller.velocity;
+        Vector3 horizontalVelocity =
+            controller.velocity;
+
         horizontalVelocity.y = 0f;
 
-        anim.SetFloat(
-            "Speed",
-            horizontalVelocity.magnitude
-        );
+        if (anim != null)
+        {
+            anim.SetFloat(
+                "Speed",
+                horizontalVelocity.magnitude
+            );
+        }
     }
 
     private void HandleFootsteps()
@@ -179,22 +183,27 @@ public class PlayerController : MonoBehaviour
             moveInput != Vector2.zero &&
             controller.isGrounded;
 
-        if (isMoving && currentFootstepClip != null)
+        if (isMoving &&
+            currentFootstepClip != null)
         {
-            // Surface changed
-            if (currentFootstepClip != previousFootstepClip)
+            if (currentFootstepClip !=
+                previousFootstepClip)
             {
                 footstepsSound.Stop();
 
-                footstepsSound.clip = currentFootstepClip;
+                footstepsSound.clip =
+                    currentFootstepClip;
+
                 footstepsSound.Play();
 
-                previousFootstepClip = currentFootstepClip;
+                previousFootstepClip =
+                    currentFootstepClip;
             }
-            // Footstep finished, play it again
             else if (!footstepsSound.isPlaying)
             {
-                footstepsSound.clip = currentFootstepClip;
+                footstepsSound.clip =
+                    currentFootstepClip;
+
                 footstepsSound.Play();
             }
         }
@@ -259,7 +268,10 @@ public class PlayerController : MonoBehaviour
     {
         currentFootstepClip = clip;
 
-        footstepsSound.volume = volume;
-        footstepsSound.pitch = pitch;
+        if (footstepsSound != null)
+        {
+            footstepsSound.volume = volume;
+            footstepsSound.pitch = pitch;
+        }
     }
 }
