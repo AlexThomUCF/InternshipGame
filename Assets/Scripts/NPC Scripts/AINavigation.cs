@@ -354,6 +354,23 @@ public class AINavigation : MonoBehaviour
 
         myAgent.isStopped = true;
 
+        // Look toward the task's look direction
+        if (isTask && currentTaskTarget != null)
+        {
+            NPCDestination dest = currentTaskTarget.GetComponent<NPCDestination>();
+
+            if (dest != null && dest.taskLookDirection != null)
+            {
+                Vector3 direction = dest.taskLookDirection.position - transform.position;
+                direction.y = 0;
+
+                if (direction != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.LookRotation(direction);
+                }
+            }
+        }
+
         if (isTask &&
             currentTaskTarget != null)
         {
