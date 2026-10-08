@@ -20,9 +20,6 @@ public class NetGun : MonoBehaviour
     [Header("Projectile")]
     [SerializeField] private float projectileSpeed = 35f;
 
-    [Header("Startup")]
-    [SerializeField] private float startupCooldown = 2f;
-
     [Header("Input")]
     [Tooltip("Action bound to <Mouse>/leftButton, <Gamepad>/rightTrigger, etc.")]
     [SerializeField] private InputActionReference fireAction;
@@ -34,8 +31,6 @@ public class NetGun : MonoBehaviour
 
     private void OnEnable()
     {
-        startupTimer = startupCooldown;
-
         if (fireAction != null)
         {
             fireAction.action.Enable();
@@ -62,6 +57,11 @@ public class NetGun : MonoBehaviour
 
     private void OnFire(InputAction.CallbackContext ctx)
     {
+        // Only allow shooting if the NetGun is currently selected.
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        // Ignore firing during startup cooldown.
         if (startupTimer > 0f)
             return;
 
@@ -70,6 +70,10 @@ public class NetGun : MonoBehaviour
 
     public void ShootNet()
     {
+        // Extra safety check.
+        if (!gameObject.activeInHierarchy)
+            return;
+
         if (!firePoint || !netProjectilePrefab)
         {
             Debug.LogWarning(
@@ -88,7 +92,7 @@ public class NetGun : MonoBehaviour
             return;
         }
 
-        // Ray from the center of the first-person camera
+        // Ray from the center of the first-person camera.
         Ray ray = Cam.ViewportPointToRay(
             new Vector3(0.5f, 0.5f, 0f)
         );
@@ -109,7 +113,7 @@ public class NetGun : MonoBehaviour
             targetPoint = ray.GetPoint(maxRange);
         }
 
-        // Direction from gun to target
+        // Direction from gun to target.
         Vector3 dir =
             targetPoint - firePoint.position;
 
@@ -118,14 +122,14 @@ public class NetGun : MonoBehaviour
             dir = firePoint.forward;
         }
 
-        // Spawn projectile
+        // Spawn projectile.
         GameObject net = Instantiate(
             netProjectilePrefab,
             firePoint.position,
             Quaternion.LookRotation(dir)
         );
 
-        // Give projectile velocity
+        // Give projectile velocity.
         Rigidbody rb =
             net.GetComponent<Rigidbody>();
 
@@ -141,13 +145,13 @@ public class NetGun : MonoBehaviour
             );
         }
 
-        // Play recoil on the NetGun's own item set
+        // Play recoil.
         if (firstPersonItemSet != null)
         {
             firstPersonItemSet.PlayShootRecoil();
         }
 
-        // Play sound
+        // Play sound.
         if (audioSource != null &&
             audioClip != null)
         {

@@ -93898,6 +93898,7 @@ GameObject:
   - component: {fileID: 1086444405}
   - component: {fileID: 1086444408}
   - component: {fileID: 1086444407}
+  - component: {fileID: 1086444409}
   m_Layer: 0
   m_Name: Netgun
   m_TagString: Untagged
@@ -93971,6 +93972,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086444404}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1086444409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086444404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb17790b04dcbd43a7387dc78d95c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 295506395}
+  firePoint: {fileID: 1653278080}
+  netProjectilePrefab: {fileID: 4659686530487174202, guid: 90ab6cf3c99846c4d86f732750538bc2, type: 3}
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
+  firstPersonItemSet: {fileID: 1922073521}
+  maxRange: 80
+  aimMask:
+    serializedVersion: 2
+    m_Bits: 136
+  projectileSpeed: 35
+  startupCooldown: 0.5
+  fireAction: {fileID: -7336863385139088170, guid: 85a192746fb81f942a31928e6838c1a9, type: 3}
 --- !u!1001 &1090868912
 PrefabInstance:
   m_ObjectHideFlags: 0
