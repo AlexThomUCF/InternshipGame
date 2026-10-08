@@ -54467,7 +54467,7 @@ Transform:
   m_GameObject: {fileID: 647591448}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81926,7 +81926,7 @@ Transform:
   m_GameObject: {fileID: 919468734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -82094,6 +82094,7 @@ MonoBehaviour:
   - {fileID: 1922073519}
   - {fileID: 919468734}
   - {fileID: 647591448}
+  equipSpeed: 4
 --- !u!1 &921961766
 GameObject:
   m_ObjectHideFlags: 0
@@ -93995,7 +93996,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 136
   projectileSpeed: 35
-  startupCooldown: 0.5
   fireAction: {fileID: -7336863385139088170, guid: 85a192746fb81f942a31928e6838c1a9, type: 3}
 --- !u!1001 &1090868912
 PrefabInstance:
@@ -166437,7 +166437,7 @@ Transform:
   m_GameObject: {fileID: 1922073519}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -168069,7 +168069,6 @@ GameObject:
   - component: {fileID: 1948510292}
   - component: {fileID: 1948510295}
   - component: {fileID: 1948510294}
-  - component: {fileID: 1948510293}
   m_Layer: 0
   m_Name: MagnifyingGlass2
   m_TagString: Untagged
@@ -168092,29 +168091,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1380935703}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!136 &1948510293
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948510291}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1948510294
 MeshRenderer:
   m_ObjectHideFlags: 0

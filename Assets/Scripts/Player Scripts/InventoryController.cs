@@ -5,6 +5,9 @@ public class InventoryController : MonoBehaviour
     [Header("Item Sets")]
     [SerializeField] private GameObject[] itemSets;
 
+    [Header("Equip Animation")]
+    [SerializeField] private float equipSpeed = 2f;
+
     private PlayerControls controls;
 
     private int currentItem = 0;
@@ -81,12 +84,68 @@ public class InventoryController : MonoBehaviour
 
         for (int i = 0; i < itemSets.Length; i++)
         {
-            if (itemSets[i] != null)
+            if (itemSets[i] == null)
+                continue;
+
+            if (i == index)
             {
-                itemSets[i].SetActive(i == index);
+                // Turn the selected item on.
+                itemSets[i].SetActive(true);
+
+                // Make sure it starts below the camera.
+                Vector3 startPosition =
+                    itemSets[i].transform.localPosition;
+
+                startPosition.y = -1f;
+
+                itemSets[i].transform.localPosition =
+                    startPosition;
+
+                // Start the movement upward.
+                StartCoroutine(
+                    MoveItemUp(itemSets[i])
+                );
+            }
+            else
+            {
+                // Hide all other items.
+                itemSets[i].SetActive(false);
             }
         }
 
         currentItem = index;
+    }
+
+    private System.Collections.IEnumerator MoveItemUp(
+        GameObject item
+    )
+    {
+        Transform itemTransform =
+            item.transform;
+
+        Vector3 targetPosition =
+            itemTransform.localPosition;
+
+        targetPosition.y = 0f;
+
+        while (
+            Mathf.Abs(
+                itemTransform.localPosition.y -
+                targetPosition.y
+            ) > 0.01f
+        )
+        {
+            itemTransform.localPosition =
+                Vector3.MoveTowards(
+                    itemTransform.localPosition,
+                    targetPosition,
+                    equipSpeed * Time.deltaTime
+                );
+
+            yield return null;
+        }
+
+        itemTransform.localPosition =
+            targetPosition;
     }
 }
