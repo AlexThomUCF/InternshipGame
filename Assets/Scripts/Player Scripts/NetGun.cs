@@ -11,7 +11,7 @@ public class NetGun : MonoBehaviour
     [SerializeField] private AudioClip audioClip;
 
     [Header("First Person")]
-    [SerializeField] private FirstPersonArms firstPersonArms;
+    [SerializeField] private FirstPersonItemSet firstPersonItemSet;
 
     [Header("Aiming")]
     [SerializeField] private float maxRange = 80f;
@@ -34,7 +34,6 @@ public class NetGun : MonoBehaviour
 
     private void OnEnable()
     {
-        // Start the cooldown whenever the NetGun becomes enabled
         startupTimer = startupCooldown;
 
         if (fireAction != null)
@@ -63,7 +62,6 @@ public class NetGun : MonoBehaviour
 
     private void OnFire(InputAction.CallbackContext ctx)
     {
-        // Ignore firing during startup cooldown
         if (startupTimer > 0f)
             return;
 
@@ -81,9 +79,18 @@ public class NetGun : MonoBehaviour
             return;
         }
 
+        if (Cam == null)
+        {
+            Debug.LogWarning(
+                "NetGun cannot find the main camera."
+            );
+
+            return;
+        }
+
         // Ray from the center of the first-person camera
         Ray ray = Cam.ViewportPointToRay(
-            new Vector3(0.5f, 0.5f, 0)
+            new Vector3(0.5f, 0.5f, 0f)
         );
 
         Vector3 targetPoint;
@@ -134,10 +141,10 @@ public class NetGun : MonoBehaviour
             );
         }
 
-        // Play first-person recoil
-        if (firstPersonArms != null)
+        // Play recoil on the NetGun's own item set
+        if (firstPersonItemSet != null)
         {
-            firstPersonArms.PlayShootRecoil();
+            firstPersonItemSet.PlayShootRecoil();
         }
 
         // Play sound
