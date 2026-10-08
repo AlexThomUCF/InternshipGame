@@ -6,7 +6,7 @@ public class FollowTarget : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("Look Settings")]
-    [SerializeField] private float lookSensitivity = 30f;
+    [SerializeField] private float lookSensitivity = 10f;
     [SerializeField] private float topClamp = 70f;
     [SerializeField] private float bottomClamp = -40f;
 

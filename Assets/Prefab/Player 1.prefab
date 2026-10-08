@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 62411478520849077}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.118, y: 0.115, z: 0.576}
+  m_LocalPosition: {x: 0.118, y: 0.6, z: 0.576}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1919510277537431216}
-  lookSensitivity: 30
+  lookSensitivity: 10
   topClamp: 70
   bottomClamp: -40
 --- !u!1 &5144033491604124839
@@ -166,8 +166,8 @@ MonoBehaviour:
   woodFootsteps: {fileID: 0}
   walkSpeed: 8
   gravity: 20
-  jumpHeight: 1
-  jumpCooldown: 1
+  jumpHeight: 2
+  jumpCooldown: 0.75
 --- !u!95 &6598100119793481536
 Animator:
   serializedVersion: 5
