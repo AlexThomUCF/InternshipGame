@@ -15,6 +15,15 @@ public class InventoryController : MonoBehaviour
 
     private int currentItem = 0;
 
+    // Crown is slot 4 / index 3
+    public bool IsCrownSelected
+    {
+        get
+        {
+            return currentItem == 3;
+        }
+    }
+
     private void Awake()
     {
         controls = new PlayerControls();
@@ -62,8 +71,7 @@ public class InventoryController : MonoBehaviour
         if (itemSets.Length == 0)
             return;
 
-        int nextItem =
-            currentItem;
+        int nextItem = currentItem;
 
         for (int i = 0;
              i < itemSets.Length;
@@ -89,8 +97,7 @@ public class InventoryController : MonoBehaviour
         if (itemSets.Length == 0)
             return;
 
-        int previousItem =
-            currentItem;
+        int previousItem = currentItem;
 
         for (int i = 0;
              i < itemSets.Length;
@@ -142,10 +149,8 @@ public class InventoryController : MonoBehaviour
 
             if (i == index)
             {
-                // Enable selected item
                 itemSets[i].SetActive(true);
 
-                // Start below the camera
                 Vector3 startPosition =
                     itemSets[i]
                     .transform
@@ -158,14 +163,12 @@ public class InventoryController : MonoBehaviour
                     .localPosition =
                     startPosition;
 
-                // Move item upward
                 StartCoroutine(
                     MoveItemUp(itemSets[i])
                 );
             }
             else
             {
-                // Hide all other items
                 itemSets[i].SetActive(false);
             }
         }

@@ -11942,6 +11942,7 @@ GameObject:
   - component: {fileID: 248998983}
   - component: {fileID: 248998985}
   - component: {fileID: 248998986}
+  - component: {fileID: 248998987}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12093,6 +12094,14 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!81 &248998987
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248998981}
+  m_Enabled: 1
 --- !u!1 &249685891
 GameObject:
   m_ObjectHideFlags: 0
@@ -51656,6 +51665,7 @@ MonoBehaviour:
   - {fileID: 15279999}
   - {fileID: 1991065040}
   - {fileID: 179847119}
+  crownPickup: {fileID: 0}
   equipSpeed: 4
 --- !u!114 &1332271189
 MonoBehaviour:
@@ -71821,14 +71831,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!81 &1991562503
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991562492}
-  m_Enabled: 1
 --- !u!43 &1994424825
 Mesh:
   m_ObjectHideFlags: 0
@@ -77368,9 +77370,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6111972122206512391, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1991562493}
-    - targetCorrespondingSourceObject: {fileID: 6111972122206512391, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1991562503}
   m_SourcePrefab: {fileID: 100100000, guid: 4f58761c9dfea7c429ad8ed4b5ef37b5, type: 3}
 --- !u!4 &2146961920 stripped
 Transform:

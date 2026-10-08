@@ -31,7 +31,9 @@ public class NPCInterrogation : MonoBehaviour
         if (beingQuestioned)
             return;
 
-        StartCoroutine(QuestionRoutine(player));
+        StartCoroutine(
+            QuestionRoutine(player)
+        );
     }
 
     IEnumerator QuestionRoutine(Transform player)
@@ -40,35 +42,47 @@ public class NPCInterrogation : MonoBehaviour
 
         // Pause AI
         if (navigation != null)
+        {
             navigation.isPaused = true;
+        }
 
         agent.isStopped = true;
 
         // Smoothly face player
-        yield return StartCoroutine(LookAtPlayer(player));
+        yield return StartCoroutine(
+            LookAtPlayer(player)
+        );
 
         string dialogue;
 
         if (memory != null)
         {
-            dialogue = memory.GetTaskDialogue();
+            dialogue =
+                memory.GetTaskDialogue();
         }
         else
         {
-            dialogue = "I've just been walking around.";
+            dialogue =
+                "I've just been walking around.";
         }
 
-        NPCDialogue.Instance.ShowDialogue(dialogue);
+        NPCDialogue.Instance.ShowDialogue(
+            dialogue
+        );
 
         // Wait for dialogue to finish
-        while (NPCDialogue.Instance.IsDialoguePlaying)
+        while (
+            NPCDialogue.Instance.IsDialoguePlaying
+        )
         {
             yield return null;
         }
 
         // Resume AI
         if (navigation != null)
+        {
             navigation.isPaused = false;
+        }
 
         agent.isStopped = false;
 
@@ -78,22 +92,29 @@ public class NPCInterrogation : MonoBehaviour
     IEnumerator LookAtPlayer(Transform player)
     {
         Vector3 direction =
-            player.position - transform.position;
+            player.position -
+            transform.position;
 
         direction.y = 0;
 
         Quaternion targetRotation =
-            Quaternion.LookRotation(direction);
+            Quaternion.LookRotation(
+                direction
+            );
 
-        while (Quaternion.Angle(
-            transform.rotation,
-            targetRotation) > .5f)
+        while (
+            Quaternion.Angle(
+                transform.rotation,
+                targetRotation
+            ) > 0.5f
+        )
         {
             transform.rotation =
                 Quaternion.RotateTowards(
                     transform.rotation,
                     targetRotation,
-                    turnSpeed * Time.deltaTime
+                    turnSpeed *
+                    Time.deltaTime
                 );
 
             yield return null;
