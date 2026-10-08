@@ -112,7 +112,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!195 &1157473817254785598
 NavMeshAgent:
@@ -338,6 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedTasks: []
 --- !u!1001 &1656878258729726778
 PrefabInstance:
   m_ObjectHideFlags: 0

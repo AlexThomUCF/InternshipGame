@@ -105,7 +105,7 @@ public class AINavigation : MonoBehaviour
             if (NavMesh.SamplePosition(
                 randomPoint,
                 out hit,
-                5.0f,
+                2.0f,
                 NavMesh.AllAreas))
             {
                 result = hit.position;
@@ -119,6 +119,9 @@ public class AINavigation : MonoBehaviour
 
     public void ChooseAction()
     {
+
+        myAgent.isStopped = false;
+
         if (isPerformingAction)
             return;
 
@@ -127,7 +130,7 @@ public class AINavigation : MonoBehaviour
 
         choice = Random.Range(1, 101);
 
-        // Random idle/pause
+        // Random idle/pause 5% chance
         if (choice <= 5)
         {
             StartCoroutine(
@@ -135,9 +138,10 @@ public class AINavigation : MonoBehaviour
             );
         }
 
-        // Random walking
-        else if (choice <= 10)
+        // 20% chance Random walking 
+        else if (choice <= 25)
         {
+            Debug.Log(gameObject + "Is going to random point");
             isPerformingAction = true;
             moving = true;
 
@@ -492,15 +496,18 @@ public class AINavigation : MonoBehaviour
                     }
                 }
 
+                if (!isTask) // Starts movement after random wandering
+                {
+                    myAgent.isStopped = false;
+                }
+
                 currentTaskTarget = null;
                 currentTaskPosition = null;
             }
-
-            isPerformingAction = false;
-
-            decisionCooldown =
-                Random.Range(0.5f, 2f);
         }
+
+        isPerformingAction = false;
+        decisionCooldown = Random.Range(0.5f, 2f);
     }
 
     public void CancelCurrentAction()
