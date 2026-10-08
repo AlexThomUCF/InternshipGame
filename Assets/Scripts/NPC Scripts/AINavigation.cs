@@ -354,6 +354,14 @@ public class AINavigation : MonoBehaviour
             {
                 taskManager.NPCReachedTask(this);
             }
+
+            Chair chair = currentTaskTarget.GetComponent<Chair>();
+
+            if (chair != null)
+            {
+                chair.NpcChair(this);
+                //yield break;
+            }
         }
 
         yield return new WaitForSeconds(

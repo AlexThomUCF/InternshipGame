@@ -825,6 +825,8 @@ MonoBehaviour:
   isPerformingAction: 0
   moving: 0
   isPaused: 0
+  minBlackoutPause: 1
+  maxBlackoutPause: 2
 --- !u!195 &8560641765980915359
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -899,7 +901,7 @@ MonoBehaviour:
   animator: {fileID: 6499379574228715758}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
-  castleController: {fileID: 0}
+  castleController: {fileID: 9100000, guid: 244c613cb19130e409dba74ae0e7b237, type: 2}
   ragDollParts: []
 --- !u!82 &-9181237501767976878
 AudioSource:
@@ -1023,6 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21814d98ba6b9de4f968cc311fe40041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completedTasks: []
 --- !u!4 &949461675654912974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5fd7c508b7f38ee4a84b7580ba3235f6, type: 3}
