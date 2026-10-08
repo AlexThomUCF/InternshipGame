@@ -5,6 +5,9 @@ public class InventoryController : MonoBehaviour
     [Header("Item Sets")]
     [SerializeField] private GameObject[] itemSets;
 
+    [Header("Crown")]
+    [SerializeField] private CrownPickup crownPickup;
+
     [Header("Equip Animation")]
     [SerializeField] private float equipSpeed = 2f;
 
@@ -16,7 +19,8 @@ public class InventoryController : MonoBehaviour
     {
         controls = new PlayerControls();
 
-        controls.Player.InventoryScroll.performed += OnInventoryScroll;
+        controls.Player.InventoryScroll.performed +=
+            OnInventoryScroll;
     }
 
     private void OnEnable()
@@ -55,26 +59,70 @@ public class InventoryController : MonoBehaviour
 
     private void NextItem()
     {
-        currentItem++;
+        if (itemSets.Length == 0)
+            return;
 
-        if (currentItem >= itemSets.Length)
+        int nextItem =
+            currentItem;
+
+        for (int i = 0;
+             i < itemSets.Length;
+             i++)
         {
-            currentItem = 0;
-        }
+            nextItem++;
 
-        SelectItem(currentItem);
+            if (nextItem >= itemSets.Length)
+            {
+                nextItem = 0;
+            }
+
+            if (IsItemAvailable(nextItem))
+            {
+                SelectItem(nextItem);
+                return;
+            }
+        }
     }
 
     private void PreviousItem()
     {
-        currentItem--;
+        if (itemSets.Length == 0)
+            return;
 
-        if (currentItem < 0)
+        int previousItem =
+            currentItem;
+
+        for (int i = 0;
+             i < itemSets.Length;
+             i++)
         {
-            currentItem = itemSets.Length - 1;
+            previousItem--;
+
+            if (previousItem < 0)
+            {
+                previousItem =
+                    itemSets.Length - 1;
+            }
+
+            if (IsItemAvailable(previousItem))
+            {
+                SelectItem(previousItem);
+                return;
+            }
+        }
+    }
+
+    private bool IsItemAvailable(int index)
+    {
+        // Slot 4 = Crown
+        if (index == 3)
+        {
+            return crownPickup != null &&
+                   crownPickup.isPickedUp;
         }
 
-        SelectItem(currentItem);
+        // First three items are always available
+        return true;
     }
 
     private void SelectItem(int index)
@@ -82,33 +130,42 @@ public class InventoryController : MonoBehaviour
         if (itemSets.Length == 0)
             return;
 
-        for (int i = 0; i < itemSets.Length; i++)
+        if (!IsItemAvailable(index))
+            return;
+
+        for (int i = 0;
+             i < itemSets.Length;
+             i++)
         {
             if (itemSets[i] == null)
                 continue;
 
             if (i == index)
             {
-                // Turn the selected item on.
+                // Enable selected item
                 itemSets[i].SetActive(true);
 
-                // Make sure it starts below the camera.
+                // Start below the camera
                 Vector3 startPosition =
-                    itemSets[i].transform.localPosition;
+                    itemSets[i]
+                    .transform
+                    .localPosition;
 
                 startPosition.y = -1f;
 
-                itemSets[i].transform.localPosition =
+                itemSets[i]
+                    .transform
+                    .localPosition =
                     startPosition;
 
-                // Start the movement upward.
+                // Move item upward
                 StartCoroutine(
                     MoveItemUp(itemSets[i])
                 );
             }
             else
             {
-                // Hide all other items.
+                // Hide all other items
                 itemSets[i].SetActive(false);
             }
         }
@@ -139,7 +196,8 @@ public class InventoryController : MonoBehaviour
                 Vector3.MoveTowards(
                     itemTransform.localPosition,
                     targetPosition,
-                    equipSpeed * Time.deltaTime
+                    equipSpeed *
+                    Time.deltaTime
                 );
 
             yield return null;

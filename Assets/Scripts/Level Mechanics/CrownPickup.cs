@@ -6,17 +6,34 @@ public class CrownPickup : MonoBehaviour
 {
     public bool isPickedUp = false;
 
+    private bool isRespawning = false;
+
     public float rotationSpeed = 100f;
     public float respawnTime = 60f;
 
+    [Header("Crown Hand Size")]
+    [SerializeField] private float handScale = 0.5f;
+
+    [Header("Crown VFX Size")]
+    [SerializeField] private float handVFXScale = 0.5f;
+
     private Transform anchor;
-    private Vector3 startPosition;
-    private Quaternion startRotation;
+
+    // Original throne settings
+    private Transform startParent;
+    private Vector3 startLocalPosition;
+    private Quaternion startLocalRotation;
+    private Vector3 startScale;
+
+    // Original VFX scale
+    private Vector3 poofVFXStartScale;
 
     private PlayerInteract playerInRange;
 
     private Renderer[] renderers;
-    private Collider col;
+
+    // Both crown colliders
+    private Collider[] colliders;
 
     public VisualEffect poofVFX;
     public VisualEffect poofVFX2;
@@ -27,24 +44,39 @@ public class CrownPickup : MonoBehaviour
     // Automatically created AudioSource
     private AudioSource audioSource;
 
-    void Start()
+    private void Start()
     {
-        startPosition = transform.position;
-        startRotation = transform.rotation;
+        // Remember exactly where the crown starts on the throne.
+        startParent = transform.parent;
+        startLocalPosition = transform.localPosition;
+        startLocalRotation = transform.localRotation;
+        startScale = transform.localScale;
 
-        // Cache renderer(s) and collider
-        renderers = GetComponentsInChildren<Renderer>();
-        col = GetComponent<Collider>();
+        // Remember original VFX size.
+        if (poofVFX != null)
+        {
+            poofVFXStartScale =
+                poofVFX.transform.localScale;
+        }
 
-        // Create/get AudioSource
-        audioSource = GetComponent<AudioSource>();
+        // Cache all renderers.
+        renderers =
+            GetComponentsInChildren<Renderer>();
+
+        // Cache ALL colliders on the crown.
+        colliders =
+            GetComponentsInChildren<Collider>();
+
+        // Create/get AudioSource.
+        audioSource =
+            GetComponent<AudioSource>();
 
         if (audioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource =
+                gameObject.AddComponent<AudioSource>();
         }
 
-        // Audio settings
         audioSource.playOnAwake = false;
         audioSource.loop = false;
         audioSource.spatialBlend = 1f;
@@ -52,11 +84,13 @@ public class CrownPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isPickedUp) return;
+        if (isPickedUp || isRespawning)
+            return;
 
         if (other.CompareTag("Player"))
         {
-            playerInRange = other.GetComponent<PlayerInteract>();
+            playerInRange =
+                other.GetComponent<PlayerInteract>();
 
             if (playerInRange != null)
             {
@@ -72,6 +106,7 @@ public class CrownPickup : MonoBehaviour
             if (playerInRange != null)
             {
                 playerInRange.ClearNearbyCrown(this);
+
                 playerInRange = null;
             }
         }
@@ -79,75 +114,171 @@ public class CrownPickup : MonoBehaviour
 
     public void PickUp(Transform crownAnchor)
     {
+        // Prevent pickup while already holding it
+        // or while it is respawning.
+        if (isPickedUp || isRespawning)
+            return;
+
         isPickedUp = true;
+
         anchor = crownAnchor;
 
-        // Disable trigger so it doesn’t retrigger
-        if (col != null)
-            col.enabled = false;
+        // Disable BOTH colliders while held.
+        SetCollidersEnabled(false);
 
+        // Move crown into player's hand.
         transform.SetParent(anchor);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
 
-        // Play pickup VFX
+        transform.localPosition =
+            Vector3.zero;
+
+        transform.localRotation =
+            Quaternion.identity;
+
+        // Make crown smaller in player's hand.
+        transform.localScale =
+            startScale * handScale;
+
+        // Make pickup smoke smaller.
         if (poofVFX != null)
-            poofVFX.Play();
+        {
+            poofVFX.transform.localScale =
+                poofVFXStartScale *
+                handVFXScale;
+        }
 
-        // Play pickup sound
+        // Play pickup VFX.
+        if (poofVFX != null)
+        {
+            poofVFX.Play();
+        }
+
+        // Play pickup sound.
         if (pickupSound != null)
         {
-            audioSource.PlayOneShot(pickupSound);
+            audioSource.PlayOneShot(
+                pickupSound
+            );
         }
     }
 
     public void UseCrown()
     {
-        if (!isPickedUp) return;
+        if (!isPickedUp)
+            return;
 
+        // Play use VFX.
         if (poofVFX2 != null)
+        {
             poofVFX2.Play();
+        }
 
-        // Hide crown visually instead of deactivating
-        SetVisibility(false);
+        // Move crown back to the throne.
+        transform.SetParent(
+            startParent
+        );
 
+        transform.localPosition =
+            startLocalPosition;
+
+        transform.localRotation =
+            startLocalRotation;
+
+        transform.localScale =
+            startScale;
+
+        // No longer held.
         isPickedUp = false;
 
-        // Start cooldown coroutine
-        StartCoroutine(RespawnCrown());
+        // Start cooldown.
+        isRespawning = true;
+
+        // Hide crown.
+        SetVisibility(false);
+
+        // Disable BOTH colliders.
+        SetCollidersEnabled(false);
+
+        // Clear PlayerInteract's reference.
+        if (playerInRange != null)
+        {
+            playerInRange.ClearNearbyCrown(this);
+            playerInRange = null;
+        }
+
+        // Restore VFX size.
+        if (poofVFX != null)
+        {
+            poofVFX.transform.localScale =
+                poofVFXStartScale;
+        }
+
+        // Start respawn timer.
+        StartCoroutine(
+            RespawnCrown()
+        );
     }
 
-    IEnumerator RespawnCrown()
+    private IEnumerator RespawnCrown()
     {
-        yield return new WaitForSeconds(respawnTime);
+        // Wait for the respawn timer.
+        yield return new WaitForSeconds(
+            respawnTime
+        );
 
-        // Reset parent and position
-        transform.SetParent(null);
-        transform.position = startPosition;
-        transform.rotation = startRotation;
+        // Crown is available again.
+        isRespawning = false;
 
-        // Show again and re-enable collider
+        // Show crown.
         SetVisibility(true);
 
-        if (col != null)
-            col.enabled = true;
+        // Enable BOTH colliders.
+        SetCollidersEnabled(true);
 
+        // Play respawn VFX.
         if (poofVFX != null)
-            poofVFX.Play();
-    }
-
-    void SetVisibility(bool visible)
-    {
-        foreach (Renderer r in renderers)
         {
-            r.enabled = visible;
+            poofVFX.Play();
         }
     }
 
-    void Update()
+    private void SetCollidersEnabled(bool enabled)
     {
-        if (!isPickedUp) return;
+        if (colliders == null)
+            return;
 
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        foreach (Collider collider in colliders)
+        {
+            if (collider != null)
+            {
+                collider.enabled = enabled;
+            }
+        }
+    }
+
+    private void SetVisibility(bool visible)
+    {
+        if (renderers == null)
+            return;
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer != null)
+            {
+                renderer.enabled = visible;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (!isPickedUp)
+            return;
+
+        transform.Rotate(
+            Vector3.up *
+            rotationSpeed *
+            Time.deltaTime
+        );
     }
 }
