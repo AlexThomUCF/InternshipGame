@@ -426,9 +426,9 @@ public class AINavigation : MonoBehaviour
 
                             currentTaskObject.transform.localRotation =
                                 Quaternion.identity;
-
-                            float targetSize = 2.5f;
-
+                            
+                            //float targetSize = 2.5f; // Maybe take size from npcDes script so each item has its own size value
+                            // Use dest.objectSize instead
                             Renderer[] renderers =
                                 currentTaskObject
                                 .GetComponentsInChildren<Renderer>();
@@ -457,7 +457,7 @@ public class AINavigation : MonoBehaviour
                                 if (currentSize > 0.001f)
                                 {
                                     float scale =
-                                        targetSize /
+                                        dest.objectSize /
                                         currentSize;
 
                                     currentTaskObject

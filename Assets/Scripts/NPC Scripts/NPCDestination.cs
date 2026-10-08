@@ -12,6 +12,7 @@ public class NPCDestination : MonoBehaviour
     [Header("Task Object")]
     public Transform[] taskPositions;
 
+    public float objectSize;
     public GameObject taskObjectPrefab;
     public HumanBodyBones attachBone;
 }

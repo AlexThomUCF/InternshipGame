@@ -18090,6 +18090,7 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 1602820261}
   - {fileID: 823149938}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1 &185815402
@@ -48897,6 +48898,7 @@ MonoBehaviour:
   - {fileID: 1064226071}
   - {fileID: 1264743110}
   - {fileID: 1021785288}
+  objectSize: 2.5
   taskObjectPrefab: {fileID: 2898200287646465680, guid: 3165de570476faf45a7a0b75248d74ce, type: 3}
   attachBone: 42
 --- !u!1001 &558886323
@@ -51033,6 +51035,7 @@ MonoBehaviour:
   - {fileID: 2025975930}
   - {fileID: 1036742383}
   - {fileID: 1539935859}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1 &588467241
@@ -53277,6 +53280,7 @@ MonoBehaviour:
   - {fileID: 1263460187}
   - {fileID: 211145404}
   - {fileID: 260379259}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1001 &634095506
@@ -63265,6 +63269,7 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 685695183}
   - {fileID: 2007079490}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1001 &778535555
@@ -66028,6 +66033,7 @@ MonoBehaviour:
   - {fileID: 645781691}
   - {fileID: 402583810}
   - {fileID: 1951522085}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1 &803756268
@@ -93174,6 +93180,7 @@ MonoBehaviour:
   - {fileID: 1974136097}
   - {fileID: 990294240}
   - {fileID: 913060821}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!65 &1069127734

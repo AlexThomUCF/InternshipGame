@@ -24622,6 +24622,7 @@ MonoBehaviour:
   animationTrigger: Punch
   taskPositions:
   - {fileID: 478993665}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!114 &655380863
@@ -29947,6 +29948,7 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 2046151489}
   - {fileID: 1736383188}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 0
 --- !u!114 &771433431
@@ -38208,6 +38210,7 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 513257348}
   - {fileID: 538510973}
+  objectSize: 0
   taskObjectPrefab: {fileID: 6448843505867199210, guid: c266ac52dc9d53444956bf6f549fcd21, type: 3}
   attachBone: 18
 --- !u!65 &984726121
@@ -43923,6 +43926,7 @@ MonoBehaviour:
   - {fileID: 1421328938}
   - {fileID: 1526898522}
   - {fileID: 855119858}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!114 &1131935723
@@ -52284,6 +52288,7 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 1321862329}
   - {fileID: 1347715398}
+  objectSize: 0.4
   taskObjectPrefab: {fileID: 636855755682256591, guid: 31fdfb5dc3bd20f48b50373f9682946b, type: 3}
   attachBone: 18
 --- !u!65 &1356381576
@@ -57982,6 +57987,7 @@ MonoBehaviour:
   - {fileID: 1739256669}
   - {fileID: 629911058}
   - {fileID: 1381880197}
+  objectSize: 0
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!114 &1565188767
@@ -71204,6 +71210,7 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 2019459243}
   - {fileID: 945925540}
+  objectSize: 0.7
   taskObjectPrefab: {fileID: 4710247275405301316, guid: f3ec7721eade2004bac4587ced5f7efe, type: 3}
   attachBone: 18
 --- !u!114 &1995031230
