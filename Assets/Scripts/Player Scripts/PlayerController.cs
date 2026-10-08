@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
 
     private PlayerControls controls;
 
+    // Used by the first-person arms
+    public bool IsMoving { get; private set; }
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -71,6 +74,12 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+
+        // Tell other scripts whether the player is walking.
+        IsMoving =
+            moveInput != Vector2.zero &&
+            controller.isGrounded;
+
         HandleFootsteps();
         UpdateAnimation();
     }
@@ -179,27 +188,27 @@ public class PlayerController : MonoBehaviour
     {
         UpdateFootstepSound();
 
-        bool isMoving =
-            moveInput != Vector2.zero &&
-            controller.isGrounded;
-
-        if (isMoving &&
+        if (IsMoving &&
             currentFootstepClip != null)
         {
             if (currentFootstepClip !=
                 previousFootstepClip)
             {
-                footstepsSound.Stop();
+                if (footstepsSound != null)
+                {
+                    footstepsSound.Stop();
 
-                footstepsSound.clip =
-                    currentFootstepClip;
+                    footstepsSound.clip =
+                        currentFootstepClip;
 
-                footstepsSound.Play();
+                    footstepsSound.Play();
+                }
 
                 previousFootstepClip =
                     currentFootstepClip;
             }
-            else if (!footstepsSound.isPlaying)
+            else if (footstepsSound != null &&
+                     !footstepsSound.isPlaying)
             {
                 footstepsSound.clip =
                     currentFootstepClip;
@@ -209,7 +218,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (footstepsSound.isPlaying)
+            if (footstepsSound != null &&
+                footstepsSound.isPlaying)
             {
                 footstepsSound.Stop();
             }

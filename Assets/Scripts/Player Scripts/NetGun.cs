@@ -10,6 +10,9 @@ public class NetGun : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
+    [Header("First Person")]
+    [SerializeField] private FirstPersonArms firstPersonArms;
+
     [Header("Aiming")]
     [SerializeField] private float maxRange = 80f;
     [SerializeField] private LayerMask aimMask = ~0;
@@ -26,7 +29,8 @@ public class NetGun : MonoBehaviour
 
     private float startupTimer;
 
-    private Camera Cam => mainCamera != null ? mainCamera : Camera.main;
+    private Camera Cam =>
+        mainCamera != null ? mainCamera : Camera.main;
 
     private void OnEnable()
     {
@@ -70,11 +74,14 @@ public class NetGun : MonoBehaviour
     {
         if (!firePoint || !netProjectilePrefab)
         {
-            Debug.LogWarning("NetGun missing FirePoint or Projectile prefab.");
+            Debug.LogWarning(
+                "NetGun missing FirePoint or Projectile prefab."
+            );
+
             return;
         }
 
-        // Ray from the camera center
+        // Ray from the center of the first-person camera
         Ray ray = Cam.ViewportPointToRay(
             new Vector3(0.5f, 0.5f, 0)
         );
@@ -96,7 +103,8 @@ public class NetGun : MonoBehaviour
         }
 
         // Direction from gun to target
-        Vector3 dir = targetPoint - firePoint.position;
+        Vector3 dir =
+            targetPoint - firePoint.position;
 
         if (dir.sqrMagnitude < 0.0001f)
         {
@@ -110,11 +118,14 @@ public class NetGun : MonoBehaviour
             Quaternion.LookRotation(dir)
         );
 
-        Rigidbody rb = net.GetComponent<Rigidbody>();
+        // Give projectile velocity
+        Rigidbody rb =
+            net.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
-            rb.velocity = dir.normalized * projectileSpeed;
+            rb.velocity =
+                dir.normalized * projectileSpeed;
         }
         else
         {
@@ -123,8 +134,15 @@ public class NetGun : MonoBehaviour
             );
         }
 
+        // Play first-person recoil
+        if (firstPersonArms != null)
+        {
+            firstPersonArms.PlayShootRecoil();
+        }
+
         // Play sound
-        if (audioSource != null && audioClip != null)
+        if (audioSource != null &&
+            audioClip != null)
         {
             audioSource.PlayOneShot(audioClip);
         }
