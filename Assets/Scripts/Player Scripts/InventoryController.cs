@@ -15,6 +15,9 @@ public class InventoryController : MonoBehaviour
 
     private int currentItem = 0;
 
+    // Prevents inventory scrolling while paused.
+    public bool IsPaused { get; set; }
+
     // Crown is slot 4 / index 3
     public bool IsCrownSelected
     {
@@ -50,6 +53,10 @@ public class InventoryController : MonoBehaviour
     private void OnInventoryScroll(
         UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        // Do not allow inventory scrolling while paused.
+        if (IsPaused)
+            return;
+
         Vector2 scroll =
             context.ReadValue<Vector2>();
 

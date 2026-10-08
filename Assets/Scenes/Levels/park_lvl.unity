@@ -149681,6 +149681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1005432729}
+  inventoryController: {fileID: 921412580}
 --- !u!1 &1650513979
 GameObject:
   m_ObjectHideFlags: 0
