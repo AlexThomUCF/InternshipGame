@@ -17961,8 +17961,6 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 1602820261}
   - {fileID: 823149938}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1 &185815402
@@ -48871,8 +48869,6 @@ MonoBehaviour:
   - {fileID: 1064226071}
   - {fileID: 1264743110}
   - {fileID: 1021785288}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 2898200287646465680, guid: 3165de570476faf45a7a0b75248d74ce, type: 3}
   attachBone: 42
 --- !u!1001 &558886323
@@ -51009,8 +51005,6 @@ MonoBehaviour:
   - {fileID: 2025975930}
   - {fileID: 1036742383}
   - {fileID: 1539935859}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1 &588467241
@@ -53255,8 +53249,6 @@ MonoBehaviour:
   - {fileID: 1263460187}
   - {fileID: 211145404}
   - {fileID: 260379259}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1001 &634095506
@@ -63302,8 +63294,6 @@ MonoBehaviour:
   taskPositions:
   - {fileID: 685695183}
   - {fileID: 2007079490}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1001 &778535555
@@ -66067,8 +66057,6 @@ MonoBehaviour:
   - {fileID: 645781691}
   - {fileID: 402583810}
   - {fileID: 1951522085}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!1 &803756268
@@ -93604,8 +93592,6 @@ MonoBehaviour:
   - {fileID: 1974136097}
   - {fileID: 990294240}
   - {fileID: 913060821}
-  objectSize: 0
-  taskLookDirection: {fileID: 0}
   taskObjectPrefab: {fileID: 0}
   attachBone: 18
 --- !u!65 &1069127734
@@ -110542,7 +110528,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a89dc5be79ba0a4d947addaf9be0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aiList: {fileID: 0}
   taskList: {fileID: 1253065540}
   textDisplay: {fileID: 1816192150}
   taskUI: {fileID: 1901557555}
@@ -110578,7 +110563,7 @@ MonoBehaviour:
   - {fileID: 1650513981}
   - {fileID: 1566902990}
   - {fileID: 1345895282}
-  loseMenu: {fileID: 1977856540}
+  LoseMneu: {fileID: 1977856540}
 --- !u!1 &1254138560
 GameObject:
   m_ObjectHideFlags: 0
@@ -149696,7 +149681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1005432729}
-  loseMenu: {fileID: 1977856540}
   inventoryController: {fileID: 921412580}
 --- !u!1 &1650513979
 GameObject:
@@ -160574,7 +160558,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
