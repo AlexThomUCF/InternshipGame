@@ -16140,7 +16140,7 @@ MonoBehaviour:
   - {fileID: 1181435950}
   - {fileID: 917323652}
   - {fileID: 2038409321}
-  LoseMneu: {fileID: 960888555}
+  loseMenu: {fileID: 0}
 --- !u!114 &297493719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16153,6 +16153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a89dc5be79ba0a4d947addaf9be0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiList: {fileID: 0}
   taskList: {fileID: 297493723}
   textDisplay: {fileID: 1226230113}
   taskUI: {fileID: 297665150}
@@ -26899,13 +26900,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455002626}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.52894914, y: 0.5165584, z: -0.4817287, w: 0.47044414}
+  m_LocalRotation: {x: 0, y: 0.7393374, z: 0, w: 0.67333513}
   m_LocalPosition: {x: -2.79, y: 0.34999847, z: -9.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1311713486}
-  m_LocalEulerAnglesHint: {x: 0, y: 95.35, z: -91.358}
+  m_LocalEulerAnglesHint: {x: 0, y: 95.35, z: 0}
 --- !u!43 &455454378
 Mesh:
   m_ObjectHideFlags: 0
@@ -33274,6 +33275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 953851413}
+  loseMenu: {fileID: 960888555}
   inventoryController: {fileID: 1332271188}
 --- !u!1 &586184337 stripped
 GameObject:

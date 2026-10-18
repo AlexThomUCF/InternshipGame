@@ -11,11 +11,20 @@ public class RoundManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Image[] lifeIcons; // Assign 3 life images in inspector
-    [SerializeField] private GameObject LoseMneu;
+    [SerializeField] private GameObject loseMenu;
 
     private void Awake()
     {
         Instance = this;
+    }
+
+    public void LoseMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        Time.timeScale = 0;
+        loseMenu.SetActive(true);
     }
 
     // This gets called when any character is caught
@@ -50,7 +59,7 @@ public class RoundManager : MonoBehaviour
 
                 // Opens lose menu and pauses time
                 Time.timeScale = 0;
-                LoseMneu.SetActive(true);
+                loseMenu.SetActive(true);
                 
             }
         }

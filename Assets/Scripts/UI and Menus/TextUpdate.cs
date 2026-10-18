@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class TextUpdate : MonoBehaviour
 {
+    public AINavigation aiList;
     public TaskList taskList;
     public TextMeshProUGUI textDisplay;
     public GameObject taskUI;
@@ -16,9 +17,12 @@ public class TextUpdate : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerControls();
+
+
     }
     void Start()    
     {
+
         isUIOpen = taskUI.activeSelf;
         taskList = FindObjectOfType<TaskList>();
         UpdateText();
@@ -27,12 +31,22 @@ public class TextUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdateText();
+        if (aiList == null)
+        {
+            GameObject imposter = GameObject.FindGameObjectWithTag("IMPOSTER");
+
+            if (imposter != null)
+            {
+                aiList = imposter.GetComponent<AINavigation>();
+            }
+        }
+
+        UpdateText();
     }
     void UpdateText()
     {
         string output = "";
-        foreach (GameObject obj in taskList.imposterTaskArray)
+        foreach (GameObject obj in aiList.availableTasks)
         {
             if(obj != null)
             output += obj.name + "\n";

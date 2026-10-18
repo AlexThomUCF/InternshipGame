@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject loseMenu;
 
     [Header("Inventory")]
     [SerializeField] private InventoryController inventoryController;
@@ -32,11 +33,11 @@ public class PauseMenu : MonoBehaviour
     private void OnPause(
         InputAction.CallbackContext context)
     {
-        if (pauseMenu.activeSelf)
+        if (pauseMenu.activeSelf && !loseMenu.activeSelf)
         {
             Resume();
         }
-        else
+        else if(!loseMenu.activeSelf)
         {
             Pause();
         }

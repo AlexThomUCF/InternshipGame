@@ -18,7 +18,7 @@ public class AINavigation : MonoBehaviour
 
     private GameObject currentTaskObject;
 
-    private List<GameObject> availableTasks = new List<GameObject>();
+    public List<GameObject> availableTasks = new List<GameObject>();
 
     private Transform currentTaskPosition;
 
@@ -179,6 +179,12 @@ public class AINavigation : MonoBehaviour
 
             if (availableTasks.Count == 0)
             {
+                if (CompareTag("IMPOSTER"))
+                {
+                    // End game here
+                    RoundManager.Instance.LoseMenu();
+                    return;
+                }
                 availableTasks.AddRange(taskCheckpoints);
             }
 
