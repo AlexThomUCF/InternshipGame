@@ -35414,6 +35414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1910619378}
+  loseMenu: {fileID: 1112136418}
   inventoryController: {fileID: 97739738}
 --- !u!43 &160424923
 Mesh:
@@ -739391,7 +739392,7 @@ MonoBehaviour:
   - {fileID: 1232248470}
   - {fileID: 315577478}
   - {fileID: 1850150340}
-  LoseMneu: {fileID: 1112136418}
+  loseMenu: {fileID: 1112136418}
 --- !u!114 &931981745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739399,11 +739400,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931981743}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a89dc5be79ba0a4d947addaf9be0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiList: {fileID: 0}
   taskList: {fileID: 931981749}
   textDisplay: {fileID: 1069367002}
   taskUI: {fileID: 1465356935}
