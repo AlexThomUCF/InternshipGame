@@ -35414,7 +35414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1910619378}
-  loseMenu: {fileID: 1112136418}
+  loseMenu: {fileID: 0}
   inventoryController: {fileID: 97739738}
 --- !u!43 &160424923
 Mesh:
@@ -739392,7 +739392,7 @@ MonoBehaviour:
   - {fileID: 1232248470}
   - {fileID: 315577478}
   - {fileID: 1850150340}
-  loseMenu: {fileID: 1112136418}
+  loseMenu: {fileID: 0}
 --- !u!114 &931981745
 MonoBehaviour:
   m_ObjectHideFlags: 0
