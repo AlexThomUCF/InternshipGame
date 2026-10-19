@@ -5,10 +5,11 @@ using UnityEngine;
 public class PropLookAt : MonoBehaviour
 {
     public Transform lookSpot;
+    public string lookName;
     // Start is called before the first frame update
     void Start()
     {
-        lookSpot = GameObject.Find("PondCenter").transform;
+        lookSpot = GameObject.Find(lookName).transform;
     }
 
     // Update is called once per frame
