@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Chair : MonoBehaviour
 {
     public Transform[] sittingSpots;
-    public Transform lookPosition;
+
 
     public void NpcChair(AINavigation npc)
     {
