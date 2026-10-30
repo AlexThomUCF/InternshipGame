@@ -7362,7 +7362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &42544041
 Transform:
   m_ObjectHideFlags: 0
@@ -7403,8 +7403,8 @@ MonoBehaviour:
   - {fileID: 1921208341}
   blackoutImage: {fileID: 1185675382}
   fadeSpeed: 2
-  minBlackoutInterval: 20
-  maxBlackoutInterval: 30
+  minBlackoutInterval: 40
+  maxBlackoutInterval: 70
   flickerDuration: 2
   blackoutDuration: 3
   flickerMinIntensity: 0.1

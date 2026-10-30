@@ -56876,7 +56876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1910619378}
-  loseMenu: {fileID: 0}
+  loseMenu: {fileID: 1112136418}
   inventoryController: {fileID: 97739738}
 --- !u!43 &160424923
 Mesh:
@@ -218165,7 +218165,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1092481565}
+  m_Mesh: {fileID: 610924168}
 --- !u!33 &709808514
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -772113,7 +772113,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 861851208}
+  m_Mesh: {fileID: 768292334}
 --- !u!33 &747258368
 MeshFilter:
   m_ObjectHideFlags: 10
