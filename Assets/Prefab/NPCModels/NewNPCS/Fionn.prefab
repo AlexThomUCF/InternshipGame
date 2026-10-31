@@ -218,6 +218,12 @@ MonoBehaviour:
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   castleController: {fileID: 0}
+  tricksterNetPrefab: {fileID: 8536105250985130671, guid: a16665e29d585034cbce86ca563c4fe7, type: 3}
+  poofVFXAsset: {fileID: 8926484042661614526, guid: 48d8a6a5da3fecc41950794eec9fade2, type: 3}
+  playerTransform: {fileID: 0}
+  swapDelay: 0
+  poofLifetime: 3
+  spawnYOffset: 1
   ragDollParts: []
 --- !u!82 &-8858973009356228988
 AudioSource:

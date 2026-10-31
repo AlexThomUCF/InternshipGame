@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +5,10 @@ public class RoundManager : MonoBehaviour
 {
     public static RoundManager Instance;
 
-    private int wrongCatches = 0; // Track wrong NPCs
+    private int wrongCatches = 0;
 
     [Header("UI")]
-    [SerializeField] private Image[] lifeIcons; // Assign 3 life images in inspector
+    [SerializeField] private Image[] lifeIcons;
     [SerializeField] private GameObject loseMenu;
 
     private void Awake()
@@ -27,24 +25,28 @@ public class RoundManager : MonoBehaviour
         loseMenu.SetActive(true);
     }
 
-    // This gets called when any character is caught
-    public void OnCharacterCaught(GameObject character, bool wasImposter)
+    public void OnCharacterCaught(
+        GameObject character,
+        bool wasImposter)
     {
         if (wasImposter)
         {
-            Debug.Log("Imposter caught! Player wins!");
+            Debug.Log(
+                "Imposter caught! Starting trickster capture sequence!"
+            );
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-
-            UnityEngine.SceneManagement.SceneManager.LoadScene("WinScreen");
+            // The transformation is handled by CatchableCharacter.
+            // We'll add the win sequence later.
         }
         else
         {
             wrongCatches++;
-            Debug.Log($"Wrong character caught. Total mistakes: {wrongCatches}");
 
-            // Hide a life icon
+            Debug.Log(
+                $"Wrong character caught. Total mistakes: {wrongCatches}"
+            );
+
+            // Hide a life icon.
             if (wrongCatches <= lifeIcons.Length)
             {
                 lifeIcons[wrongCatches - 1].enabled = false;
@@ -52,18 +54,16 @@ public class RoundManager : MonoBehaviour
 
             if (wrongCatches >= 3)
             {
-                Debug.Log("Player lost! Too many wrong catches.");
+                Debug.Log(
+                    "Player lost! Too many wrong catches."
+                );
 
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 
-                // Opens lose menu and pauses time
                 Time.timeScale = 0;
                 loseMenu.SetActive(true);
-                
             }
         }
     }
 }
-
-
