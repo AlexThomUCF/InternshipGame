@@ -2432,11 +2432,11 @@ MonoBehaviour:
   arcadeController: {fileID: 9100000, guid: 85ac177fced78cf419922ac70ffc2cf9, type: 2}
   castleController: {fileID: 9100000, guid: 85ac177fced78cf419922ac70ffc2cf9, type: 2}
   tricksterNetPrefab: {fileID: 8536105250985130671, guid: a16665e29d585034cbce86ca563c4fe7, type: 3}
-  poofVFXAsset: {fileID: 8926484042661614526, guid: 48d8a6a5da3fecc41950794eec9fade2, type: 3}
+  poofVFXPrefab: {fileID: 6460666649983189967, guid: 491222e8ab52bf34c82268d2e1b701d7, type: 3}
   playerTransform: {fileID: 0}
-  swapDelay: 0
-  poofLifetime: 3
+  swapDelay: 0.5
   spawnYOffset: 1
+  poofSpacing: 0.3
   ragDollParts: []
 --- !u!82 &2771352686279440353
 AudioSource:

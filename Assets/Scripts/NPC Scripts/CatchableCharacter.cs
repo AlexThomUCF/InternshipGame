@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
-using UnityEngine.VFX;
 
 public class CatchableCharacter : MonoBehaviour
 {
@@ -18,13 +17,13 @@ public class CatchableCharacter : MonoBehaviour
 
     [Header("Imposter Transformation")]
     [SerializeField] private GameObject tricksterNetPrefab;
-    [SerializeField] private VisualEffectAsset poofVFXAsset;
+    [SerializeField] private GameObject poofVFXPrefab;
     [SerializeField] private Transform playerTransform;
 
     [Header("Transformation Settings")]
     [SerializeField] private float swapDelay = 0.4f;
-    [SerializeField] private float poofLifetime = 3f;
     [SerializeField] private float spawnYOffset = 1.5f;
+    [SerializeField] private float poofSpacing = 0.15f;
 
     public bool isCaught { get; private set; }
 
@@ -58,13 +57,10 @@ public class CatchableCharacter : MonoBehaviour
 
         if (wasImposter)
         {
-            StartCoroutine(
-                TransformIntoTrickster()
-            );
+            StartCoroutine(TransformIntoTrickster());
         }
         else
         {
-            // Existing wrong-catch behavior.
             if (animator != null)
             {
                 animator.SetTrigger("Caught");
@@ -73,7 +69,6 @@ public class CatchableCharacter : MonoBehaviour
             TurnOnRagDoll();
         }
 
-        // Notify round system.
         if (RoundManager.Instance != null)
         {
             RoundManager.Instance.OnCharacterCaught(
@@ -85,49 +80,40 @@ public class CatchableCharacter : MonoBehaviour
 
     private IEnumerator TransformIntoTrickster()
     {
-        // Remember original character position.
-        Vector3 originalPosition =
-            transform.position;
+        Vector3 originalPosition = transform.position;
 
-        // Calculate corrected spawn position.
         Vector3 spawnPosition =
-            originalPosition +
-            Vector3.up * spawnYOffset;
+            originalPosition + Vector3.up * spawnYOffset;
 
-        // Find player/camera.
-        Transform target =
-            playerTransform;
+        Transform target = playerTransform;
 
-        if (target == null &&
-            Camera.main != null)
+        if (target == null && Camera.main != null)
         {
             target = Camera.main.transform;
         }
 
-        // Spawn smoke at the original position.
-        if (poofVFXAsset != null)
+        // Spawn the first poof.
+        if (poofVFXPrefab != null)
         {
-            GameObject poof =
-                new GameObject("Capture Poof");
+            Instantiate(
+                poofVFXPrefab,
+                spawnPosition,
+                transform.rotation
+            );
 
-            poof.transform.position =
-                originalPosition;
+            // Brief pause before the second poof.
+            /*yield return new WaitForSeconds(poofSpacing);
 
-            VisualEffect visualEffect =
-                poof.AddComponent<VisualEffect>();
-
-            visualEffect.visualEffectAsset =
-                poofVFXAsset;
-
-            visualEffect.Play();
-
-            Destroy(poof, poofLifetime);
+            // Spawn the second poof.
+            Instantiate(
+                poofVFXPrefab,
+                spawnPosition,
+                transform.rotation
+            );*/
         }
 
-        // Wait for smoke to cover the swap.
-        yield return new WaitForSeconds(
-            swapDelay
-        );
+        // Wait before swapping the models.
+        yield return new WaitForSeconds(swapDelay);
 
         if (tricksterNetPrefab == null)
         {
@@ -139,10 +125,9 @@ public class CatchableCharacter : MonoBehaviour
             yield break;
         }
 
-        // Calculate rotation so local +X faces player.
-        Quaternion spawnRotation =
-            transform.rotation;
+        Quaternion spawnRotation = transform.rotation;
 
+        // Make the trickster face the player.
         if (target != null)
         {
             Vector3 direction =
@@ -166,24 +151,22 @@ public class CatchableCharacter : MonoBehaviour
             }
         }
 
-        // Spawn trickster inside net.
+        // Spawn the trickster at the adjusted height.
         Instantiate(
             tricksterNetPrefab,
             spawnPosition,
             spawnRotation
         );
 
-        // Destroy the original imposter completely.
+        // Remove the original imposter.
         Destroy(gameObject);
     }
 
     public void TurnOnRagDoll()
     {
-        // Disable animator and root collider.
         if (GetComponent<BoxCollider>() != null)
         {
-            GetComponent<BoxCollider>().enabled =
-                false;
+            GetComponent<BoxCollider>().enabled = false;
         }
 
         if (animator != null)
@@ -191,7 +174,6 @@ public class CatchableCharacter : MonoBehaviour
             animator.enabled = false;
         }
 
-        // Enable ragdoll physics.
         foreach (Collider c in ragDollParts)
         {
             if (c != null)
@@ -243,8 +225,7 @@ public class CatchableCharacter : MonoBehaviour
             {
                 ragDollParts.Add(collider);
 
-                Rigidbody rb =
-                    collider.attachedRigidbody;
+                Rigidbody rb = collider.attachedRigidbody;
 
                 if (rb != null &&
                     !ragdollRigidbodies.Contains(rb))
@@ -278,8 +259,7 @@ public class CatchableCharacter : MonoBehaviour
         else
         {
             Debug.LogWarning(
-                "No animator controller assigned " +
-                "for this scene."
+                "No animator controller assigned for this scene."
             );
         }
     }
