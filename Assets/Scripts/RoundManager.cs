@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +14,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private Image[] lifeIcons;
     [SerializeField] private GameObject loseMenu;
     [SerializeField] private GameObject winMenu;
+
+    [Header("Win Screen Stars")]
+    [SerializeField] private Image[] winStars;
+    [SerializeField] private Sprite emptyStar;
 
     [Header("Win Cutscene")]
     [SerializeField] private PlayerController playerController;
@@ -60,7 +63,6 @@ public class RoundManager : MonoBehaviour
                 $"Wrong character caught. Total mistakes: {wrongCatches}"
             );
 
-            // Hide a life icon.
             if (wrongCatches <= lifeIcons.Length)
             {
                 lifeIcons[wrongCatches - 1].enabled = false;
@@ -81,6 +83,19 @@ public class RoundManager : MonoBehaviour
         }
     }
 
+    private void UpdateWinStars()
+    {
+        int starsEarned = Mathf.Clamp(3 - wrongCatches, 0, 3);
+
+        for (int i = 0; i < winStars.Length; i++)
+        {
+            if (winStars[i] != null && i >= starsEarned)
+            {
+                winStars[i].sprite = emptyStar;
+            }
+        }
+    }
+
     public void StartWinSequence(GameObject trickster)
     {
         if (winSequenceStarted)
@@ -93,25 +108,21 @@ public class RoundManager : MonoBehaviour
 
     private IEnumerator WinSequence(GameObject trickster)
     {
-        // Freeze player movement.
         if (playerController != null)
         {
             playerController.enabled = false;
         }
 
-        // Prevent shooting.
         if (netGun != null)
         {
             netGun.enabled = false;
         }
 
-        // Stop camera look input, if assigned.
         if (playerCameraInput != null)
         {
             playerCameraInput.enabled = false;
         }
 
-        // Find the Cinemachine camera attached to the trickster.
         CinemachineVirtualCamera cutsceneCamera = null;
 
         if (trickster != null)
@@ -131,17 +142,14 @@ public class RoundManager : MonoBehaviour
             }
         }
 
-        // Allow Cinemachine to blend to the cutscene camera.
         yield return new WaitForSeconds(cameraPanTime);
 
-        // Display dialogue.
         if (NPCDialogue.Instance != null)
         {
             NPCDialogue.Instance.ShowDialogue(
                 "Temp text. Temp text. Temp text. Temp text. Temp text."
             );
 
-            // Wait for dialogue to finish.
             while (NPCDialogue.Instance.IsDialoguePlaying)
             {
                 yield return null;
@@ -154,7 +162,8 @@ public class RoundManager : MonoBehaviour
             );
         }
 
-        // Show the Win Menu.
+        UpdateWinStars();
+
         if (winMenu != null)
         {
             winMenu.SetActive(true);
