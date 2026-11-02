@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -91,7 +92,7 @@ public class CatchableCharacter : MonoBehaviour
             target = Camera.main.transform;
         }
 
-        // Spawn the first poof.
+        // Spawn the poof effect.
         if (poofVFXPrefab != null)
         {
             Instantiate(
@@ -101,7 +102,6 @@ public class CatchableCharacter : MonoBehaviour
             );
         }
 
-        // Wait before swapping the models.
         yield return new WaitForSeconds(swapDelay);
 
         if (tricksterNetPrefab == null)
@@ -140,12 +140,20 @@ public class CatchableCharacter : MonoBehaviour
             }
         }
 
-        // Spawn the trickster at the adjusted height.
-        Instantiate(
+        // Spawn the trickster.
+        GameObject trickster = Instantiate(
             tricksterNetPrefab,
             spawnPosition,
             spawnRotation
         );
+
+        // Start the camera and dialogue sequence.
+        if (RoundManager.Instance != null)
+        {
+            RoundManager.Instance.StartWinSequence(
+                trickster
+            );
+        }
 
         // Remove the original imposter.
         Destroy(gameObject);
