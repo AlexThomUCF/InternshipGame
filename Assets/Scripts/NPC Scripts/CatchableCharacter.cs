@@ -23,7 +23,6 @@ public class CatchableCharacter : MonoBehaviour
     [Header("Transformation Settings")]
     [SerializeField] private float swapDelay = 0.4f;
     [SerializeField] private float spawnYOffset = 1.5f;
-    [SerializeField] private float poofSpacing = 0.15f;
 
     public bool isCaught { get; private set; }
 
@@ -100,16 +99,6 @@ public class CatchableCharacter : MonoBehaviour
                 spawnPosition,
                 transform.rotation
             );
-
-            // Brief pause before the second poof.
-            /*yield return new WaitForSeconds(poofSpacing);
-
-            // Spawn the second poof.
-            Instantiate(
-                poofVFXPrefab,
-                spawnPosition,
-                transform.rotation
-            );*/
         }
 
         // Wait before swapping the models.

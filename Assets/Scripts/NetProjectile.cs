@@ -5,11 +5,10 @@ using UnityEngine;
 public class NetProjectile : MonoBehaviour
 {
     [SerializeField] private float lifetime = 5f;
-    [SerializeField] private GameObject wrapVfxPrefab; // Possible net wrap effect to spawn on hit later on
+    [SerializeField] private GameObject wrapVfxPrefab;
 
     private void Awake()
     {
-        // Setup
         var rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
@@ -18,24 +17,42 @@ public class NetProjectile : MonoBehaviour
         col.isTrigger = true;
     }
 
-    private void Start() => Destroy(gameObject, lifetime);
+    private void Start()
+    {
+        Destroy(gameObject, lifetime);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Ignore triggers
-        if (other.isTrigger) return;
+        if (other.isTrigger)
+            return;
 
-        // Find role/catchable on the hit character
         var role = other.GetComponentInParent<CharacterRole>();
         var catchable = other.GetComponentInParent<CatchableCharacter>();
 
         if (role && catchable)
         {
+            // Play the character's hit sound.
+            AudioSource characterAudio =
+                catchable.GetComponent<AudioSource>();
+
+            if (characterAudio != null)
+            {
+                characterAudio.Play();
+            }
+
+            // Catch the character.
             catchable.Catch(role.isImposter);
         }
 
         if (wrapVfxPrefab)
-            Instantiate(wrapVfxPrefab, transform.position, transform.rotation);
+        {
+            Instantiate(
+                wrapVfxPrefab,
+                transform.position,
+                transform.rotation
+            );
+        }
 
         Destroy(gameObject);
     }
