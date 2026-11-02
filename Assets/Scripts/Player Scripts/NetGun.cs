@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -57,8 +58,12 @@ public class NetGun : MonoBehaviour
 
     private void OnFire(InputAction.CallbackContext ctx)
     {
-        // Only allow shooting if the NetGun is currently selected.
+        // Only allow shooting if the NetGun is selected.
         if (!gameObject.activeInHierarchy)
+            return;
+
+        // Prevent shooting while paused or on the lose screen.
+        if (Time.timeScale == 0f)
             return;
 
         // Ignore firing during startup cooldown.
@@ -70,8 +75,12 @@ public class NetGun : MonoBehaviour
 
     public void ShootNet()
     {
-        // Extra safety check.
+        // Extra safety checks.
         if (!gameObject.activeInHierarchy)
+            return;
+
+        // Prevent shooting while paused or on the lose screen.
+        if (Time.timeScale == 0f)
             return;
 
         if (!firePoint || !netProjectilePrefab)
