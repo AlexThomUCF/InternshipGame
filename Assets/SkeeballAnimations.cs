@@ -16,7 +16,9 @@ public class SkeeballAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int randomNum = Random.Range(0, 4);
+
+        animator.SetInteger("Animation", randomNum);
     }
 
     public void SpawnBall()
