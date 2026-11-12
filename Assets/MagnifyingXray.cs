@@ -23,7 +23,7 @@ public class MagnifyingXray : MonoBehaviour
         if(xRayAction != null)
         {
             xRayAction.action.Enable();
-            xRayAction.action.started += ctx => xRayScript.StartXray();
+            xRayAction.action.started += OnXray;
             xRayAction.action.canceled += ctx => xRayScript.StopXray();
         }
     }
@@ -33,7 +33,7 @@ public class MagnifyingXray : MonoBehaviour
         //Xray will stop when letting go of left click 
         if (xRayAction != null)
         {
-            xRayAction.action.started -= ctx => xRayScript.StartXray();
+            xRayAction.action.started -= OnXray;
             xRayAction.action.canceled -= ctx => xRayScript.StopXray();
             xRayAction.action.Disable();
         }
@@ -49,18 +49,19 @@ public class MagnifyingXray : MonoBehaviour
         if (Time.timeScale == 0f)
             return;
 
+        if (xRayScript.isRecharging)
+            return;
+
        
         xRayScript.StartXray();
 
-    }
-    void Start()
-    {
-        
-    }
+        // Play sound.
+        if (audioSource != null &&
+            audioClip != null)
+        {
+            audioSource.PlayOneShot(audioClip);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
+  
 }

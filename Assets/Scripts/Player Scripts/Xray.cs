@@ -16,7 +16,7 @@ public class Xray : MonoBehaviour
     public float rechargeDuration = 15f; // refill time
 
     private bool isXrayActive = false;
-    private bool isRecharging = false;
+    public bool isRecharging = false;
 
     private float energy = 1f; // 0–1
 
