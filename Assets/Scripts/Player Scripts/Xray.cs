@@ -41,7 +41,7 @@ public class Xray : MonoBehaviour
         xRayCooldown.fillAmount = 1f;
 
     }
-    void OnEnable()
+    /*void OnEnable()
     {
         controls.Enable();
         controls.Player.Xray.started += ctx => StartXray();
@@ -53,7 +53,7 @@ public class Xray : MonoBehaviour
         controls.Player.Xray.started -= ctx => StartXray();
         controls.Player.Xray.canceled -= ctx => StopXray();
         controls.Disable();
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
