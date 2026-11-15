@@ -10,6 +10,7 @@ public class CatchableCharacter : MonoBehaviour
     [Header("References")]
     public NavMeshAgent agent;
     public Animator animator;
+    [SerializeField] private AINavigation aiNav;
 
     [Header("Animation Controllers")]
     public RuntimeAnimatorController parkController;
@@ -34,6 +35,8 @@ public class CatchableCharacter : MonoBehaviour
 
     private void Awake()
     {
+        aiNav = GetComponent<AINavigation>();
+
         SetRagdollParts();
         DisableRagdoll();
 
@@ -53,6 +56,12 @@ public class CatchableCharacter : MonoBehaviour
         if (agent != null)
         {
             agent.isStopped = true;
+
+            //clear agent path
+            agent.ResetPath();
+
+            //Turn off ai navigation
+            aiNav.enabled = false;
         }
 
         if (wasImposter)
