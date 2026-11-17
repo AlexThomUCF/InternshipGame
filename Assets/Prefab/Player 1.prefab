@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6598100119793481536}
   - component: {fileID: 5257564890557668224}
   - component: {fileID: 6318527617616444940}
+  - component: {fileID: 413809565707771228}
   m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
@@ -220,6 +221,19 @@ MonoBehaviour:
   xRayCooldown: {fileID: 0}
   xrayDuration: 5
   rechargeDuration: 15
+  isRecharging: 0
+--- !u!114 &413809565707771228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6111972122206512391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e5956d518cd3e4a9dada66e44bcce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &701349881368658366
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8249868921222570662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8386642858774988458}
+  m_Layer: 0
+  m_Name: StarTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8386642858774988458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8249868921222570662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.32, y: 18.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3015465904024768672}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3338204430289844043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,7 +110,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -8700617353114198275, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8386642858774988458}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6acafea12165f1a4cad385a59e55a312, type: 3}
       insertIndex: -1
@@ -665,6 +699,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 2581388220915709138}
   animator: {fileID: 9167422940408384218}
+  starEffect: {fileID: 9189791677902036828, guid: 09a642ffff5af5a4a84d813aff8db9f4, type: 3}
+  starTransform: {fileID: 0}
+  aiNav: {fileID: 0}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   castleController: {fileID: 9100000, guid: 244c613cb19130e409dba74ae0e7b237, type: 2}

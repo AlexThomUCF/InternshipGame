@@ -10,6 +10,8 @@ public class CatchableCharacter : MonoBehaviour
     [Header("References")]
     public NavMeshAgent agent;
     public Animator animator;
+    public GameObject starEffect;
+    [SerializeField] private Transform starTransform;
     [SerializeField] private AINavigation aiNav;
 
     [Header("Animation Controllers")]
@@ -36,6 +38,7 @@ public class CatchableCharacter : MonoBehaviour
     private void Awake()
     {
         aiNav = GetComponent<AINavigation>();
+        starTransform = transform.Find("StarTransform");
 
         SetRagdollParts();
         DisableRagdoll();
@@ -76,6 +79,9 @@ public class CatchableCharacter : MonoBehaviour
             }
 
             TurnOnRagDoll();
+
+            GameObject clone = Instantiate(starEffect, starTransform.position, Quaternion.identity);
+            Destroy(clone, 5f);
         }
 
         if (RoundManager.Instance != null)
