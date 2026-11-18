@@ -361,7 +361,13 @@ public class AINavigation : MonoBehaviour
                 taskManager.NPCReachedTask(this);
             }
 
-            StartCoroutine(WaitForAgentBeforeChair());
+            Chair chair = currentTaskTarget.GetComponent<Chair>();
+
+            if (chair != null)
+            {
+                chair.NpcChair(this);
+                //yield break;
+            }
         }
 
         yield return new WaitForSeconds(
@@ -606,27 +612,6 @@ public class AINavigation : MonoBehaviour
 
         decisionCooldown =
             Random.Range(0.5f, 2f);
-    }
-
-    //Wait for agent to reach end of path before sitting in chair
-    IEnumerator WaitForAgentBeforeChair()
-    {
-        while (myAgent.pathPending || myAgent.remainingDistance > myAgent.stoppingDistance)
-        {
-            yield return null;
-        }
-
-        Chair chair = currentTaskTarget.GetComponent<Chair>();
-
-        if (chair != null)
-        {
-
-            chair.NpcChair(this);
-            //yield break;
-        }
-
-        // Runs after agent reaches destination
-
     }
 
     public void MovementAnimations()
