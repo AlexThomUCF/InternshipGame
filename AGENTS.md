@@ -2,7 +2,7 @@
 - Project name: InternshipGame
 - Unity version: Unity 2022.3.55f1
 - Active game object:
-  - Name: mo_f 1
+  - Name: bench
   - Tag: Untagged
-  - Layer: Characters
+  - Layer: Environment
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

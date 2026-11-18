@@ -1,6 +1,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ public class CatchableCharacter : MonoBehaviour
     public Animator animator;
     public GameObject starEffect;
     [SerializeField] private Transform starTransform;
+    [SerializeField] private Transform headTransform;
     [SerializeField] private AINavigation aiNav;
 
     [Header("Animation Controllers")]
@@ -39,6 +41,7 @@ public class CatchableCharacter : MonoBehaviour
     {
         aiNav = GetComponent<AINavigation>();
         starTransform = transform.Find("StarTransform");
+        headTransform = animator.GetBoneTransform(HumanBodyBones.Head);
 
         SetRagdollParts();
         DisableRagdoll();
@@ -80,8 +83,9 @@ public class CatchableCharacter : MonoBehaviour
 
             TurnOnRagDoll();
 
-            GameObject clone = Instantiate(starEffect, starTransform.position, Quaternion.identity);
-            Destroy(clone, 5f);
+            StartCoroutine(WaitForRagdollToSettle());
+
+
         }
 
         if (RoundManager.Instance != null)
@@ -91,6 +95,53 @@ public class CatchableCharacter : MonoBehaviour
                 wasImposter
             );
         }
+    }
+
+    private void SpawnEffects()
+    {
+        if(headTransform != null)
+        {
+            GameObject clone = Instantiate(starEffect, headTransform.position + Vector3.up * 0.5f, Quaternion.identity);
+
+            clone.transform.SetParent(headTransform, true);
+            Destroy(clone, 5f);
+        }
+        else
+        {
+            GameObject clone = Instantiate(starEffect, starTransform.position + Vector3.up * 0.5f, Quaternion.identity);
+
+            clone.transform.SetParent(starTransform, true);
+            Destroy(clone, 5f);
+        }
+            
+    }
+
+    private IEnumerator WaitForRagdollToSettle()
+    {
+        // If there is no ragdoll, spawn effects immediately.
+        if (ragdollRigidbodies.Count == 0)
+        {
+            SpawnEffects();
+            yield break;
+        }
+
+        // Wait until all ragdoll parts stop moving.
+        yield return new WaitUntil(() =>
+        {
+            foreach (Rigidbody rb in ragdollRigidbodies)
+            {
+                if (rb != null &&
+                    (rb.velocity.magnitude > 0.1f ||
+                     rb.angularVelocity.magnitude > 0.1f))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        });
+
+        SpawnEffects();
     }
 
     private IEnumerator TransformIntoTrickster()
