@@ -2,7 +2,7 @@
 - Project name: InternshipGame
 - Unity version: Unity 2022.3.55f1
 - Active game object:
-  - Name: Park
+  - Name: YouLose
   - Tag: Untagged
   - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
