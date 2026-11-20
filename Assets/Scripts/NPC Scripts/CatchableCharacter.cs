@@ -14,7 +14,7 @@ public class CatchableCharacter : MonoBehaviour
     public GameObject starEffect;
     [SerializeField] private Transform starTransform;
     [SerializeField] private Transform headTransform;
-    [SerializeField] private AINavigation aiNav;
+
 
     [Header("Animation Controllers")]
     public RuntimeAnimatorController parkController;
@@ -39,7 +39,6 @@ public class CatchableCharacter : MonoBehaviour
 
     private void Awake()
     {
-        aiNav = GetComponent<AINavigation>();
         starTransform = transform.Find("StarTransform");
         headTransform = animator.GetBoneTransform(HumanBodyBones.Head);
 
@@ -62,12 +61,6 @@ public class CatchableCharacter : MonoBehaviour
         if (agent != null)
         {
             agent.isStopped = true;
-
-            //clear agent path
-            agent.ResetPath();
-
-            //Turn off ai navigation
-            aiNav.enabled = false;
         }
 
         if (wasImposter)
