@@ -215,6 +215,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5236592486964474462}
   animator: {fileID: 4572344512399624528}
+  starEffect: {fileID: 9189791677902036828, guid: 09a642ffff5af5a4a84d813aff8db9f4, type: 3}
+  starTransform: {fileID: 0}
+  aiNav: {fileID: 0}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   castleController: {fileID: 0}

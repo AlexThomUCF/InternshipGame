@@ -328,14 +328,12 @@ public class AINavigation : MonoBehaviour
         }
 
         // Wait until the NPC reaches the destination.
-        while (myAgent.remainingDistance >
-               myAgent.stoppingDistance)
+        while (myAgent.pathPending ||
+       myAgent.remainingDistance > myAgent.stoppingDistance)
         {
-            if (myAgent.pathStatus ==
-                NavMeshPathStatus.PathInvalid)
+            if (myAgent.pathStatus == NavMeshPathStatus.PathInvalid)
             {
                 StopMovement();
-
                 yield break;
             }
 
@@ -409,12 +407,7 @@ public class AINavigation : MonoBehaviour
                         if (dest.taskObjectPrefab != null && attachPoint != null)
                         {
                             currentTaskObject =
-                                Instantiate(
-                                    dest.taskObjectPrefab,
-                                    attachPoint.position,
-                                    dest.taskObjectPrefab.transform.rotation,
-                                    attachPoint
-                                );
+                                Instantiate(dest.taskObjectPrefab,attachPoint.position,dest.taskObjectPrefab.transform.rotation,attachPoint);
 
                             currentTaskObject.transform.localPosition =
                                 Vector3.zero;

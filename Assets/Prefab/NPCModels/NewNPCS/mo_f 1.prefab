@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7916076351344034329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2375645969973614284}
+  m_Layer: 3
+  m_Name: StarTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2375645969973614284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916076351344034329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.431, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8117239982996321805}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2780588998399110571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,6 +364,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2375645969973614284}
     - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: 978040e2e1b24a54a9eb2654936a160e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5284486473338434674}
@@ -1694,6 +1728,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 1255054557942494550}
   animator: {fileID: 2757916103046474871}
+  starEffect: {fileID: 9189791677902036828, guid: 09a642ffff5af5a4a84d813aff8db9f4, type: 3}
+  starTransform: {fileID: 0}
+  aiNav: {fileID: 0}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   castleController: {fileID: 9100000, guid: 244c613cb19130e409dba74ae0e7b237, type: 2}

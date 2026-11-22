@@ -16,7 +16,7 @@ public class Xray : MonoBehaviour
     public float rechargeDuration = 15f; // refill time
 
     private bool isXrayActive = false;
-    private bool isRecharging = false;
+    public bool isRecharging = false;
 
     private float energy = 1f; // 0–1
 
@@ -41,7 +41,7 @@ public class Xray : MonoBehaviour
         xRayCooldown.fillAmount = 1f;
 
     }
-    void OnEnable()
+    /*void OnEnable()
     {
         controls.Enable();
         controls.Player.Xray.started += ctx => StartXray();
@@ -53,7 +53,7 @@ public class Xray : MonoBehaviour
         controls.Player.Xray.started -= ctx => StartXray();
         controls.Player.Xray.canceled -= ctx => StopXray();
         controls.Disable();
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

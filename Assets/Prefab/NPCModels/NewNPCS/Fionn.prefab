@@ -41,6 +41,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1236523913389429159}
+  - {fileID: 5190782227149182816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7508914312089029553
@@ -215,6 +216,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 8345430575461603493}
   animator: {fileID: 7508914312089029553}
+  starEffect: {fileID: 9189791677902036828, guid: 09a642ffff5af5a4a84d813aff8db9f4, type: 3}
+  starTransform: {fileID: 0}
+  aiNav: {fileID: 0}
   parkController: {fileID: 9100000, guid: f5a3866be0f3e504c8e485c2f18eb2aa, type: 2}
   arcadeController: {fileID: 9100000, guid: e0c1122ba87884949979b25ce3c3cf56, type: 2}
   castleController: {fileID: 0}
@@ -347,6 +351,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completedTasks: []
+--- !u!1 &5628494025495894763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5190782227149182816}
+  m_Layer: 3
+  m_Name: StarTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5190782227149182816
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628494025495894763}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.31, z: 0.81}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4619100388429899884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1631352617062315596
 PrefabInstance:
   m_ObjectHideFlags: 0
